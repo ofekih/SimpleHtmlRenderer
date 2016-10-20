@@ -1,16 +1,17 @@
 import java.awt.Font;
+import java.awt.FontMetrics;
 import javax.swing.JComponent;
 
 public class Line {
 
 	private String text;
 	private Font font;
-	private int lineHeight;
+	private FontMetrics fontMetrics;
 
 	public Line(String text, Font font, JComponent component) {
 		this.text = text;
 		this.font = font;
-		lineHeight = component.getFontMetrics(font).getHeight();
+		fontMetrics = component.getFontMetrics(font);
 	}
 
 	public String getText() {
@@ -22,6 +23,10 @@ public class Line {
 	}
 
 	public int getLineHeight() {
-		return lineHeight;
+		return fontMetrics.getHeight();
+	}
+
+	public int getAscent() {
+		return fontMetrics.getAscent();
 	}
 }
