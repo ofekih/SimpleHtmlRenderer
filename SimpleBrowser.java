@@ -25,7 +25,12 @@ public class SimpleBrowser extends JFrame {
 	}
 
 	public void print(String str, Font font) {
+		String[] strings = str.split("\n");
 
+		for (int i = 0; i < strings.length; i++)
+			lines.add(new Line(str, font, textWindow));
+
+		textWindow.printLines(lines);
 	}
 
 	private TextWindow createWindow() {
