@@ -28,7 +28,7 @@ public class SimpleBrowser extends JFrame {
 		String[] strings = str.split("\n");
 
 		for (int i = 0; i < strings.length; i++)
-			lines.add(new Line(str, font, textWindow));
+			lines.add(new Line(strings[i], font, textWindow));
 
 		textWindow.printLines(lines);
 	}
