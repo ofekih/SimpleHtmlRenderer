@@ -1,8 +1,13 @@
 import javax.swing.JFrame;
+import java.awt.Font;
+
+import java.util.ArrayList;
 
 public class SimpleBrowser extends JFrame {
 
 	private int windowWidth, windowHeight;
+	private TextWindow textWindow;
+	private ArrayList<Line> lines;
 
 	public SimpleBrowser(int windowWidth, int windowHeight) {
 		super("Simple Browser");
@@ -11,11 +16,16 @@ public class SimpleBrowser extends JFrame {
 		setSize(windowWidth, windowHeight);
 		setVisible(true);
 		setLayout(null);
-		createWindow();
+		textWindow = createWindow();
+		lines = new ArrayList<Line>();
 	}
 
 	public SimpleBrowser() {
 		this(1000, 750);
+	}
+
+	public void print(String str, Font font) {
+
 	}
 
 	private TextWindow createWindow() {
