@@ -1,5 +1,8 @@
 import javax.swing.JFrame;
+
 import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.Dimension;
 
 import java.util.ArrayList;
 
@@ -14,6 +17,7 @@ public class SimpleBrowser extends JFrame {
 		this.windowWidth = windowWidth;
 		this.windowHeight = windowHeight;
 		setSize(windowWidth, windowHeight);
+		center(windowWidth, windowHeight);
 		setVisible(true);
 		setLayout(null);
 		textWindow = createWindow();
@@ -22,6 +26,13 @@ public class SimpleBrowser extends JFrame {
 
 	public SimpleBrowser() {
 		this(1000, 750);
+	}
+
+	private void center(int width, int height) {
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int screenWidth = (int)screenSize.getWidth();
+		int screenHeight = (int)screenSize.getHeight();
+		setLocation((screenWidth - width) / 2, (screenHeight - height) / 2);
 	}
 
 	public void print(String str, Font font) {
