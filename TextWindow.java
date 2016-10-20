@@ -56,7 +56,6 @@ class TextWindow extends JPanel {
 
 	private int drawHorizontalRule(Graphics g, int yLoc) {
 		g.setColor(Color.BLACK);
-		// System.out.println
 		g.fillRect(MARGIN_LEFT / 2, yLoc, xSize - MARGIN_LEFT, 2);
 		return 5;
 	}

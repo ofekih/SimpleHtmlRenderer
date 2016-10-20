@@ -5,8 +5,8 @@ public class Tester {
 		SimpleBrowser frame = new SimpleBrowser(1000, 750);
 		frame.print("Hello World", new Font("Serif", Font.PLAIN, 18));
 		frame.print("Other World", new Font("SansSerif", Font.ITALIC, 50));
-		frame.print("<hr>", new Font("SansSerif", Font.ITALIC, 50));
+		frame.print("<hr>");
 		frame.print("Multiple\nangry lines", new Font("Arial", Font.BOLD, 10));
-		frame.print("And now, for some normal text", new Font("Serif", Font.PLAIN, 21));
+		frame.print("And now, for some normal text");
 	}
 }

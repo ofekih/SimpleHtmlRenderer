@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 public class SimpleBrowser extends JFrame {
 
+	private final Font DEFAULT_FONT = new Font("Serif", Font.PLAIN, 21);
+
 	private int windowWidth, windowHeight;
 	private TextWindow textWindow;
 	private ArrayList<Line> lines;
@@ -42,6 +44,10 @@ public class SimpleBrowser extends JFrame {
 			lines.add(new Line(strings[i], font, textWindow));
 
 		textWindow.printLines(lines);
+	}
+
+	public void print(String str) {
+		print(str, DEFAULT_FONT);
 	}
 
 	private TextWindow createWindow() {
