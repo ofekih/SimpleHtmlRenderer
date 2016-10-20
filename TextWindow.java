@@ -33,7 +33,7 @@ class TextWindow extends JPanel {
 
 	public void drawLines(Graphics g) {
 		int xLoc = 50;
-		int yLoc = 15;
+		int yLoc = 50;
 
 		for (Line line : lines) {
 			g.setFont(line.getFont());
