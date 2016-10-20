@@ -13,6 +13,14 @@ public class Line {
 		lineHeight = component.getFontMetrics(font).getHeight();
 	}
 
+	public String getText() {
+		return text;
+	}
+
+	public Font getFont() {
+		return font;
+	}
+
 	public int getLineHeight() {
 		return lineHeight;
 	}

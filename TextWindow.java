@@ -27,10 +27,17 @@ class TextWindow extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		drawLines(g);
 	}
 
-	public void drawBorder(Graphics g) {
-		g.setColor(Color.BLACK);
-		// g.drawRect(0, 0, xSize - 1, ySize - 1);
+	public void drawLines(Graphics g) {
+		int xLoc = 50;
+		int yLoc = 15;
+
+		for (Line line : lines) {
+			g.setFont(line.getFont());
+			g.drawString(line.getText(), xLoc, yLoc);
+			yLoc += line.getLineHeight();
+		}
 	}
 }
