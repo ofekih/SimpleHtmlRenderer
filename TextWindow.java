@@ -34,11 +34,13 @@ class TextWindow extends JPanel {
 	public void drawLines(Graphics g) {
 		int xLoc = 50;
 		int yLoc = 50;
+		int fontHeight;
 
 		for (Line line : lines) {
 			g.setFont(line.getFont());
-			g.drawString(line.getText(), xLoc, yLoc);
-			yLoc += line.getLineHeight();
+			fontHeight = line.getLineHeight();
+			g.drawString(line.getText(), xLoc, yLoc + fontHeight / 2);
+			yLoc += fontHeight;
 		}
 	}
 }
