@@ -56,6 +56,7 @@ class TextWindow extends JPanel {
 		// g.drawRect(0, 0, xSize - 1, ySize - 1);
 	}
 }
+
 // o void setWindowSize(int xSize, int ySize) - sets the size of the text window
 // o void setFont(Font font) - sets the current font for the text that would follow
 // o void print(String str) - prints the string to the window
