@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 class TextWindow extends JPanel {
 
+	private final int MARGIN_LEFT = 50;
+
 	private ArrayList<Line> lines;
 	private int xSize, ySize;
 
@@ -14,7 +16,7 @@ class TextWindow extends JPanel {
 		setWindowSize(xSize, ySize);
 	}
 
-	public void setWindowSize(int xSize, int ySize) {
+	private void setWindowSize(int xSize, int ySize) {
 		setSize(xSize, ySize);
 		this.xSize = xSize;
 		this.ySize = ySize;
@@ -31,14 +33,31 @@ class TextWindow extends JPanel {
 			drawLines(g);
 	}
 
-	public void drawLines(Graphics g) {
-		int xLoc = 50;
+	private void drawLines(Graphics g) {
 		int yLoc = 50;
 
 		for (Line line : lines) {
-			g.setFont(line.getFont());
-			g.drawString(line.getText(), xLoc, yLoc + line.getAscent());
-			yLoc += line.getLineHeight();
+			int tempHeight = drawSpecial(g, line.getText(), yLoc);
+			if (tempHeight == 0) {
+				g.setFont(line.getFont());
+				g.drawString(line.getText(), MARGIN_LEFT, yLoc + line.getAscent());
+				yLoc += line.getLineHeight();
+			} else yLoc += tempHeight;
 		}
+	}
+
+	private int drawSpecial(Graphics g, String tag, int yLoc) {
+		switch (tag) {
+			case "<hr>":
+				return drawHorizontalRule(g, yLoc);
+			default: return 0;
+		}
+	}
+
+	private int drawHorizontalRule(Graphics g, int yLoc) {
+		g.setColor(Color.BLACK);
+		// System.out.println
+		g.fillRect(MARGIN_LEFT / 2, yLoc, xSize - MARGIN_LEFT, 2);
+		return 5;
 	}
 }
