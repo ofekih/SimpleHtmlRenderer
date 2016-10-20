@@ -27,7 +27,8 @@ class TextWindow extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		drawLines(g);
+		if (lines != null)
+			drawLines(g);
 	}
 
 	public void drawLines(Graphics g) {
