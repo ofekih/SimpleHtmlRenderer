@@ -64,10 +64,11 @@ public class SimpleBrowser extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		createWindow();
 
-		// textWindow.setPreferredSize(new Dimension(textWindow.getWidth(), textWindow.getHeight()));
 		textWindow.setPreferredSize(new Dimension(500, 500));
 		setLayout(new BorderLayout());
 		add((scrollPane = new JScrollPane(textWindow)), BorderLayout.CENTER);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+		scrollPane.getHorizontalScrollBar().setUnitIncrement(16);
 		lines = new ArrayList<Line>();
 	}
 
@@ -107,7 +108,6 @@ public class SimpleBrowser extends JFrame {
 		repaint();
 		scrollPane.revalidate();
 		scrollPane.repaint();
-		// overlayScrollBars();
 	}
 
 	/**
