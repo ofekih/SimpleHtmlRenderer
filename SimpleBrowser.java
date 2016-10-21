@@ -52,6 +52,7 @@ public class SimpleBrowser extends JFrame {
 		setVisible(true);
 		setLayout(null);
 		setResizable(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		createWindow();
 		addScrollBars();
 		lines = new ArrayList<Line>();
