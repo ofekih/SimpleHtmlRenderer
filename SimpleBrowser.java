@@ -20,6 +20,8 @@ import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.awt.event.ComponentListener;
 import java.awt.event.ComponentEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
 import java.util.ArrayList;
 
@@ -60,6 +62,7 @@ public class SimpleBrowser extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		createWindow();
 		addScrollBars();
+		addMouseWheelListener();
 		lines = new ArrayList<Line>();
 		addOnResize();
 	}
@@ -99,11 +102,19 @@ public class SimpleBrowser extends JFrame {
 	/**
 	 * Positions the scroll bars on the page
 	 */
-	public void positionBars() {
+	private void positionBars() {
 		int verticalInset = this.getInsets().top;
 		int horizontalInset = this.getInsets().right + this.getInsets().left;
 		verticalBar.setLocation(windowWidth - 15, 0);
 		verticalBar.setSize(16, windowHeight - verticalInset + 1);
+	}
+
+	private void addMouseWheelListener() {
+		super.addMouseWheelListener(new MouseWheelListener() {
+			public void mouseWheelMoved(MouseWheelEvent e) {
+				textWindow.scrollY(textWindow.getScrollY() + e.getWheelRotation() * 20);
+			}
+		});
 	}
 
 	/**

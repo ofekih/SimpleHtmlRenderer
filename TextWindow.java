@@ -78,6 +78,10 @@ class TextWindow extends JPanel {
 		repaint();
 	}
 
+	public int getScrollY() {
+		return yScroll;
+	}
+
 	/**
 	 * Gets real x coordinate adjusted for scrolling
 	 * @param  x old x coordinate
