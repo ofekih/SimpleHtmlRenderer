@@ -28,6 +28,9 @@ public class SimpleBrowser extends JFrame {
 	private static final int DEFAULT_WINDOW_WIDTH = 1000;
 	private static final int DEFAULT_WINDOW_HEIGHT = 750;
 
+	private final int SCREEN_WIDTH = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+	private final int SCREEN_HEIGHT = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+
 	private final Font DEFAULT_FONT = new Font("Serif", Font.PLAIN, 21);
 	private final Color DEFAULT_COLOR = Color.BLACK;
 
@@ -72,10 +75,7 @@ public class SimpleBrowser extends JFrame {
 	 * Centers JFrame on screen
 	 */
 	private void center() {
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int screenWidth = (int)screenSize.getWidth();
-		int screenHeight = (int)screenSize.getHeight();
-		setLocation((screenWidth - windowWidth) / 2, (screenHeight - windowHeight) / 2);
+		setLocation((SCREEN_WIDTH - windowWidth) / 2, (SCREEN_HEIGHT - windowHeight) / 2);
 	}
 
 	/**
@@ -116,6 +116,7 @@ public class SimpleBrowser extends JFrame {
 				windowHeight = getBounds().height;
 				positionBars();
 				textWindow.setSize(new Dimension(windowWidth - 15, windowHeight));
+				center();
 			}
 
 			public void componentHidden(ComponentEvent e) {}
