@@ -42,7 +42,6 @@ public class SimpleBrowser extends JFrame {
 	private TextWindow textWindow;
 	private JScrollPane scrollPane;
 	private ArrayList<Line> lines;
-	// private JScrollBar verticalBar, horizontalBar;
 	private Font currentFont;
 	private Color currentColor;
 
