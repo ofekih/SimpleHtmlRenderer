@@ -109,7 +109,6 @@ public class SimpleBrowser extends JFrame {
 	private void cleanupAfterPrint() {
 		textWindow.setPreferredSize(new Dimension(textWindow.getWidth(), textWindow.getHeight()));
 		revalidate();
-		repaint();
 		scrollPane.revalidate();
 		scrollPane.repaint();
 	}
