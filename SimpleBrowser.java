@@ -96,6 +96,9 @@ public class SimpleBrowser extends JFrame {
 		add(verticalBar);
 	}
 
+	/**
+	 * Positions the scroll bars on the page
+	 */
 	public void positionBars() {
 		int verticalInset = this.getInsets().top;
 		int horizontalInset = this.getInsets().right + this.getInsets().left;
@@ -103,6 +106,9 @@ public class SimpleBrowser extends JFrame {
 		verticalBar.setSize(16, windowHeight - verticalInset);
 	}
 
+	/**
+	 * Adds event to be called on resize
+	 */
 	public void addOnResize() {
 		addComponentListener(new ComponentListener() {
 			public void componentResized(ComponentEvent e) {
