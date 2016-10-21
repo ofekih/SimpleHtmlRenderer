@@ -24,7 +24,6 @@ public class SimpleBrowser extends JFrame {
 	private final int SCREEN_WIDTH = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 	private final int SCREEN_HEIGHT = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
-
 	private int windowWidth, windowHeight;
 	private TextWindow textWindow;
 	private JScrollPane scrollPane;
@@ -109,35 +108,35 @@ public class SimpleBrowser extends JFrame {
 		SimpleBrowser simpleBrowser = new SimpleBrowser(1000, 750);
 		Printer printer = simpleBrowser.getPrinter();
 
-		printer.println("Hello World", new Font("Serif", Font.PLAIN, 18));
-		printer.println("Other World", new Font("SansSerif", Font.ITALIC, 50));
-		printer.println("<hr>");
+		// printer.println("Hello World", new Font("Serif", Font.PLAIN, 18));
+		// printer.println("Other World", new Font("SansSerif", Font.ITALIC, 50));
+		// printer.println("<hr>");
 
 		printer.printPre("This text is pre-formatted!");
 		printer.printPre("Words     line   up       !");
 
-		printer.println("Multiple\nangry little\nlines", new Font("Arial", Font.BOLD, 10));
-		printer.println();
-		printer.println("I just printed an empty line");
+		// printer.println("Multiple\nangry little\nlines", new Font("Arial", Font.BOLD, 10));
+		// printer.println();
+		// printer.println("I just printed an empty line");
 
 		printer.printHR();
 
-		printer.println("Some normal text is much needed over here", new Font("Serif", Font.PLAIN, 22));
+		// printer.println("Some normal text is much needed over here", new Font("Serif", Font.PLAIN, 22));
 
-		printer.println("HUGE TEXT :D\n", new Font("Times New Roman", Font.BOLD, 250));
+		// printer.println("HUGE TEXT :D\n", new Font("Times New Roman", Font.BOLD, 250));
 
 
 		printer.printH1("And now for something completely different");
 		printer.printH3("Colors!!!");
-		printer.println();
+		// printer.println();
 
-		printer.setColor(Color.BLUE);
-		printer.setFont(new Font("Arial", Font.PLAIN, 22));
+		// printer.setColor(Color.BLUE);
+		// printer.setFont(new Font("Arial", Font.PLAIN, 22));
 
-		printer.println("This should be blue now XD");
-		printer.println("And now red", Color.RED);
+		// printer.println("This should be blue now XD");
+		// printer.println("And now red", Color.RED);
 		printer.printHR();
-		printer.setFont(Printer.DEFAULT_FONT);
-		printer.println("\t\tI'm glad this works!", Color.GREEN);
+		// printer.setFont(Printer.DEFAULT_FONT);
+		// printer.println("\t\tI'm glad this works!", Color.GREEN);
 	}
 }

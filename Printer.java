@@ -30,7 +30,7 @@ public class Printer {
 	 * @param font  the {@link Font} to use
 	 * @param color the {@link Color} to use
 	 */
-	public void println(String str, Font font, Color color) {
+	private void println(String str, Font font, Color color) {
 		if (str.lastIndexOf('\n') == str.length() - 1)
 			str += " "; // for trailing \n
 		str = str.replace("\t", "    ");
@@ -48,7 +48,7 @@ public class Printer {
 	 * @param str  the string to print
 	 * @param font the {@link Font} to use
 	 */
-	public void println(String str, Font font) {
+	private void println(String str, Font font) {
 		println(str, font, currentColor);
 	}
 
@@ -57,7 +57,7 @@ public class Printer {
 	 * @param str   the string to print
 	 * @param color the {@link Color} to use
 	 */
-	public void println(String str, Color color) {
+	private void println(String str, Color color) {
 		println(str, currentFont, color);
 	}
 
@@ -65,15 +65,19 @@ public class Printer {
 	 * Adds str to array of {@link Line}s.
 	 * @param str the string to print
 	 */
-	public void println(String str) {
+	private void println(String str) {
 		println(str, currentFont);
 	}
 
 	/**
 	 * Adds an empty line to the array of lines
 	 */
-	public void println() {
+	private void println() {
 		println("");
+	}
+
+	public void printP(String str) {
+		println(str);
 	}
 
 	/**
