@@ -46,6 +46,7 @@ public class SimpleBrowser extends JFrame {
 		this.windowWidth = windowWidth;
 		this.windowHeight = windowHeight;
 		currentFont = DEFAULT_FONT;
+		currentColor = DEFAULT_COLOR;
 		setSize(windowWidth, windowHeight);
 		center();
 		setVisible(true);
