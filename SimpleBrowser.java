@@ -115,7 +115,7 @@ public class SimpleBrowser extends JFrame {
 				windowWidth = getBounds().width;
 				windowHeight = getBounds().height;
 				positionBars();
-				textWindow.setSize(new Dimension(windowWidth - 15, windowHeight));
+				textWindow.setWindowSize(windowWidth - 15, windowHeight);
 			}
 
 			public void componentHidden(ComponentEvent e) {}
@@ -222,23 +222,23 @@ public class SimpleBrowser extends JFrame {
 	}
 
 	public static void main(String... pumpkins) {
-		SimpleBrowser sb = new SimpleBrowser(500, 500);
-		sb.println("Hello World", new Font("Serif", Font.PLAIN, 18));
-		sb.println("Other World", new Font("SansSerif", Font.ITALIC, 50));
-		sb.println("<hr>");
-		sb.println("Multiple\nangry lines", new Font("Arial", Font.BOLD, 10));
-		sb.println();
-		sb.println("I just printed an empty line");
-		sb.printHR();
-		sb.println("And now, for some normal text", new Font("Serif", Font.PLAIN, 22));
+		SimpleBrowser simpleBrowser = new SimpleBrowser(500, 500);
+		simpleBrowser.println("Hello World", new Font("Serif", Font.PLAIN, 18));
+		simpleBrowser.println("Other World", new Font("SansSerif", Font.ITALIC, 50));
+		simpleBrowser.println("<hr>");
+		simpleBrowser.println("Multiple\nangry lines", new Font("Arial", Font.BOLD, 10));
+		simpleBrowser.println();
+		simpleBrowser.println("I just printed an empty line");
+		simpleBrowser.printHR();
+		simpleBrowser.println("And now, for some normal text", new Font("Serif", Font.PLAIN, 22));
 
-		sb.println("HUGE TEXT :D\n", new Font("Times New Roman", Font.BOLD, 250));
+		simpleBrowser.println("HUGE TEXT :D\n", new Font("Times New Roman", Font.BOLD, 250));
 
-		sb.setColor(Color.BLUE);
-		sb.setFont(new Font("Arial", Font.PLAIN, 22));
-		sb.println("This should be blue now XD");
-		sb.println("And now red", Color.RED);
-		sb.printHR();
-		sb.println("\t\tI'm glad this works!", Color.GREEN);
+		simpleBrowser.setColor(Color.BLUE);
+		simpleBrowser.setFont(new Font("Arial", Font.PLAIN, 22));
+		simpleBrowser.println("This should be blue now XD");
+		simpleBrowser.println("And now red", Color.RED);
+		simpleBrowser.printHR();
+		simpleBrowser.println("\t\tI'm glad this works!", Color.GREEN);
 	}
 }

@@ -38,10 +38,11 @@ class TextWindow extends JPanel {
 	 * @param xSize width of the window
 	 * @param ySize height of the window
 	 */
-	private void setWindowSize(int xSize, int ySize) {
+	public void setWindowSize(int xSize, int ySize) {
 		setSize(xSize, ySize);
 		this.xSize = xSize;
 		this.ySize = ySize;
+		repaint();
 	}
 
 	/**
