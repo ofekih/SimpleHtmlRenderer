@@ -141,18 +141,32 @@ public class SimpleBrowser extends JFrame {
 		println(str, currentFont);
 	}
 
+	/**
+	 * Adds an empty line to the array of lines
+	 */
 	public void println() {
 		println("");
 	}
 
+	/**
+	 * Adds a horizontal rule to the array of lines
+	 */
 	public void printHR() {
 		lines.add(new SpecialLine("hr", currentFont, currentColor, textWindow));
 	}
 
+	/**
+	 * Sets the current font
+	 * @param font the {@link Font} to set
+	 */
 	public void setFont(Font font) {
 		currentFont = font;
 	}
 
+	/**
+	 * Sets the current color
+	 * @param color the {@link Color} to set
+	 */
 	public void setColor(Color color) {
 		currentColor = color;
 	}
