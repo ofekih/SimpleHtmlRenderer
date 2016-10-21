@@ -89,8 +89,8 @@ public class SimpleBrowser extends JFrame {
 		str = str.replace("\t", "    ");
 		String[] strings = str.split("\n");
 
-		for (int i = 0; i < strings.length; i++)
-			lines.add(new Line(strings[i], font, color, textWindow));
+		for (String string : strings)
+			lines.add(new Line(string, font, color, textWindow));
 
 		textWindow.printLines(lines);
 		cleanupAfterPrint();
