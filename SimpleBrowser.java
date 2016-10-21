@@ -143,7 +143,7 @@ public class SimpleBrowser extends JFrame {
 	 */
 	public void printHR() {
 		lines.add(new SpecialLine("hr", currentFont, currentColor, textWindow));
-		textWindow.setPreferredSize(new Dimension(textWindow.getWidth(), textWindow.getHeight()));
+		cleanupAfterPrint();
 	}
 
 	/**
