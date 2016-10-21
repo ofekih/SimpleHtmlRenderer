@@ -18,6 +18,8 @@ import java.awt.Dimension;
 
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
+import java.awt.event.ComponentListener;
+import java.awt.event.ComponentEvent;
 
 import java.util.ArrayList;
 
@@ -56,6 +58,7 @@ public class SimpleBrowser extends JFrame {
 		createWindow();
 		addScrollBars();
 		lines = new ArrayList<Line>();
+		addOnResize();
 	}
 
 	/**
@@ -79,21 +82,40 @@ public class SimpleBrowser extends JFrame {
 	 * Adds scrollbars to JFrame
 	 */
 	private void addScrollBars() {
-		int verticalInset = this.getInsets().top;
-		int horizontalInset = this.getInsets().right + this.getInsets().left;
 		// JScrollBar horizontalBar = new JScrollBar(JScrollBar.HORIZONTAL, 0, 5, 0, 300);
 		// horizontalBar.setLocation(0, windowHeight - verticalInset - 15);
 		// horizontalBar.setSize(windowWidth - horizontalInset - 10, 18);
 		verticalBar = new JScrollBar(JScrollBar.VERTICAL, 0, 10, 0, windowHeight * 2);
-		verticalBar.setLocation(windowWidth - 15, 0);
-		verticalBar.setSize(16, windowHeight - verticalInset);
 		verticalBar.addAdjustmentListener(new AdjustmentListener() {
 			public void adjustmentValueChanged(AdjustmentEvent e) {
 				textWindow.scrollY(e.getValue());
 			}
 		});
+		positionBars();
 		// add(horizontalBar);
 		add(verticalBar);
+	}
+
+	public void positionBars() {
+		int verticalInset = this.getInsets().top;
+		int horizontalInset = this.getInsets().right + this.getInsets().left;
+		verticalBar.setLocation(windowWidth - 15, 0);
+		verticalBar.setSize(16, windowHeight - verticalInset);
+	}
+
+	public void addOnResize() {
+		addComponentListener(new ComponentListener() {
+			public void componentResized(ComponentEvent e) {
+				windowWidth = getBounds().width;
+				windowHeight = getBounds().height;
+				positionBars();
+				textWindow.setSize(new Dimension(windowWidth - 15, windowHeight));
+			}
+
+			public void componentHidden(ComponentEvent e) {}
+			public void componentShown(ComponentEvent e) {}
+			public void componentMoved(ComponentEvent e) {}
+		});
 	}
 
 	/**
