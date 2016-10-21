@@ -86,6 +86,10 @@ public class SimpleBrowser extends JFrame {
 		println("");
 	}
 
+	public void printHR() {
+		lines.add(new Line("o_OhrO_o", DEFAULT_FONT, textWindow));
+	}
+
 	public void setFont(Font font) {
 		currentFont = font;
 	}

@@ -71,7 +71,7 @@ class TextWindow extends JPanel {
 
 	private int drawSpecial(Graphics g, String tag, int yLoc) {
 		switch (tag) {
-			case "<hr>":
+			case "o_OhrO_o":
 				return drawHorizontalRule(g, yLoc);
 			default: return 0;
 		}

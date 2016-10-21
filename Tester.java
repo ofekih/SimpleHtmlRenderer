@@ -9,6 +9,7 @@ public class Tester {
 		frame.println("Multiple\nangry lines", new Font("Arial", Font.BOLD, 10));
 		frame.println();
 		frame.println("I just printed an empty line");
+		frame.printHR();
 		frame.println("And now, for some normal text");
 
 		frame.println("HUGE TEXT :D", new Font("Times New Roman", Font.BOLD, 250));
