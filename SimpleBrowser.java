@@ -109,6 +109,9 @@ public class SimpleBrowser extends JFrame {
 		verticalBar.setSize(16, windowHeight - verticalInset + 1);
 	}
 
+	/**
+	 * Add an event listener for the mouse wheel event
+	 */
 	private void addMouseWheelListener() {
 		super.addMouseWheelListener(new MouseWheelListener() {
 			public void mouseWheelMoved(MouseWheelEvent e) {

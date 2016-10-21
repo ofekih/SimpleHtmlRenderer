@@ -78,6 +78,18 @@ class TextWindow extends JPanel {
 		repaint();
 	}
 
+	/**
+	 * Returns the current x scroll value
+	 * @return the current x scroll value
+	 */
+	public int getScrollX() {
+		return xScroll;
+	}
+
+	/**
+	 * Returns the current y scroll value
+	 * @return the current y scroll value
+	 */
 	public int getScrollY() {
 		return yScroll;
 	}
