@@ -27,7 +27,7 @@ public class SimpleBrowser extends JFrame {
 	private int windowWidth, windowHeight;
 	private TextWindow textWindow;
 	private JScrollPane scrollPane;
-	private HtmlPrinter printer;
+	private HtmlPrinter htmlPrinter;
 
 	/**
 	 * Main constructor settings width and height.
@@ -49,7 +49,7 @@ public class SimpleBrowser extends JFrame {
 		textWindow.setPreferredSize(new Dimension(1000, 750));
 		setLayout(new BorderLayout());
 		addScrollPane();
-		printer = new HtmlPrinter(this, textWindow);
+		htmlPrinter = new HtmlPrinter(this, textWindow);
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class SimpleBrowser extends JFrame {
 	 * @return the {@link HtmlPrinter} object
 	 */
 	public HtmlPrinter getPrinter() {
-		return printer;
+		return htmlPrinter;
 	}
 
 	/**
@@ -106,37 +106,35 @@ public class SimpleBrowser extends JFrame {
 
 	public static void main(String... pumpkins) {
 		SimpleBrowser simpleBrowser = new SimpleBrowser(1000, 750);
-		HtmlPrinter printer = simpleBrowser.getPrinter();
+		HtmlPrinter htmlPrinter = simpleBrowser.getPrinter();
 
-		// printer.println("Hello World", new Font("Serif", Font.PLAIN, 18));
-		// printer.println("Other World", new Font("SansSerif", Font.ITALIC, 50));
-		// printer.println("<hr>");
+		htmlPrinter.setFont(new Font("Serif", Font.PLAIN, 18)).print("Hello World");
+		htmlPrinter.setFont(new Font("SansSerif", Font.ITALIC, 50)).print("Other World");
 
-		printer.printPre("This text is pre-formatted!");
-		printer.printPre("Words     line   up       !");
+		htmlPrinter.printPre("This text is pre-formatted!");
+		htmlPrinter.printPre("Words     line   up       !");
 
-		// printer.println("Multiple\nangry little\nlines", new Font("Arial", Font.BOLD, 10));
-		// printer.println();
-		// printer.println("I just printed an empty line");
+		htmlPrinter.setFont(new Font("Arial", Font.BOLD, 10));
+		htmlPrinter.print("Multiple\nangry little\nlines");
+		htmlPrinter.print(""); // this prints an empty line
+		htmlPrinter.setFont(HtmlPrinter.DEFAULT_FONT).print("I just printed an empty line");
 
-		printer.printHR();
+		htmlPrinter.printHR();
 
-		// printer.println("Some normal text is much needed over here", new Font("Serif", Font.PLAIN, 22));
+		htmlPrinter.setFont(new Font("Serif", Font.PLAIN, 22)).print("Some normal text is much needed over here");
+		htmlPrinter.setFont(new Font("Times New Roman", Font.BOLD, 250)).print("HUGE TEXT :D\n");
 
-		// printer.println("HUGE TEXT :D\n", new Font("Times New Roman", Font.BOLD, 250));
+		htmlPrinter.printH1("H1 And now for something completely different");
+		htmlPrinter.printH3("Colors!!!");
+		htmlPrinter.print("");
 
+		htmlPrinter.setColor(Color.BLUE);
+		htmlPrinter.setFont(new Font("Arial", Font.PLAIN, 22));
 
-		printer.printH1("H1 And now for something completely different");
-		printer.printH3("Colors!!!");
-		// printer.println();
-
-		// printer.setColor(Color.BLUE);
-		// printer.setFont(new Font("Arial", Font.PLAIN, 22));
-
-		// printer.println("This should be blue now XD");
-		// printer.println("And now red", Color.RED);
-		printer.printHR();
-		// printer.setFont(HtmlPrinter.DEFAULT_FONT);
-		// printer.println("\t\tI'm glad this works!", Color.GREEN);
+		htmlPrinter.print("This should be blue now XD");
+		htmlPrinter.setColor(Color.RED).print("And now red");
+		htmlPrinter.printHR();
+		htmlPrinter.setFont(HtmlPrinter.DEFAULT_FONT);
+		htmlPrinter.setColor(Color.GREEN).print("\t\tI'm glad this works!");
 	}
 }
