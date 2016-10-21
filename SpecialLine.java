@@ -29,4 +29,12 @@ public class SpecialLine extends Line {
 	public String getTag() {
 		return tag;
 	}
+
+	@Override
+	public int getLineHeight() {
+		switch (tag) {
+			case "hr": return 8;
+			default: return 0;
+		}
+	}
 }
