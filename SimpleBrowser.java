@@ -115,7 +115,9 @@ public class SimpleBrowser extends JFrame {
 	private void addMouseWheelListener() {
 		super.addMouseWheelListener(new MouseWheelListener() {
 			public void mouseWheelMoved(MouseWheelEvent e) {
-				textWindow.scrollY(textWindow.getScrollY() + e.getWheelRotation() * 20);
+				int yScroll = textWindow.getScrollY() + e.getWheelRotation() * 20;
+				verticalBar.setValue(yScroll);
+				textWindow.scrollY(yScroll);
 			}
 		});
 	}
