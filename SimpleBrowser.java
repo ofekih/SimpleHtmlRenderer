@@ -1,3 +1,12 @@
+/**
+ * SimpleBrowser
+ * A simple {@link JFrame} that can print text in different colors, fonts, and can even print some special characters (like horizontal rules).
+ *
+ * @author Ofek Gila
+ * @author Saagar Jha
+ * @since October 20th, 2016
+ */
+
 import javax.swing.JFrame;
 import javax.swing.JScrollBar;
 import javax.swing.SwingUtilities;
@@ -14,6 +23,9 @@ import java.util.ArrayList;
 
 public class SimpleBrowser extends JFrame {
 
+	private static final int DEFAULT_WINDOW_WIDTH = 1000;
+	private static final int DEFAULT_WINDOW_HEIGHT = 750;
+
 	private final Font DEFAULT_FONT = new Font("Serif", Font.PLAIN, 21);
 	private final Color DEFAULT_COLOR = Color.BLACK;
 
@@ -24,13 +36,18 @@ public class SimpleBrowser extends JFrame {
 	private Font currentFont;
 	private Color currentColor;
 
+	/**
+	 * Main constructor settings width and height.
+	 * @param  windowWidth  width of the frame
+	 * @param  windowHeight height of the frame
+	 */
 	public SimpleBrowser(int windowWidth, int windowHeight) {
 		super("Simple Browser");
 		this.windowWidth = windowWidth;
 		this.windowHeight = windowHeight;
 		currentFont = DEFAULT_FONT;
 		setSize(windowWidth, windowHeight);
-		center(windowWidth, windowHeight);
+		center();
 		setVisible(true);
 		setLayout(null);
 		setResizable(false);
@@ -39,17 +56,26 @@ public class SimpleBrowser extends JFrame {
 		lines = new ArrayList<Line>();
 	}
 
+	/**
+	 * Constructor without width and height (uses defaults)
+	 */
 	public SimpleBrowser() {
-		this(1000, 750);
+		this(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT);
 	}
 
-	private void center(int width, int height) {
+	/**
+	 * Centers JFrame on screen
+	 */
+	private void center() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int screenWidth = (int)screenSize.getWidth();
 		int screenHeight = (int)screenSize.getHeight();
-		setLocation((screenWidth - width) / 2, (screenHeight - height) / 2);
+		setLocation((screenWidth - windowWidth) / 2, (screenHeight - windowHeight) / 2);
 	}
 
+	/**
+	 * Adds scrollbars to JFrame
+	 */
 	private void addScrollBars() {
 		int verticalInset = this.getInsets().top;
 		int horizontalInset = this.getInsets().right + this.getInsets().left;
@@ -68,10 +94,16 @@ public class SimpleBrowser extends JFrame {
 		add(verticalBar);
 	}
 
+	/**
+	 * Adds str to 
+	 * @param str   the string to print
+	 * @param font  the {@link Font} to use
+	 * @param color the {@link Color} to use
+	 */
 	public void println(String str, Font font, Color color) {
 		currentFont = font;
 		currentColor = color;
-		str += " ";
+		str += " "; // for trailing \n
 		str = str.replace("\t", "    ");
 		String[] strings = str.split("\n");
 
@@ -85,6 +117,11 @@ public class SimpleBrowser extends JFrame {
 		overlayScrollBars();
 	}
 
+	/**
+	 * [println description]
+	 * @param str  [description]
+	 * @param font [description]
+	 */
 	public void println(String str, Font font) {
 		println(str, font, currentColor);
 	}
