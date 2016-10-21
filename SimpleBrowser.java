@@ -103,7 +103,7 @@ public class SimpleBrowser extends JFrame {
 		int verticalInset = this.getInsets().top;
 		int horizontalInset = this.getInsets().right + this.getInsets().left;
 		verticalBar.setLocation(windowWidth - 15, 0);
-		verticalBar.setSize(16, windowHeight - verticalInset);
+		verticalBar.setSize(16, windowHeight - verticalInset + 1);
 	}
 
 	/**
