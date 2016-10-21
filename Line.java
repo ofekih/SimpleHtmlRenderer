@@ -33,6 +33,14 @@ public class Line {
 	}
 
 	/**
+	 * Appends text to this line
+	 * @param text String of text to append
+	 */
+	public void append(String text) {
+		this.text += text;
+	}
+
+	/**
 	 * Gets the text of this line
 	 * @return the text
 	 */

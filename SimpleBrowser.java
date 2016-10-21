@@ -7,24 +7,20 @@
  * @since October 20th, 2016
  */
 
+
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
-import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.Dimension;
-
-import java.util.List;
-import java.util.ArrayList;
 
 public class SimpleBrowser extends JFrame {
 
 	private static final int DEFAULT_WINDOW_WIDTH = 1000;
 	private static final int DEFAULT_WINDOW_HEIGHT = 750;
-	private static final Font DEFAULT_FONT = new Font("SansSerif", Font.PLAIN, 25);
-	private static final Color DEFAULT_COLOR = Color.BLACK;
 
 	private final int SCREEN_WIDTH = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 	private final int SCREEN_HEIGHT = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
@@ -33,9 +29,7 @@ public class SimpleBrowser extends JFrame {
 	private int windowWidth, windowHeight;
 	private TextWindow textWindow;
 	private JScrollPane scrollPane;
-	private List<Line> lines;
-	private Font currentFont;
-	private Color currentColor;
+	private Printer printer;
 
 	/**
 	 * Main constructor settings width and height.
@@ -46,8 +40,7 @@ public class SimpleBrowser extends JFrame {
 		super("Simple Browser");
 		this.windowWidth = windowWidth;
 		this.windowHeight = windowHeight;
-		currentFont = DEFAULT_FONT;
-		currentColor = DEFAULT_COLOR;
+
 		setSize(windowWidth, windowHeight);
 		center();
 		setVisible(true);
@@ -58,7 +51,7 @@ public class SimpleBrowser extends JFrame {
 		textWindow.setPreferredSize(new Dimension(500, 500));
 		setLayout(new BorderLayout());
 		addScrollPane();
-		lines = new ArrayList<Line>();
+		printer = new Printer(this, textWindow);
 	}
 
 	/**
@@ -76,124 +69,12 @@ public class SimpleBrowser extends JFrame {
 	}
 
 	/**
-	 * Adds str to array of {@link Line}s with given font and color.
-	 * @param str   the string to print
-	 * @param font  the {@link Font} to use
-	 * @param color the {@link Color} to use
+	 * Repaints components after print call
 	 */
-	public void println(String str, Font font, Color color) {
-		currentFont = font;
-		currentColor = color;
-		if (str.lastIndexOf('\n') == str.length() - 1)
-			str += " "; // for trailing \n
-		str = str.replace("\t", "    ");
-		String[] strings = str.split("\n");
-
-		for (String string : strings)
-			lines.add(new Line(string, font, color, textWindow));
-
-		textWindow.printLines(lines);
-		cleanupAfterPrint();
-	}
-
-	/**
-	 * Repaints components after println call
-	 */
-	private void cleanupAfterPrint() {
+	public void cleanupAfterPrint() {
 		textWindow.setPreferredSize(new Dimension(textWindow.getWidth(), textWindow.getHeight()));
 		revalidate();
 		scrollPane.revalidate();
-	}
-
-	/**
-	 * Adds str to array of {@link Line}s with given font.
-	 * @param str  the string to print
-	 * @param font the {@link Font} to use
-	 */
-	public void println(String str, Font font) {
-		println(str, font, currentColor);
-	}
-
-	/**
-	 * Adds str to array of {@link Line}s with given color.
-	 * @param str   the string to print
-	 * @param color the {@link Color} to use
-	 */
-	public void println(String str, Color color) {
-		println(str, currentFont, color);
-	}
-
-	/**
-	 * Adds str to array of {@link Line}s.
-	 * @param str the string to print
-	 */
-	public void println(String str) {
-		println(str, currentFont);
-	}
-
-	/**
-	 * Adds an empty line to the array of lines
-	 */
-	public void println() {
-		println("");
-	}
-
-	/**
-	 * Adds a horizontal rule to the array of lines
-	 */
-	public void printHR() {
-		lines.add(new SpecialLine("hr", currentFont, currentColor, textWindow));
-		cleanupAfterPrint();
-	}
-
-	/**
-	 * Sets the current font
-	 * @param font the {@link Font} to set
-	 */
-	public void setFont(Font font) {
-		currentFont = font;
-	}
-
-	public void printH1(String str) {
-		println(str, getHeadingFont(32));
-	}
-
-	public void printH2(String str) {
-		println(str, getHeadingFont(24));
-	}
-
-	public void printH3(String str) {
-		println(str, getHeadingFont(19));
-	}
-
-	public void printH4(String str) {
-		println(str, getHeadingFont(15));
-	}
-
-	public void printH5(String str) {
-		println(str, getHeadingFont(13));
-	}
-
-	public void printH6(String str) {
-		println(str, getHeadingFont(11));
-	}
-
-	/**
-	 * Sets the heading font with given px size
-	 * Helper method for setFontByTag
-	 * @param sizePx font size in pixels
-	 * @return       the font
-	 */
-	private Font getHeadingFont(int sizePx) {
-		return new Font("SansSerif", Font.BOLD, sizePx);
-	}
-
-	/**
-	 * Sets the current color
-	 * @param color the {@link Color} to set
-	 */
-	public void setColor(Color color) {
-		currentColor = color;
 	}
 
 	/**
@@ -204,6 +85,10 @@ public class SimpleBrowser extends JFrame {
 		textWindow.setLocation(0, 0);
 		textWindow.setSize(new Dimension(windowWidth - 15, windowHeight));
 		add(textWindow);
+	}
+
+	public Printer getPrinter() {
+		return printer;
 	}
 
 	/**
@@ -219,23 +104,26 @@ public class SimpleBrowser extends JFrame {
 
 	public static void main(String... pumpkins) {
 		SimpleBrowser simpleBrowser = new SimpleBrowser(1000, 750);
-		simpleBrowser.println("Hello World", new Font("Serif", Font.PLAIN, 18));
-		simpleBrowser.println("Other World", new Font("SansSerif", Font.ITALIC, 50));
-		simpleBrowser.println("<hr>");
-		simpleBrowser.println("Multiple\nangry little\nlines", new Font("Arial", Font.BOLD, 10));
-		simpleBrowser.println();
-		simpleBrowser.println("I just printed an empty line");
-		simpleBrowser.printHR();
-		simpleBrowser.println("And now, for some normal text", new Font("Serif", Font.PLAIN, 22));
+		Printer printer = simpleBrowser.getPrinter();
+		printer.println("Hello World", new Font("Serif", Font.PLAIN, 18));
+		printer.println("Other World", new Font("SansSerif", Font.ITALIC, 50));
+		printer.println("<hr>");
+		printer.printPre("This text is pre-formatted!");
+		printer.printPre("Words     line   up       !");
+		printer.println("Multiple\nangry little\nlines", new Font("Arial", Font.BOLD, 10));
+		printer.println();
+		printer.println("I just printed an empty line");
+		printer.printHR();
+		printer.println("And now, for some normal text", new Font("Serif", Font.PLAIN, 22));
 
-		simpleBrowser.println("HUGE TEXT :D\n", new Font("Times New Roman", Font.BOLD, 250));
+		printer.println("HUGE TEXT :D\n", new Font("Times New Roman", Font.BOLD, 250));
 
-		simpleBrowser.setColor(Color.BLUE);
-		simpleBrowser.setFont(new Font("Arial", Font.PLAIN, 22));
-		simpleBrowser.println("This should be blue now XD");
-		simpleBrowser.println("And now red", Color.RED);
-		simpleBrowser.printHR();
-		simpleBrowser.setFont(SimpleBrowser.DEFAULT_FONT);
-		simpleBrowser.println("\t\tI'm glad this works!", Color.GREEN);
+		printer.setColor(Color.BLUE);
+		printer.setFont(new Font("Arial", Font.PLAIN, 22));
+		printer.println("This should be blue now XD");
+		printer.println("And now red", Color.RED);
+		printer.printHR();
+		printer.setFont(Printer.DEFAULT_FONT);
+		printer.println("\t\tI'm glad this works!", Color.GREEN);
 	}
 }
