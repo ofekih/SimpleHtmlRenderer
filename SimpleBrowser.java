@@ -116,7 +116,6 @@ public class SimpleBrowser extends JFrame {
 				windowHeight = getBounds().height;
 				positionBars();
 				textWindow.setSize(new Dimension(windowWidth - 15, windowHeight));
-				center();
 			}
 
 			public void componentHidden(ComponentEvent e) {}
