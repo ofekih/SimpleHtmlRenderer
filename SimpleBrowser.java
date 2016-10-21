@@ -155,6 +155,30 @@ public class SimpleBrowser extends JFrame {
 	}
 
 	/**
+	 * Sets the current font using a tag
+	 * @param tag the tag to set the {@link Font} to
+	 */
+	public void setFontByTag(String tag) {
+		switch (tag) {
+			case "h1": setHeadingFont(32);
+			case "h2": setHeadingFont(24);
+			case "h3": setHeadingFont(19);
+			case "h4": setHeadingFont(15);
+			case "h5": setHeadingFont(13);
+			case "h6": setHeadingFont(11);
+		}
+	}
+
+	/**
+	 * Sets the heading font with given px size
+	 * Helper method for setFontByTag
+	 * @param sizePx font size in pixels
+	 */
+	private void setHeadingFont(int sizePx) {
+		setFont(new Font("SansSerif", Font.BOLD, sizePx));
+	}
+
+	/**
 	 * Sets the current color
 	 * @param color the {@link Color} to set
 	 */
@@ -188,7 +212,7 @@ public class SimpleBrowser extends JFrame {
 		simpleBrowser.println("Hello World", new Font("Serif", Font.PLAIN, 18));
 		simpleBrowser.println("Other World", new Font("SansSerif", Font.ITALIC, 50));
 		simpleBrowser.println("<hr>");
-		simpleBrowser.println("Multiple\nangry lines", new Font("Arial", Font.BOLD, 10));
+		simpleBrowser.println("Multiple\nangry little\nlines", new Font("Arial", Font.BOLD, 10));
 		simpleBrowser.println();
 		simpleBrowser.println("I just printed an empty line");
 		simpleBrowser.printHR();
