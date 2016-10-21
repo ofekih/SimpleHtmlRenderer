@@ -110,7 +110,6 @@ public class SimpleBrowser extends JFrame {
 		textWindow.setPreferredSize(new Dimension(textWindow.getWidth(), textWindow.getHeight()));
 		revalidate();
 		scrollPane.revalidate();
-		scrollPane.repaint();
 	}
 
 	/**
