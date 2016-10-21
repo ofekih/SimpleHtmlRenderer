@@ -4,7 +4,14 @@ import javax.swing.JComponent;
 
 public class SpecialLine extends Line {
 
-	public SpecialLine(String text, Font font, Color color, JComponent component) {
-		super(text, font, color, component);
+	private String tag;
+
+	public SpecialLine(String tag, Font font, Color color, JComponent component) {
+		super("", font, color, component);
+		this.tag = tag;
+	}
+
+	public String getTag() {
+		return tag;
 	}
 }

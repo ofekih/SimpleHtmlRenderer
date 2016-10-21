@@ -61,7 +61,7 @@ class TextWindow extends JPanel {
 			for (Line line : lines) {
 				g.setColor(line.getColor());
 				if (line instanceof SpecialLine)
-					yLoc += drawSpecial(g, line.getText(), yLoc);
+					yLoc += drawSpecial(g, ((SpecialLine)line).getTag(), yLoc);
 				else {
 					g.setFont(line.getFont());
 					g.drawString(line.getText(), getX(MARGIN_LEFT), getY(yLoc + line.getAscent()));
