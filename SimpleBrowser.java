@@ -27,12 +27,12 @@ public class SimpleBrowser extends JFrame {
 
 	private static final int DEFAULT_WINDOW_WIDTH = 1000;
 	private static final int DEFAULT_WINDOW_HEIGHT = 750;
+	private static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, 25);
+	private static final Color DEFAULT_COLOR = Color.BLACK;
 
 	private final int SCREEN_WIDTH = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 	private final int SCREEN_HEIGHT = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
-	private final Font DEFAULT_FONT = new Font("Serif", Font.PLAIN, 21);
-	private final Color DEFAULT_COLOR = Color.BLACK;
 
 	private int windowWidth, windowHeight;
 	private TextWindow textWindow;
@@ -239,6 +239,7 @@ public class SimpleBrowser extends JFrame {
 		simpleBrowser.println("This should be blue now XD");
 		simpleBrowser.println("And now red", Color.RED);
 		simpleBrowser.printHR();
+		simpleBrowser.setFont(SimpleBrowser.DEFAULT_FONT);
 		simpleBrowser.println("\t\tI'm glad this works!", Color.GREEN);
 	}
 }
