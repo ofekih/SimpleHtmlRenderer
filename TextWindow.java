@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 
@@ -20,7 +21,7 @@ class TextWindow extends JPanel {
 	private final int X_MARGIN = 50;
 	private final int Y_MARGIN = 50;
 
-	private ArrayList<Line> lines = new ArrayList<Line>();
+	private List<Line> lines = new ArrayList<Line>();
 
 	public int getHeight() {
 		int height = 0;
@@ -41,10 +42,10 @@ class TextWindow extends JPanel {
 	}
 
 	/**
-	 * Prints lines from lines arraylist
-	 * @param lines an {@link ArrayList} of {@link Line}s
+	 * Prints lines from lines list
+	 * @param lines an {@link List} of {@link Line}s
 	 */
-	public void printLines(ArrayList<Line> lines) {
+	public void printLines(List<Line> lines) {
 		this.lines = lines;
 		repaint();
 	}

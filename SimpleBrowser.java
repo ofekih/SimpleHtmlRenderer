@@ -25,6 +25,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
+import java.util.List;
 import java.util.ArrayList;
 
 public class SimpleBrowser extends JFrame {
@@ -41,7 +42,7 @@ public class SimpleBrowser extends JFrame {
 	private int windowWidth, windowHeight;
 	private TextWindow textWindow;
 	private JScrollPane scrollPane;
-	private ArrayList<Line> lines;
+	private List<Line> lines;
 	private Font currentFont;
 	private Color currentColor;
 
