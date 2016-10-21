@@ -17,32 +17,29 @@ import java.util.ConcurrentModificationException;
 
 class TextWindow extends JPanel {
 
-	private final int MARGIN_LEFT = 50;
+	private final int X_MARGIN = 50;
+	private final int Y_MARGIN = 50;
 
-	private ArrayList<Line> lines;
-	private int xSize, ySize;
-	private int yScroll, xScroll;
+	private ArrayList<Line> lines = new ArrayList<Line>();
 
-	/**
-	 * Initializes text window with given width and height
-	 * @param  xSize width of the window
-	 * @param  ySize height of the window
-	 */
-	public TextWindow(int xSize, int ySize) {
-		yScroll = xScroll = 0;
-		setWindowSize(xSize, ySize);
+	public int getHeight() {
+		int height = 0;
+		try {
+			for (Line line : lines) {
+				height += line.getLineHeight();
+			}
+		} catch (ConcurrentModificationException e) {}
+		return height + 2 * Y_MARGIN;
 	}
 
-	/**
-	 * Sets the window's size
-	 * @param xSize width of the window
-	 * @param ySize height of the window
-	 */
-	public void setWindowSize(int xSize, int ySize) {
-		setSize(xSize, ySize);
-		this.xSize = xSize;
-		this.ySize = ySize;
-		repaint();
+	public int getWidth() {
+		int width = 0;
+		try {
+			for (Line line : lines) {
+				width = Math.max(width, line.getLineWidth());
+			}
+		} catch (ConcurrentModificationException e) {}
+		return width + 2 * X_MARGIN;
 	}
 
 	/**
@@ -61,63 +58,11 @@ class TextWindow extends JPanel {
 	}
 
 	/**
-	 * Scrolls along x-axis
-	 * @param xScroll x scroll value
-	 */
-	public void scrollX(int xScroll) {
-		this.xScroll = xScroll;
-		repaint();
-	}
-
-	/**
-	 * Scrolls along y-axis
-	 * @param yScroll y scroll value
-	 */
-	public void scrollY(int yScroll) {
-		this.yScroll = yScroll;
-		repaint();
-	}
-
-	/**
-	 * Returns the current x scroll value
-	 * @return the current x scroll value
-	 */
-	public int getScrollX() {
-		return xScroll;
-	}
-
-	/**
-	 * Returns the current y scroll value
-	 * @return the current y scroll value
-	 */
-	public int getScrollY() {
-		return yScroll;
-	}
-
-	/**
-	 * Gets real x coordinate adjusted for scrolling
-	 * @param  x old x coordinate
-	 * @return   real x coordinate
-	 */
-	private int getX(int x) {
-		return x - xScroll;
-	}
-
-	/**
-	 * Gets real y coordinate adjusted for scrolling
-	 * @param  y old y coordinate
-	 * @return   read y coordinate
-	 */
-	private int getY(int y) {
-		return y - yScroll;
-	}
-
-	/**
 	 * Draws the lines one by one
 	 * @param g the {@link Graphics} component
 	 */
 	private void drawLines(Graphics g) {
-		int yLoc = 50;
+		int yLoc = Y_MARGIN;
 
 		try {
 			for (Line line : lines) {
@@ -126,7 +71,7 @@ class TextWindow extends JPanel {
 					drawSpecial(g, ((SpecialLine)line).getTag(), yLoc);
 				else {
 					g.setFont(line.getFont());
-					g.drawString(line.getText(), getX(MARGIN_LEFT), getY(yLoc + line.getAscent()));
+					g.drawString(line.getText(), X_MARGIN, yLoc + line.getAscent());
 				}
 				yLoc += line.getLineHeight();
 			}
@@ -152,6 +97,6 @@ class TextWindow extends JPanel {
 	 * @param  yLoc the current y location for printing
 	 */
 	private void drawHorizontalRule(Graphics g, int yLoc) {
-		g.fillRect(getX(MARGIN_LEFT / 2), getY(yLoc + 3), xSize - MARGIN_LEFT, 2);
+		g.fillRect(X_MARGIN, yLoc + 3, getWidth() - X_MARGIN, 2);
 	}
 }

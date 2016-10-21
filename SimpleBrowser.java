@@ -9,8 +9,10 @@
 
 import javax.swing.JFrame;
 import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -38,8 +40,9 @@ public class SimpleBrowser extends JFrame {
 
 	private int windowWidth, windowHeight;
 	private TextWindow textWindow;
+	private JScrollPane scrollPane;
 	private ArrayList<Line> lines;
-	private JScrollBar verticalBar, horizontalBar;
+	// private JScrollBar verticalBar, horizontalBar;
 	private Font currentFont;
 	private Color currentColor;
 
@@ -57,14 +60,15 @@ public class SimpleBrowser extends JFrame {
 		setSize(windowWidth, windowHeight);
 		center();
 		setVisible(true);
-		setLayout(null);
 		setResizable(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		createWindow();
-		addScrollBars();
-		addMouseWheelListener();
+
+		// textWindow.setPreferredSize(new Dimension(textWindow.getWidth(), textWindow.getHeight()));
+		textWindow.setPreferredSize(new Dimension(500, 500));
+		setLayout(new BorderLayout());
+		add((scrollPane = new JScrollPane(textWindow)), BorderLayout.CENTER);
 		lines = new ArrayList<Line>();
-		addOnResize();
 	}
 
 	/**
@@ -79,65 +83,6 @@ public class SimpleBrowser extends JFrame {
 	 */
 	private void center() {
 		setLocation((SCREEN_WIDTH - windowWidth) / 2, (SCREEN_HEIGHT - windowHeight) / 2);
-	}
-
-	/**
-	 * Adds scrollbars to JFrame
-	 */
-	private void addScrollBars() {
-		// JScrollBar horizontalBar = new JScrollBar(JScrollBar.HORIZONTAL, 0, 5, 0, 300);
-		// horizontalBar.setLocation(0, windowHeight - verticalInset - 15);
-		// horizontalBar.setSize(windowWidth - horizontalInset - 10, 18);
-		verticalBar = new JScrollBar(JScrollBar.VERTICAL, 0, 10, 0, windowHeight * 2);
-		verticalBar.addAdjustmentListener(new AdjustmentListener() {
-			public void adjustmentValueChanged(AdjustmentEvent e) {
-				textWindow.scrollY(e.getValue());
-			}
-		});
-		positionBars();
-		// add(horizontalBar);
-		add(verticalBar);
-	}
-
-	/**
-	 * Positions the scroll bars on the page
-	 */
-	private void positionBars() {
-		int verticalInset = this.getInsets().top;
-		int horizontalInset = this.getInsets().right + this.getInsets().left;
-		verticalBar.setLocation(windowWidth - 15, 0);
-		verticalBar.setSize(16, windowHeight - verticalInset + 1);
-	}
-
-	/**
-	 * Add an event listener for the mouse wheel event
-	 */
-	private void addMouseWheelListener() {
-		super.addMouseWheelListener(new MouseWheelListener() {
-			public void mouseWheelMoved(MouseWheelEvent e) {
-				int yScroll = textWindow.getScrollY() + e.getWheelRotation() * 20;
-				verticalBar.setValue(yScroll);
-				textWindow.scrollY(yScroll);
-			}
-		});
-	}
-
-	/**
-	 * Adds event to be called on resize
-	 */
-	public void addOnResize() {
-		addComponentListener(new ComponentListener() {
-			public void componentResized(ComponentEvent e) {
-				windowWidth = getBounds().width;
-				windowHeight = getBounds().height;
-				positionBars();
-				textWindow.setWindowSize(windowWidth - 15, windowHeight);
-			}
-
-			public void componentHidden(ComponentEvent e) {}
-			public void componentShown(ComponentEvent e) {}
-			public void componentMoved(ComponentEvent e) {}
-		});
 	}
 
 	/**
@@ -157,7 +102,12 @@ public class SimpleBrowser extends JFrame {
 			lines.add(new Line(strings[i], font, color, textWindow));
 
 		textWindow.printLines(lines);
-		overlayScrollBars();
+		textWindow.setPreferredSize(new Dimension(textWindow.getWidth(), textWindow.getHeight()));
+		revalidate();
+		repaint();
+		scrollPane.revalidate();
+		scrollPane.repaint();
+		// overlayScrollBars();
 	}
 
 	/**
@@ -198,6 +148,7 @@ public class SimpleBrowser extends JFrame {
 	 */
 	public void printHR() {
 		lines.add(new SpecialLine("hr", currentFont, currentColor, textWindow));
+		textWindow.setPreferredSize(new Dimension(textWindow.getWidth(), textWindow.getHeight()));
 	}
 
 	/**
@@ -220,21 +171,10 @@ public class SimpleBrowser extends JFrame {
 	 * Creates the {@link TextWindow} for this class to fill whole screen except scrollbars
 	 */
 	private void createWindow() {
-		textWindow = new TextWindow(windowWidth, windowHeight);
+		textWindow = new TextWindow();
 		textWindow.setLocation(0, 0);
 		textWindow.setSize(new Dimension(windowWidth - 15, windowHeight));
 		add(textWindow);
-	}
-
-	/**
-	 * Overlays scroll bars so they stop vanishing
-	 */
-	private void overlayScrollBars() {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				verticalBar.updateUI();
-			}
-		});
 	}
 
 	public static void main(String... pumpkins) {
