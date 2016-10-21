@@ -27,7 +27,7 @@ public class SimpleBrowser extends JFrame {
 	private int windowWidth, windowHeight;
 	private TextWindow textWindow;
 	private JScrollPane scrollPane;
-	private Printer printer;
+	private HtmlPrinter printer;
 
 	/**
 	 * Main constructor settings width and height.
@@ -49,7 +49,7 @@ public class SimpleBrowser extends JFrame {
 		textWindow.setPreferredSize(new Dimension(1000, 750));
 		setLayout(new BorderLayout());
 		addScrollPane();
-		printer = new Printer(this, textWindow);
+		printer = new HtmlPrinter(this, textWindow);
 	}
 
 	/**
@@ -86,10 +86,10 @@ public class SimpleBrowser extends JFrame {
 	}
 
 	/**
-	 * Returns the {@link Printer} object for the {@link TextWindow}.
-	 * @return the {@link Printer} object
+	 * Returns the {@link HtmlPrinter} object for the {@link TextWindow}.
+	 * @return the {@link HtmlPrinter} object
 	 */
-	public Printer getPrinter() {
+	public HtmlPrinter getPrinter() {
 		return printer;
 	}
 
@@ -106,7 +106,7 @@ public class SimpleBrowser extends JFrame {
 
 	public static void main(String... pumpkins) {
 		SimpleBrowser simpleBrowser = new SimpleBrowser(1000, 750);
-		Printer printer = simpleBrowser.getPrinter();
+		HtmlPrinter printer = simpleBrowser.getPrinter();
 
 		// printer.println("Hello World", new Font("Serif", Font.PLAIN, 18));
 		// printer.println("Other World", new Font("SansSerif", Font.ITALIC, 50));
@@ -136,7 +136,7 @@ public class SimpleBrowser extends JFrame {
 		// printer.println("This should be blue now XD");
 		// printer.println("And now red", Color.RED);
 		printer.printHR();
-		// printer.setFont(Printer.DEFAULT_FONT);
+		// printer.setFont(HtmlPrinter.DEFAULT_FONT);
 		// printer.println("\t\tI'm glad this works!", Color.GREEN);
 	}
 }
