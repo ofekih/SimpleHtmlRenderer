@@ -2,6 +2,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollBar;
 
 import java.awt.Font;
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.Dimension;
 
@@ -13,12 +14,14 @@ import java.util.ArrayList;
 public class SimpleBrowser extends JFrame {
 
 	private final Font DEFAULT_FONT = new Font("Serif", Font.PLAIN, 21);
+	private final Color DEFAULT_COLOR = Color.BLACK;
 
 	private int windowWidth, windowHeight;
 	private TextWindow textWindow;
 	private ArrayList<Line> lines;
 	private JScrollBar verticalBar, horizontalBar;
 	private Font currentFont;
+	private Color currentColor;
 
 	public SimpleBrowser(int windowWidth, int windowHeight) {
 		super("Simple Browser");
@@ -64,18 +67,28 @@ public class SimpleBrowser extends JFrame {
 		add(verticalBar);
 	}
 
-	public void println(String str, Font font) {
+	public void println(String str, Font font, Color color) {
+		currentFont = font;
+		currentColor = color;
 		String[] strings = str.split("\n");
 
 		for (int i = 0; i < strings.length; i++)
-			lines.add(new Line(strings[i], font, textWindow));
+			lines.add(new Line(strings[i], font, color, textWindow));
 
 		if (lines.size() == 0)
-			lines.add(new Line("", font, textWindow));
+			lines.add(new Line("", font, color, textWindow));
 
 		textWindow.printLines(lines);
 		verticalBar.requestFocus();
 		verticalBar.requestFocusInWindow();
+	}
+
+	public void println(String str, Font font) {
+		println(str, font, currentColor);
+	}
+
+	public void println(String str, Color color) {
+		println(str, currentFont, color);
 	}
 
 	public void println(String str) {
@@ -87,11 +100,15 @@ public class SimpleBrowser extends JFrame {
 	}
 
 	public void printHR() {
-		lines.add(new Line("o_OhrO_o", DEFAULT_FONT, textWindow));
+		lines.add(new Line("o_OhrO_o", currentFont, currentColor, textWindow));
 	}
 
 	public void setFont(Font font) {
 		currentFont = font;
+	}
+
+	public void setColor(Color color) {
+		currentColor = color;
 	}
 
 	private TextWindow createWindow() {

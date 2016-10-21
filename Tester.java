@@ -1,4 +1,5 @@
 import java.awt.Font;
+import java.awt.Color;
 
 public class Tester {
 	public static void main(String... pumpkins) {
@@ -10,7 +11,7 @@ public class Tester {
 		frame.println();
 		frame.println("I just printed an empty line");
 		frame.printHR();
-		frame.println("And now, for some normal text");
+		frame.println("And now, for some normal text", new Font("Serif", Font.PLAIN, 22));
 
 		frame.println("HUGE TEXT :D", new Font("Times New Roman", Font.BOLD, 250));
 	}

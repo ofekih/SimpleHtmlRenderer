@@ -60,6 +60,7 @@ class TextWindow extends JPanel {
 		try {
 			for (Line line : lines) {
 				int tempHeight = drawSpecial(g, line.getText(), yLoc);
+				g.setColor(line.getColor());
 				if (tempHeight == 0) {
 					g.setFont(line.getFont());
 					g.drawString(line.getText(), getX(MARGIN_LEFT), getY(yLoc + line.getAscent()));
@@ -78,8 +79,7 @@ class TextWindow extends JPanel {
 	}
 
 	private int drawHorizontalRule(Graphics g, int yLoc) {
-		g.setColor(Color.BLACK);
-		g.fillRect(getX(MARGIN_LEFT / 2), getY(yLoc), xSize - MARGIN_LEFT, 2);
-		return 5;
+		g.fillRect(getX(MARGIN_LEFT / 2), getY(yLoc + 3), xSize - MARGIN_LEFT, 2);
+		return 8;
 	}
 }
