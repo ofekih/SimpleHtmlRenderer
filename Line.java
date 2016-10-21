@@ -61,6 +61,14 @@ public class Line {
 	}
 
 	/**
+	 * Gets the line width of this line
+	 * @return the width of this line
+	 */
+	public int getLineWidth() {
+		return fontMetrics.stringWidth(text);
+	}
+
+	/**
 	 * Gets how high below the text is offset
 	 * @return the ascent
 	 */
