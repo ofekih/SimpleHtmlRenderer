@@ -24,15 +24,19 @@ class TextWindow extends JPanel {
 
 	public int getHeight() {
 		int height = 0;
-		for (Line line : lines)
-			height += line.getLineHeight();
+		try {
+			for (Line line : lines)
+				height += line.getLineHeight();
+		} catch (ConcurrentModificationException e) {}
 		return height + 2 * Y_MARGIN;
 	}
 
 	public int getWidth() {
 		int width = 0;
-		for (Line line : lines)
-			width = Math.max(width, line.getLineWidth());
+		try {
+			for (Line line : lines)
+				width = Math.max(width, line.getLineWidth());
+		} catch (ConcurrentModificationException e) {}
 		return width + 2 * X_MARGIN;
 	}
 
