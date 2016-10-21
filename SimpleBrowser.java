@@ -31,7 +31,7 @@ public class SimpleBrowser extends JFrame {
 
 	private static final int DEFAULT_WINDOW_WIDTH = 1000;
 	private static final int DEFAULT_WINDOW_HEIGHT = 750;
-	private static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, 25);
+	private static final Font DEFAULT_FONT = new Font("SansSerif", Font.PLAIN, 25);
 	private static final Color DEFAULT_COLOR = Color.BLACK;
 
 	private final int SCREEN_WIDTH = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
