@@ -52,7 +52,7 @@ public class SimpleBrowser extends JFrame {
 		setVisible(true);
 		setLayout(null);
 		setResizable(false);
-		textWindow = createWindow();
+		createWindow();
 		addScrollBars();
 		lines = new ArrayList<Line>();
 	}
@@ -171,14 +171,19 @@ public class SimpleBrowser extends JFrame {
 		currentColor = color;
 	}
 
-	private TextWindow createWindow() {
-		TextWindow window = new TextWindow(windowWidth, windowHeight);
-		window.setLocation(0, 0);
-		window.setSize(new Dimension(windowWidth - 15, windowHeight));
-		add(window);
-		return window;
+	/**
+	 * Creates the {@link TextWindow} for this class to fill whole screen except scrollbars
+	 */
+	private void createWindow() {
+		textWindow = new TextWindow(windowWidth, windowHeight);
+		textWindow.setLocation(0, 0);
+		textWindow.setSize(new Dimension(windowWidth - 15, windowHeight));
+		add(textWindow);
 	}
 
+	/**
+	 * Overlays scroll bars so they stop vanishing
+	 */
 	private void overlayScrollBars() {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
