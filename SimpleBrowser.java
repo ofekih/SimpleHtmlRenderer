@@ -101,6 +101,13 @@ public class SimpleBrowser extends JFrame {
 			lines.add(new Line(strings[i], font, color, textWindow));
 
 		textWindow.printLines(lines);
+		cleanupAfterPrint();
+	}
+
+	/**
+	 * Repaints components after println call
+	 */
+	private void cleanupAfterPrint() {
 		textWindow.setPreferredSize(new Dimension(textWindow.getWidth(), textWindow.getHeight()));
 		revalidate();
 		repaint();
@@ -186,7 +193,7 @@ public class SimpleBrowser extends JFrame {
 	}
 
 	public static void main(String... pumpkins) {
-		SimpleBrowser simpleBrowser = new SimpleBrowser(500, 500);
+		SimpleBrowser simpleBrowser = new SimpleBrowser(1000, 750);
 		simpleBrowser.println("Hello World", new Font("Serif", Font.PLAIN, 18));
 		simpleBrowser.println("Other World", new Font("SansSerif", Font.ITALIC, 50));
 		simpleBrowser.println("<hr>");
