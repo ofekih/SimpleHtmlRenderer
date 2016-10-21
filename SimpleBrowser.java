@@ -180,6 +180,7 @@ public class SimpleBrowser extends JFrame {
 		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		scrollPane.getHorizontalScrollBar().setUnitIncrement(16);
 		add(scrollPane, BorderLayout.CENTER);
+		scrollPane.requestFocus();
 	}
 
 	public static void main(String... pumpkins) {
