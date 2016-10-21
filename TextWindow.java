@@ -91,6 +91,6 @@ class TextWindow extends JPanel {
 	 * @param  yLoc the current y location for printing
 	 */
 	private void drawHorizontalRule(Graphics g, int yLoc) {
-		g.fillRect(X_MARGIN, yLoc + 3, getWidth() - X_MARGIN, 2);
+		g.fillRect(X_MARGIN / 2, yLoc + 3, getWidth() - X_MARGIN, 2);
 	}
 }
