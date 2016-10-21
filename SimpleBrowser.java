@@ -160,12 +160,24 @@ public class SimpleBrowser extends JFrame {
 	 */
 	public void setFontByTag(String tag) {
 		switch (tag) {
-			case "h1": setHeadingFont(32);
-			case "h2": setHeadingFont(24);
-			case "h3": setHeadingFont(19);
-			case "h4": setHeadingFont(15);
-			case "h5": setHeadingFont(13);
-			case "h6": setHeadingFont(11);
+			case "h1":
+				setHeadingFont(32);
+				break;
+			case "h2":
+				setHeadingFont(24);
+				break;
+			case "h3":
+				setHeadingFont(19);
+				break;
+			case "h4":
+				setHeadingFont(15);
+				break;
+			case "h5":
+				setHeadingFont(13);
+				break;
+			case "h6":
+				setHeadingFont(11);
+				break;
 		}
 	}
 
