@@ -154,40 +154,38 @@ public class SimpleBrowser extends JFrame {
 		currentFont = font;
 	}
 
-	/**
-	 * Sets the current font using a tag
-	 * @param tag the tag to set the {@link Font} to
-	 */
-	public void setFontByTag(String tag) {
-		switch (tag) {
-			case "h1":
-				setHeadingFont(32);
-				break;
-			case "h2":
-				setHeadingFont(24);
-				break;
-			case "h3":
-				setHeadingFont(19);
-				break;
-			case "h4":
-				setHeadingFont(15);
-				break;
-			case "h5":
-				setHeadingFont(13);
-				break;
-			case "h6":
-				setHeadingFont(11);
-				break;
-		}
+	public void printH1(String str) {
+		println(str, getHeadingFont(32));
+	}
+
+	public void printH2(String str) {
+		println(str, getHeadingFont(24));
+	}
+
+	public void printH3(String str) {
+		println(str, getHeadingFont(19));
+	}
+
+	public void printH4(String str) {
+		println(str, getHeadingFont(15));
+	}
+
+	public void printH5(String str) {
+		println(str, getHeadingFont(13));
+	}
+
+	public void printH6(String str) {
+		println(str, getHeadingFont(11));
 	}
 
 	/**
 	 * Sets the heading font with given px size
 	 * Helper method for setFontByTag
 	 * @param sizePx font size in pixels
+	 * @return       the font
 	 */
-	private void setHeadingFont(int sizePx) {
-		setFont(new Font("SansSerif", Font.BOLD, sizePx));
+	private Font getHeadingFont(int sizePx) {
+		return new Font("SansSerif", Font.BOLD, sizePx);
 	}
 
 	/**
