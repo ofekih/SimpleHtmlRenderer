@@ -1,5 +1,9 @@
 /**
  * A single line object containing the text, font, and color of the line
+ *
+ * @author Ofek Gila
+ * @author Saagar Jha
+ * @since October 20th, 2016
  */
 
 import java.awt.Font;

@@ -1,5 +1,9 @@
 /**
  * A special line object with it's special tag symbol. Can be used for horizontal bars.
+ *
+ * @author Ofek Gila
+ * @author Saagar Jha
+ * @since October 20th, 2016
  */
 
 import java.awt.Font;
