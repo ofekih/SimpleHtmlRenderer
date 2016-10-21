@@ -59,20 +59,21 @@ class TextWindow extends JPanel {
 
 		try {
 			for (Line line : lines) {
-				int tempHeight = drawSpecial(g, line.getText(), yLoc);
 				g.setColor(line.getColor());
-				if (tempHeight == 0) {
+				if (line instanceof SpecialLine)
+					yLoc += drawSpecial(g, line.getText(), yLoc);
+				else {
 					g.setFont(line.getFont());
 					g.drawString(line.getText(), getX(MARGIN_LEFT), getY(yLoc + line.getAscent()));
 					yLoc += line.getLineHeight();
-				} else yLoc += tempHeight;
+				}
 			}
 		} catch (ConcurrentModificationException e) {}
 	}
 
 	private int drawSpecial(Graphics g, String tag, int yLoc) {
 		switch (tag) {
-			case "o_OhrO_o":
+			case "hr":
 				return drawHorizontalRule(g, yLoc);
 			default: return 0;
 		}

@@ -102,7 +102,7 @@ public class SimpleBrowser extends JFrame {
 	}
 
 	public void printHR() {
-		lines.add(new Line("o_OhrO_o", currentFont, currentColor, textWindow));
+		lines.add(new SpecialLine("hr", currentFont, currentColor, textWindow));
 	}
 
 	public void setFont(Font font) {
