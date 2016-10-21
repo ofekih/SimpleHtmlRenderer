@@ -23,6 +23,10 @@ class TextWindow extends JPanel {
 
 	private List<Line> lines = new ArrayList<Line>();
 
+	/**
+	 * Gets the total height of all the lines
+	 * @return the total height of the lines
+	 */
 	public int getHeight() {
 		int height = 0;
 		try {
@@ -32,6 +36,10 @@ class TextWindow extends JPanel {
 		return height + 2 * Y_MARGIN;
 	}
 
+	/**
+	 * Gets the width of the widest line
+	 * @return the width of the widest line
+	 */
 	public int getWidth() {
 		int width = 0;
 		try {
