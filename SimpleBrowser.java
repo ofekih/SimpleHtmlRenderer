@@ -1,5 +1,6 @@
 import javax.swing.JFrame;
 import javax.swing.JScrollBar;
+import javax.swing.SwingUtilities;
 
 import java.awt.Font;
 import java.awt.Color;
@@ -81,8 +82,15 @@ public class SimpleBrowser extends JFrame {
 			lines.add(new Line("", font, color, textWindow));
 
 		textWindow.printLines(lines);
-		verticalBar.requestFocus();
-		verticalBar.requestFocusInWindow();
+		overlayScrollBars();
+	}
+
+	private void overlayScrollBars() {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				verticalBar.updateUI();
+			}
+		});
 	}
 
 	public void println(String str, Font font) {
