@@ -66,9 +66,7 @@ public class SimpleBrowser extends JFrame {
 
 		textWindow.setPreferredSize(new Dimension(500, 500));
 		setLayout(new BorderLayout());
-		add((scrollPane = new JScrollPane(textWindow)), BorderLayout.CENTER);
-		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-		scrollPane.getHorizontalScrollBar().setUnitIncrement(16);
+		addScrollPane();
 		lines = new ArrayList<Line>();
 	}
 
@@ -175,6 +173,16 @@ public class SimpleBrowser extends JFrame {
 		textWindow.setLocation(0, 0);
 		textWindow.setSize(new Dimension(windowWidth - 15, windowHeight));
 		add(textWindow);
+	}
+
+	/**
+	 * Adds a scroll pane and adds its increment
+	 */
+	private void addScrollPane() {
+		scrollPane = new JScrollPane(textWindow);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+		scrollPane.getHorizontalScrollBar().setUnitIncrement(16);
+		add(scrollPane, BorderLayout.CENTER);
 	}
 
 	public static void main(String... pumpkins) {
