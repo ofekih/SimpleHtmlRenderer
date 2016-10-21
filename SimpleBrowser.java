@@ -85,14 +85,6 @@ public class SimpleBrowser extends JFrame {
 		overlayScrollBars();
 	}
 
-	private void overlayScrollBars() {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				verticalBar.updateUI();
-			}
-		});
-	}
-
 	public void println(String str, Font font) {
 		println(str, font, currentColor);
 	}
@@ -127,5 +119,13 @@ public class SimpleBrowser extends JFrame {
 		window.setSize(new Dimension(windowWidth - 15, windowHeight));
 		add(window);
 		return window;
+	}
+
+	private void overlayScrollBars() {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				verticalBar.updateUI();
+			}
+		});
 	}
 }
