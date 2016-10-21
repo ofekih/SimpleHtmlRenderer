@@ -47,7 +47,7 @@ public class SimpleBrowser extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		createWindow();
 
-		textWindow.setPreferredSize(new Dimension(500, 500));
+		textWindow.setPreferredSize(new Dimension(1000, 750));
 		setLayout(new BorderLayout());
 		addScrollPane();
 		printer = new Printer(this, textWindow);
