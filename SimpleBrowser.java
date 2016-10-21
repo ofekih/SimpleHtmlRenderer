@@ -8,22 +8,13 @@
  */
 
 import javax.swing.JFrame;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.SwingUtilities;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.Dimension;
-
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
-import java.awt.event.ComponentListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
 
 import java.util.List;
 import java.util.ArrayList;
