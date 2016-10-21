@@ -13,6 +13,13 @@ public class Tester {
 		frame.printHR();
 		frame.println("And now, for some normal text", new Font("Serif", Font.PLAIN, 22));
 
-		frame.println("HUGE TEXT :D", new Font("Times New Roman", Font.BOLD, 250));
+		frame.println("HUGE TEXT :D\n", new Font("Times New Roman", Font.BOLD, 250));
+
+		frame.setColor(Color.BLUE);
+		frame.setFont(new Font("Arial", Font.PLAIN, 22));
+		frame.println("This should be blue now XD");
+		frame.println("And now red", Color.RED);
+		frame.printHR();
+		frame.println("\t\tI'm glad this works!", Color.GREEN);
 	}
 }

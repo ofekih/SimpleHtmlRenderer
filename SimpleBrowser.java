@@ -70,6 +70,8 @@ public class SimpleBrowser extends JFrame {
 	public void println(String str, Font font, Color color) {
 		currentFont = font;
 		currentColor = color;
+		str += " ";
+		str = str.replace("\t", "    ");
 		String[] strings = str.split("\n");
 
 		for (int i = 0; i < strings.length; i++)
