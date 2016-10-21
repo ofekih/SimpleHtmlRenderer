@@ -95,7 +95,7 @@ public class SimpleBrowser extends JFrame {
 	}
 
 	/**
-	 * Adds str to 
+	 * Adds str to array of {@link Line}s with given font and color.
 	 * @param str   the string to print
 	 * @param font  the {@link Font} to use
 	 * @param color the {@link Color} to use
@@ -118,18 +118,27 @@ public class SimpleBrowser extends JFrame {
 	}
 
 	/**
-	 * [println description]
-	 * @param str  [description]
-	 * @param font [description]
+	 * Adds str to array of {@link Line}s with given font.
+	 * @param str  the string to print
+	 * @param font the {@link Font} to use
 	 */
 	public void println(String str, Font font) {
 		println(str, font, currentColor);
 	}
 
+	/**
+	 * Adds str to array of {@link Line}s with given color.
+	 * @param str   the string to print
+	 * @param color the {@link Color} to use
+	 */
 	public void println(String str, Color color) {
 		println(str, currentFont, color);
 	}
 
+	/**
+	 * Adds str to array of {@link Line}s.
+	 * @param str the string to print
+	 */
 	public void println(String str) {
 		println(str, currentFont);
 	}

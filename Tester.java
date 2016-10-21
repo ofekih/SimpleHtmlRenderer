@@ -3,7 +3,7 @@ import java.awt.Color;
 
 public class Tester {
 	public static void main(String... pumpkins) {
-		SimpleBrowser frame = new SimpleBrowser(1000, 750);
+		SimpleBrowser frame = new SimpleBrowser(1350, 850);
 		frame.println("Hello World", new Font("Serif", Font.PLAIN, 18));
 		frame.println("Other World", new Font("SansSerif", Font.ITALIC, 50));
 		frame.println("<hr>");
