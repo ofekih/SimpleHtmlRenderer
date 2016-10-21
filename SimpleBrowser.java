@@ -108,6 +108,7 @@ public class SimpleBrowser extends JFrame {
 	public static void main(String... pumpkins) {
 		SimpleBrowser simpleBrowser = new SimpleBrowser(1000, 750);
 		Printer printer = simpleBrowser.getPrinter();
+
 		printer.println("Hello World", new Font("Serif", Font.PLAIN, 18));
 		printer.println("Other World", new Font("SansSerif", Font.ITALIC, 50));
 		printer.println("<hr>");
@@ -121,9 +122,14 @@ public class SimpleBrowser extends JFrame {
 
 		printer.printHR();
 
-		printer.println("And now, for some normal text", new Font("Serif", Font.PLAIN, 22));
+		printer.println("Some normal text is much needed over here", new Font("Serif", Font.PLAIN, 22));
 
 		printer.println("HUGE TEXT :D\n", new Font("Times New Roman", Font.BOLD, 250));
+
+
+		printer.printH1("And now for something completely different");
+		printer.printH3("Colors!!!");
+		printer.println();
 
 		printer.setColor(Color.BLUE);
 		printer.setFont(new Font("Arial", Font.PLAIN, 22));
