@@ -111,9 +111,6 @@ public class SimpleBrowser extends JFrame {
 		for (int i = 0; i < strings.length; i++)
 			lines.add(new Line(strings[i], font, color, textWindow));
 
-		if (lines.size() == 0)
-			lines.add(new Line("", font, color, textWindow));
-
 		textWindow.printLines(lines);
 		overlayScrollBars();
 	}
