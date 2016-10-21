@@ -7,7 +7,6 @@
  * @since October 20th, 2016
  */
 
-
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
@@ -87,6 +86,10 @@ public class SimpleBrowser extends JFrame {
 		add(textWindow);
 	}
 
+	/**
+	 * Returns the {@link Printer} object for the {@link TextWindow}.
+	 * @return the {@link Printer} object
+	 */
 	public Printer getPrinter() {
 		return printer;
 	}
@@ -108,18 +111,23 @@ public class SimpleBrowser extends JFrame {
 		printer.println("Hello World", new Font("Serif", Font.PLAIN, 18));
 		printer.println("Other World", new Font("SansSerif", Font.ITALIC, 50));
 		printer.println("<hr>");
+
 		printer.printPre("This text is pre-formatted!");
 		printer.printPre("Words     line   up       !");
+
 		printer.println("Multiple\nangry little\nlines", new Font("Arial", Font.BOLD, 10));
 		printer.println();
 		printer.println("I just printed an empty line");
+
 		printer.printHR();
+
 		printer.println("And now, for some normal text", new Font("Serif", Font.PLAIN, 22));
 
 		printer.println("HUGE TEXT :D\n", new Font("Times New Roman", Font.BOLD, 250));
 
 		printer.setColor(Color.BLUE);
 		printer.setFont(new Font("Arial", Font.PLAIN, 22));
+
 		printer.println("This should be blue now XD");
 		printer.println("And now red", Color.RED);
 		printer.printHR();

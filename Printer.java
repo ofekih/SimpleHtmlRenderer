@@ -151,7 +151,7 @@ public class Printer {
 	}
 
 	/**
-	 * Sets the current font
+	 * Sets the default font to be used when no other is specified
 	 * @param font the {@link Font} to set
 	 */
 	public void setFont(Font font) {
@@ -159,7 +159,7 @@ public class Printer {
 	}
 
 	/**
-	 * Sets the current color
+	 * Sets the default color to be used when no other is specified
 	 * @param color the {@link Color} to set
 	 */
 	public void setColor(Color color) {
