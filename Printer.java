@@ -145,7 +145,7 @@ public class Printer {
 	}
 
 	/**
-	 * Sets the heading font with given px size
+	 * Generates a heading font given px size
 	 * Helper method for setFontByTag
 	 * @param sizePx font size in pixels
 	 * @return       the font

@@ -126,7 +126,7 @@ public class SimpleBrowser extends JFrame {
 		// printer.println("HUGE TEXT :D\n", new Font("Times New Roman", Font.BOLD, 250));
 
 
-		printer.printH1("And now for something completely different");
+		printer.printH1("H1 And now for something completely different");
 		printer.printH3("Colors!!!");
 		// printer.println();
 
