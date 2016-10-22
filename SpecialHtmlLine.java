@@ -13,10 +13,8 @@ import javax.swing.JComponent;
 
 public class SpecialHtmlLine extends HtmlLine {
 
-	private static final int BR_HEIGHT = 25;
-	private static final int HR_HEIGHT = 8;
-
 	private String tag;
+	private int lineHeight;
 
 	/**
 	 * SpecialHtmlLine constructor with all the necessary values
@@ -25,9 +23,10 @@ public class SpecialHtmlLine extends HtmlLine {
 	 * @param  color     the {@link Color} to use
 	 * @param  component any old {@link JComponent} to get font metrics from
 	 */
-	public SpecialHtmlLine(String tag, Font font, Color color, JComponent component) {
+	public SpecialHtmlLine(String tag, Font font, Color color, JComponent component, int lineHeight) {
 		super("", font, color, component);
 		this.tag = tag;
+		this.lineHeight = lineHeight;
 	}
 
 	/**
@@ -40,23 +39,11 @@ public class SpecialHtmlLine extends HtmlLine {
 
 	@Override
 	public int getHtmlLineHeight() {
-		switch (tag) {
-			case "br":
-				return BR_HEIGHT;
-			case "hr":
-				return HR_HEIGHT;
-			default:
-				return 0;
-		}
+		return lineHeight;
 	}
 
 	@Override
 	public int getHtmlLineWidth() {
-		switch (tag) {
-			case "hr":
-				return -1;
-			default:
-				return super.getHtmlLineWidth();
-		}
+		return -1;
 	}
 }

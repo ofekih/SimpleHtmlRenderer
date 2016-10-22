@@ -1,6 +1,6 @@
 /**
  * A client that manages printing to a {@link TextWindow}.
- * 
+ *
  * @author Ofek Gila
  * @author Saagar Jha
  * @since October 21st, 2016
@@ -190,17 +190,15 @@ public class HtmlPrinter {
 	 * Adds a horizontal rule to the array of lines
 	 */
 	public void printHorizontalRule() {
-		lines.add(new SpecialHtmlLine("hr", font, color, textWindow));
-		if (!preventDrawing) {
+		lines.add(new SpecialHtmlLine("hr", font, color, textWindow, 8));
+		if (!preventDrawing)
 			drawHtmlLines();
-		}
 	}
 
 	public void printBreak() {
-		lines.add(new SpecialHtmlLine("br", font, color, textWindow));
-		if (!preventDrawing) {
+		lines.add(new SpecialHtmlLine("br", font, color, textWindow, 25));
+		if (!preventDrawing)
 			drawHtmlLines();
-		}
 	}
 
 	/**
