@@ -98,6 +98,7 @@ class TextWindow extends JPanel {
 		switch (tag) {
 			case "hr":
 				drawHorizontalRule(g, yLoc);
+				break;
 		}
 	}
 

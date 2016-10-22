@@ -20,7 +20,7 @@ public class HTMLPrinter {
 	private List<Line> lines;
 	private Font font;
 	private Color color;
-	private boolean repaintAfterPrint;
+	private boolean preventDrawing;
 
 	/**
 	 * HTMLPrinter constructor, taking a browser and textWindow instance.
@@ -34,10 +34,13 @@ public class HTMLPrinter {
 		font = DEFAULT_FONT;
 		color = DEFAULT_COLOR;
 		lines = new ArrayList<Line>();
-		repaintAfterPrint = true;
+		preventDrawing = false;
 	}
 
-	private void repaint() {
+	/**
+	 * Draws the lines on the {@link TextArea}
+	 */
+	public void drawLines() {
 		textWindow.printLines(lines);
 		browser.cleanupAfterPrint();
 	}
@@ -56,9 +59,9 @@ public class HTMLPrinter {
 
 		for (String string : strings)
 			lines.add(new Line(string, font, color, textWindow));
-		if (repaintAfterPrint) {
-			repaint();
-		}
+
+		if (!preventDrawing)
+			drawLines();
 	}
 
 	/**
@@ -180,9 +183,8 @@ public class HTMLPrinter {
 	 */
 	public void printHorizontalRule() {
 		lines.add(new SpecialLine("hr", font, color, textWindow));
-		if (repaintAfterPrint) {
-			repaint();
-		}
+		if (!preventDrawing)
+			drawLines();
 	}
 
 	/**
@@ -212,11 +214,18 @@ public class HTMLPrinter {
 
 	/**
 	 * Sets whether the {@link TextWindow} should repaint after printing.
-	 * Setting this to false improves performace, but a call to repaint
+	 * Setting this to false improves performance, but a call to repaint
 	 * is necessary after printing is done.
-	 * @param repaint	Whether to repaint after printing
+	 * @param preventDrawing false if to allow drawing, true to prevent
 	 */
-	public void setRepaintAfterPrint(boolean repaint) {
-		this.repaintAfterPrint = repaint;
+	public void setPreventDrawing(boolean preventDrawing) {
+		this.preventDrawing = preventDrawing;
+	}
+
+	/**
+	 * Prevents drawing without custom drawing method
+	 */
+	public void preventDrawing() {
+		this.preventDrawing = true;
 	}
 }
