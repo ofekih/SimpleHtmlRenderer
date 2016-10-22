@@ -1,6 +1,6 @@
 /**
- * A {@link HtmlLine} for special HTML components that are not expressed well
- * in text, such as horizontal breaks.
+ * A {@link HtmlComponent} for special HTML elements that are not expressed well
+ * in text, such as breaks.
  *
  * @author Ofek Gila
  * @author Saagar Jha
