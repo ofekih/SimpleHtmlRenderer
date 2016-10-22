@@ -111,7 +111,7 @@ public class SimpleBrowser extends JFrame {
 
 		// An example, for testing purposes
 		htmlPrinter.printPreformattedText("This text is pre-formatted!");
-		htmlPrinter.println();
+		htmlPrinter.println(); // this break is necessary as the fonts are the same size (try removing it)
 		htmlPrinter.printPreformattedText("Words     line   up       !");
 		htmlPrinter.println();
 

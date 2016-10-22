@@ -36,7 +36,7 @@ public class HtmlPrinter {
 	/**
 	 * HtmlPrinter constructor, taking a browser and textWindow instance.
 	 * @param  browser    the {@link SimpleBrowser} instance
-	 * @param  textWindow the {@link textWindow} instance
+	 * @param  textWindow the {@link TextWindow} instance
 	 */
 	public HtmlPrinter(SimpleBrowser browser, TextWindow textWindow) {
 		this.browser = browser;
@@ -49,7 +49,7 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Draws the lines on the {@link TextArea}
+	 * Draws the {@link HtmlComponent}s onto the {@link TextWindow}.
 	 */
 	public void drawHtmlComponents() {
 		textWindow.printHtmlComponents(htmlComponents);
@@ -57,7 +57,7 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints without new line, adding to old line.
+	 * Prints a string with a specific {@link Font} and {@link Color}.
 	 * @param str   String to add
 	 * @param font  {@link Font} to use
 	 * @param color {@link Color} to use
@@ -75,8 +75,35 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Adds str to array of {@link HtmlLine}s with given font and color.
-	 * @param str   the string to print
+	 * Prints a string with a specific {@link Font}.
+	 * @param str  the String to print
+	 * @param font the {@link Font} to use
+	 */
+	private void print(String str, Font font) {
+		print(str, font, color);
+	}
+
+	/**
+	 * Prints a string with specific {@link Color}.
+	 * @param str   the String to print
+	 * @param color the {@link Color} to use
+	 */
+	private void print(String str, Color color) {
+		print(str, font, color);
+	}
+
+	/**
+	 * Prints a string with current formatting ({@link Color} and {@link Font}).
+	 * This method is identical to printParagraph
+	 * @param str the String to print
+	 */
+	public void print(String str) {
+		print(str, font);
+	}
+
+	/**
+	 * Prints a string with a specific {@link Font} and {@link Color}, breaking after.
+	 * @param str   the String to print
 	 * @param font  the {@link Font} to use
 	 * @param color the {@link Color} to use
 	 */
@@ -86,44 +113,25 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Adds str to array of {@link HtmlLine}s with given font.
-	 * @param str  the string to print
-	 * @param font the {@link Font} to use
-	 */
-	private void print(String str, Font font) {
-		print(str, font, color);
-	}
-
-	/**
-	 * Adds str to array of {@link HtmlLine}s with given color.
-	 * @param str   the string to print
-	 * @param color the {@link Color} to use
-	 */
-	private void print(String str, Color color) {
-		print(str, font, color);
-	}
-
-	/**
-	 * Adds str to array of {@link HtmlLine}s.
-	 * @param str the string to print
-	 */
-	public void print(String str) {
-		print(str, font);
-	}
-
-	/**
-	 * Adds an empty line to the array of lines
+	 * Breaks with a height equal to to the height of the last component / fragment. Used to move onto the next line.
 	 */
 	public void println() {
-		breakIfNecessary();
+		if (htmlComponents.isEmpty())
+			printBreak();
+		else breakComponent(htmlComponents.get(htmlComponents.size() - 1));
 	}
 
+	/**
+	 * Inserts a break with a line height equal to the height of the last component.
+	 * @param htmlComponent the {@link HtmlComponent} whose height to use
+	 */
 	private void breakComponent(HtmlComponent htmlComponent) {
 		htmlComponents.add(new HtmlTag("br", Color.BLACK, htmlComponent.getHtmlComponentHeight()));
 	}
 
 	/**
 	 * Print method to print normal text, formatted with setColor and setFont
+	 * This method is the same as print(String str)
 	 * @param str the String to print
 	 */
 	public void printParagraph(String str) {
@@ -131,8 +139,8 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints a line formatted as H1
-	 * @param str the line to print
+	 * Prints text formatted as H1
+	 * @param str the String to print
 	 * @return    an pointer to this printer
 	 */
 	public void printHeading1(String str) {
@@ -140,69 +148,72 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints a line formatted as H2
-	 * @param str the line to print
+	 * Prints text formatted as H2
+	 * @param str the String to print
 	 */
 	public void printHeading2(String str) {
 		print(str, getHeadingFont(HEADING2_FONT_SIZE));
 	}
 
 	/**
-	 * Prints a line formatted as H3
-	 * @param str the line to print
+	 * Prints text formatted as H3
+	 * @param str the String to print
 	 */
 	public void printHeading3(String str) {
 		print(str, getHeadingFont(HEADING3_FONT_SIZE));
 	}
 
 	/**
-	 * Prints a line formatted as H4
-	 * @param str the line to print
+	 * Prints text formatted as H4
+	 * @param str the String to print
 	 */
 	public void printHeading4(String str) {
 		print(str, getHeadingFont(HEADING4_FONT_SIZE));
 	}
 
 	/**
-	 * Prints a line formatted as H5
-	 * @param str the line to print
+	 * Prints text formatted as H5
+	 * @param str the String to print
 	 */
 	public void printHeading5(String str) {
 		print(str, getHeadingFont(HEADING5_FONT_SIZE));
 	}
 
 	/**
-	 * Prints a line formatted as H6
-	 * @param str the line to print
+	 * Prints text formatted as H6
+	 * @param str the String to print
 	 */
 	public void printHeading6(String str) {
 		print(str, getHeadingFont(HEADING6_FONT_SIZE));
 	}
 
 	/**
-	 * Adds a pre-formatted {@link HtmlLine} (monospace)
-	 * @param str the text to add
+	 * Prints text with a monospace font (monospaced)
+	 * @param str the String to print
 	 */
 	public void printPreformattedText(String str) {
 		print(str, new Font(Font.MONOSPACED, font.getStyle(), font.getSize()));
 	}
 
 	/**
-	 * Adds an italic {@link HtmlLine}
-	 * @param str the text to add
+	 * Prints text in italics
+	 * @param str the String to print
 	 */
 	public void printItalic(String str) {
 		print(str, new Font(font.getFontName(), font.getStyle() | Font.ITALIC, font.getSize()));
 	}
 
 	/**
-	 * Adds a bolded {@link HtmlLine}
-	 * @param str the text to add
+	 * Prints text in bold
+	 * @param str the String to print
 	 */
 	public void printBold(String str) {
 		print(str, new Font(font.getFontName(), font.getStyle() | Font.BOLD, font.getSize()));
 	}
 
+	/**
+	 * Breaks if the previous component is not a break. This breaks using the same size as the previous component (not the default break size).
+	 */
 	public void breakIfNecessary() {
 		if (htmlComponents.isEmpty())
 			return;
@@ -212,6 +223,10 @@ public class HtmlPrinter {
 			breakComponent(previousComponent);
 	}
 
+	/**
+	 * Breaks if the {@link Font} used is a different size than the previous font used.
+	 * @param font the {@link Font} to use
+	 */
 	public void breakIfDifferentSize(Font font) {
 		if (htmlComponents.isEmpty())
 			return;
@@ -221,6 +236,9 @@ public class HtmlPrinter {
 			breakComponent(previousComponent);
 	}
 
+	/**
+	 * Prints a break, using the default break size. If already in the middle of a line, breaks out of that line first, and then prints a break. Made to mimic the html br tag.
+	 */
 	public void printBreak() {
 		breakIfNecessary();
 		htmlComponents.add(new HtmlTag("br", color, BREAK_SIZE));
@@ -230,7 +248,7 @@ public class HtmlPrinter {
 
 
 	/**
-	 * Adds a horizontal rule to the array of lines
+	 * Prints a horizontal rule. If already in the middle of a line, breaks out of that line first, and then prints the rule. Made to mimic the html hr tag.
 	 */
 	public void printHorizontalRule() {
 		breakIfNecessary();
@@ -266,8 +284,8 @@ public class HtmlPrinter {
 
 	/**
 	 * Sets whether the {@link TextWindow} should repaint after printing.
-	 * Setting this to false improves performance, but a call to repaint
-	 * is necessary after printing is done.
+	 * Setting this to false improves performance, but a call to
+	 * drawHtmlComponents is necessary after printing is done.
 	 * @param preventDrawing false if to allow drawing, true to prevent
 	 */
 	public void setPreventDrawing(boolean preventDrawing) {
@@ -275,7 +293,7 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prevents drawing without custom drawing method
+	 * Prevents drawing by default after print statements. Must call drawHtmlComponents manually when finished printing.
 	 */
 	public void preventDrawing() {
 		this.preventDrawing = true;
