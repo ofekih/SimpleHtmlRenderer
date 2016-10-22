@@ -85,14 +85,14 @@ public class HTMLPrinter {
 	 * Print method to print normal text, formatted with setColor and setFont
 	 * @param str the String to print
 	 */
-	public void print(String str) {
+	public void printParagraph(String str) {
 		println(str);
 	}
 
 	/**
 	 * Adds a horizontal rule to the array of lines
 	 */
-	public void printHR() {
+	public void printHorizontalRule() {
 		lines.add(new SpecialLine("hr", currentFont, currentColor, textWindow));
 		browser.cleanupAfterPrint();
 	}
@@ -102,7 +102,7 @@ public class HTMLPrinter {
 	 * @param str the line to print
 	 * @return    an pointer to this printer
 	 */
-	public HTMLPrinter printH1(String str) {
+	public HTMLPrinter printHeading1(String str) {
 		println(str, getHeadingFont(32));
 		return this;
 	}
@@ -112,7 +112,7 @@ public class HTMLPrinter {
 	 * @param str the line to print
 	 * @return    an pointer to this printer
 	 */
-	public HTMLPrinter printH2(String str) {
+	public HTMLPrinter printHeading2(String str) {
 		println(str, getHeadingFont(24));
 		return this;
 	}
@@ -122,7 +122,7 @@ public class HTMLPrinter {
 	 * @param str the line to print
 	 * @return    an pointer to this printer
 	 */
-	public HTMLPrinter printH3(String str) {
+	public HTMLPrinter printHeading3(String str) {
 		println(str, getHeadingFont(19));
 		return this;
 	}
@@ -132,7 +132,7 @@ public class HTMLPrinter {
 	 * @param str the line to print
 	 * @return    an pointer to this printer
 	 */
-	public HTMLPrinter printH4(String str) {
+	public HTMLPrinter printHeading4(String str) {
 		println(str, getHeadingFont(15));
 		return this;
 	}
@@ -142,7 +142,7 @@ public class HTMLPrinter {
 	 * @param str the line to print
 	 * @return    an pointer to this printer
 	 */
-	public HTMLPrinter printH5(String str) {
+	public HTMLPrinter printHeading5(String str) {
 		println(str, getHeadingFont(13));
 		return this;
 	}
@@ -152,7 +152,7 @@ public class HTMLPrinter {
 	 * @param str the line to print
 	 * @return    an pointer to this printer
 	 */
-	public HTMLPrinter printH6(String str) {
+	public HTMLPrinter printHeading6(String str) {
 		println(str, getHeadingFont(11));
 		return this;
 	}
@@ -162,7 +162,7 @@ public class HTMLPrinter {
 	 * @param str the line to print
 	 * @return    an pointer to this printer
 	 */
-	public HTMLPrinter printPre(String str) {
+	public HTMLPrinter printPreformattedText(String str) {
 		println(str, new Font("Monospaced", DEFAULT_FONT.getStyle(), DEFAULT_FONT.getSize()));
 		return this;
 	}
