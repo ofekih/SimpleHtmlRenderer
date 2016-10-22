@@ -108,8 +108,10 @@ public class SimpleBrowser extends JFrame {
 		SimpleBrowser simpleBrowser = new SimpleBrowser(1000, 750);
 		HTMLPrinter htmlPrinter = simpleBrowser.getHTMLPrinter();
 
-		htmlPrinter.setFont(new Font("Serif", Font.PLAIN, 18)).printParagraph("Hello World");
-		htmlPrinter.setFont(new Font("SansSerif", Font.ITALIC, 50)).printParagraph("Other World");
+		htmlPrinter.setFont(new Font("Serif", Font.PLAIN, 18));
+		htmlPrinter.printParagraph("Hello World");
+		htmlPrinter.setFont(new Font("SansSerif", Font.ITALIC, 50));
+		htmlPrinter.printParagraph("Other World");
 
 		htmlPrinter.printPreformattedText("This text is pre-formatted!");
 		htmlPrinter.printPreformattedText("Words     line   up       !");
@@ -117,12 +119,15 @@ public class SimpleBrowser extends JFrame {
 		htmlPrinter.setFont(new Font("Arial", Font.BOLD, 10));
 		htmlPrinter.printParagraph("Multiple\nangry little\nlines");
 		htmlPrinter.printParagraph(""); // this prints an empty line
-		htmlPrinter.setFont(HTMLPrinter.DEFAULT_FONT).printParagraph("I just printed an empty line");
+		htmlPrinter.setFont(HTMLPrinter.DEFAULT_FONT);
+		htmlPrinter.printParagraph("I just printed an empty line");
 
 		htmlPrinter.printHorizontalRule();
 
-		htmlPrinter.setFont(new Font("Serif", Font.PLAIN, 22)).printParagraph("Some normal text is much needed over here");
-		htmlPrinter.setFont(new Font("Times New Roman", Font.BOLD, 250)).printParagraph("HUGE TEXT :D\n");
+		htmlPrinter.setFont(new Font("Serif", Font.PLAIN, 22));
+		htmlPrinter.printParagraph("Some normal text is much needed over here");
+		htmlPrinter.setFont(new Font("Times New Roman", Font.BOLD, 250));
+		htmlPrinter.printParagraph("HUGE TEXT :D\n");
 
 		htmlPrinter.printHeading1("H1 And now for something completely different");
 		htmlPrinter.printHeading3("Colors!!!");
@@ -132,9 +137,11 @@ public class SimpleBrowser extends JFrame {
 		htmlPrinter.setFont(new Font("Arial", Font.PLAIN, 22));
 
 		htmlPrinter.printParagraph("This should be blue now XD");
-		htmlPrinter.setColor(Color.RED).printParagraph("And now red");
+		htmlPrinter.setColor(Color.RED);
+		htmlPrinter.printParagraph("And now red");
 		htmlPrinter.printHorizontalRule();
 		htmlPrinter.setFont(HTMLPrinter.DEFAULT_FONT);
-		htmlPrinter.setColor(Color.GREEN).printParagraph("\t\tI'm glad this works!");
+		htmlPrinter.setColor(Color.GREEN);
+		htmlPrinter.printParagraph("\t\tI'm glad this works!");
 	}
 }

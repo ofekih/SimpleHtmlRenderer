@@ -5,15 +5,21 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class HTMLPrinter {
+	public static final Font DEFAULT_FONT = new Font("SansSerif", Font.PLAIN, 25);
+	public static final Color DEFAULT_COLOR = Color.BLACK;
+
+	private static final int HEADING1_FONT_SIZE = 32;
+	private static final int HEADING2_FONT_SIZE = 24;
+	private static final int HEADING3_FONT_SIZE = 19;
+	private static final int HEADING4_FONT_SIZE = 15;
+	private static final int HEADING5_FONT_SIZE = 13;
+	private static final int HEADING6_FONT_SIZE = 11;
 
 	private SimpleBrowser browser;
 	private TextWindow textWindow;
 	private List<Line> lines;
-	private Font currentFont;
-	private Color currentColor;
-
-	public static final Font DEFAULT_FONT = new Font("SansSerif", Font.PLAIN, 25);
-	public static final Color DEFAULT_COLOR = Color.BLACK;
+	private Font font;
+	private Color color;
 
 	/**
 	 * HTMLPrinter constructor, taking a browser and textWindow instance.
@@ -24,8 +30,8 @@ public class HTMLPrinter {
 		this.browser = browser;
 		this.textWindow = textWindow;
 
-		currentFont = DEFAULT_FONT;
-		currentColor = DEFAULT_COLOR;
+		font = DEFAULT_FONT;
+		color = DEFAULT_COLOR;
 		lines = new ArrayList<Line>();
 	}
 
@@ -54,7 +60,7 @@ public class HTMLPrinter {
 	 * @param font the {@link Font} to use
 	 */
 	private void println(String str, Font font) {
-		println(str, font, currentColor);
+		println(str, font, color);
 	}
 
 	/**
@@ -63,7 +69,7 @@ public class HTMLPrinter {
 	 * @param color the {@link Color} to use
 	 */
 	private void println(String str, Color color) {
-		println(str, currentFont, color);
+		println(str, font, color);
 	}
 
 	/**
@@ -71,7 +77,7 @@ public class HTMLPrinter {
 	 * @param str the string to print
 	 */
 	private void println(String str) {
-		println(str, currentFont);
+		println(str, font);
 	}
 
 	/**
@@ -93,7 +99,7 @@ public class HTMLPrinter {
 	 * Adds a horizontal rule to the array of lines
 	 */
 	public void printHorizontalRule() {
-		lines.add(new SpecialLine("hr", currentFont, currentColor, textWindow));
+		lines.add(new SpecialLine("hr", font, color, textWindow));
 		browser.cleanupAfterPrint();
 	}
 
@@ -102,98 +108,75 @@ public class HTMLPrinter {
 	 * @param str the line to print
 	 * @return    an pointer to this printer
 	 */
-	public HTMLPrinter printHeading1(String str) {
-		println(str, getHeadingFont(32));
-		return this;
+	public void printHeading1(String str) {
+		println(str, getHeadingFont(HEADING1_FONT_SIZE));
 	}
 
 	/**
 	 * Prints a line formatted as H2
 	 * @param str the line to print
-	 * @return    an pointer to this printer
 	 */
-	public HTMLPrinter printHeading2(String str) {
-		println(str, getHeadingFont(24));
-		return this;
+	public void printHeading2(String str) {
+		println(str, getHeadingFont(HEADING2_FONT_SIZE));
 	}
 
 	/**
 	 * Prints a line formatted as H3
 	 * @param str the line to print
-	 * @return    an pointer to this printer
 	 */
-	public HTMLPrinter printHeading3(String str) {
-		println(str, getHeadingFont(19));
-		return this;
+	public void printHeading3(String str) {
+		println(str, getHeadingFont(HEADING3_FONT_SIZE));
 	}
 
 	/**
 	 * Prints a line formatted as H4
 	 * @param str the line to print
-	 * @return    an pointer to this printer
 	 */
-	public HTMLPrinter printHeading4(String str) {
-		println(str, getHeadingFont(15));
-		return this;
+	public void printHeading4(String str) {
+		println(str, getHeadingFont(HEADING4_FONT_SIZE));
 	}
 
 	/**
 	 * Prints a line formatted as H5
 	 * @param str the line to print
-	 * @return    an pointer to this printer
 	 */
-	public HTMLPrinter printHeading5(String str) {
-		println(str, getHeadingFont(13));
-		return this;
+	public void printHeading5(String str) {
+		println(str, getHeadingFont(HEADING5_FONT_SIZE));
 	}
 
 	/**
 	 * Prints a line formatted as H6
 	 * @param str the line to print
-	 * @return    an pointer to this printer
 	 */
-	public HTMLPrinter printHeading6(String str) {
-		println(str, getHeadingFont(11));
-		return this;
+	public void printHeading6(String str) {
+		println(str, getHeadingFont(HEADING6_FONT_SIZE));
 	}
 
 	/**
 	 * Prints a pre-formatted line (monospace)
 	 * @param str the line to print
-	 * @return    an pointer to this printer
 	 */
-	public HTMLPrinter printPreformattedText(String str) {
+	public void printPreformattedText(String str) {
 		println(str, new Font("Monospaced", DEFAULT_FONT.getStyle(), DEFAULT_FONT.getSize()));
-		return this;
 	}
 
-	/**
-	 * Generates a heading font given px size
-	 * Helper method for setFontByTag
-	 * @param sizePx font size in pixels
-	 * @return       the font
-	 */
-	private Font getHeadingFont(int sizePx) {
-		return new Font("SansSerif", Font.BOLD, sizePx);
+	private Font getHeadingFont(int headingLevel) {
+		return new Font(font.getFontName(), Font.BOLD, headingLevel);
 	}
 
 	/**
 	 * Sets the default font to be used when no other is specified
 	 * @param font the {@link Font} to set
-	 * @return     an pointer to this printer
 	 */
-	public HTMLPrinter setFont(Font font) {
-		currentFont = font;
-		return this;
+	public void setFont(Font font) {
+		this.font = font;
 	}
 
 	/**
 	 * Sets the default color to be used when no other is specified
 	 * @param color the {@link Color} to set
-	 * @return      an pointer to this printer
 	 */
-	public HTMLPrinter setColor(Color color) {
-		currentColor = color;
-		return this;
+	public void setColor(Color color) {
+		this.color = color;
 	}
 }
