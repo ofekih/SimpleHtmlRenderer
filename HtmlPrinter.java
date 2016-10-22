@@ -1,3 +1,9 @@
+import java.awt.Font;
+import java.awt.Color;
+
+import java.util.List;
+import java.util.ArrayList;
+
 /**
  * A client that manages printing to a {@link TextWindow}.
  *
@@ -5,13 +11,6 @@
  * @author Saagar Jha
  * @since October 21st, 2016
  */
-
-import java.awt.Font;
-import java.awt.Color;
-
-import java.util.List;
-import java.util.ArrayList;
-
 public class HtmlPrinter {
 	public static final Font DEFAULT_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 25);
 	public static final Color DEFAULT_COLOR = Color.BLACK;

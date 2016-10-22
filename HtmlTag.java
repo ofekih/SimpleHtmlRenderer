@@ -1,3 +1,7 @@
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JComponent;
+
 /**
  * A {@link HtmlComponent} for HTML-style tags, such as the br and hr tags.
  *
@@ -5,11 +9,6 @@
  * @author Saagar Jha
  * @since October 20th, 2016
  */
-
-import java.awt.Font;
-import java.awt.Color;
-import javax.swing.JComponent;
-
 public class HtmlTag implements HtmlComponent {
 
 	private Color color;
