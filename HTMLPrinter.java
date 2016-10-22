@@ -20,6 +20,7 @@ public class HTMLPrinter {
 	private List<Line> lines;
 	private Font font;
 	private Color color;
+	private boolean repaintAfterPrint;
 
 	/**
 	 * HTMLPrinter constructor, taking a browser and textWindow instance.
@@ -33,6 +34,12 @@ public class HTMLPrinter {
 		font = DEFAULT_FONT;
 		color = DEFAULT_COLOR;
 		lines = new ArrayList<Line>();
+		repaintAfterPrint = true;
+	}
+
+	private void repaint() {
+		textWindow.printLines(lines);
+		browser.cleanupAfterPrint();
 	}
 
 	/**
@@ -49,9 +56,9 @@ public class HTMLPrinter {
 
 		for (String string : strings)
 			lines.add(new Line(string, font, color, textWindow));
-
-		textWindow.printLines(lines);
-		browser.cleanupAfterPrint();
+		if (repaintAfterPrint) {
+			repaint();
+		}
 	}
 
 	/**
@@ -190,5 +197,15 @@ public class HTMLPrinter {
 	 */
 	public void setColor(Color color) {
 		this.color = color;
+	}
+
+	/**
+	 * Sets whether the {@link TextWindow} should repaint after printing.
+	 * Setting this to false improves performace, but a call to repaint
+	 * is necessary after printing is done.
+	 * @param repaint	Whether to repaint after printing
+	 */
+	public void setRepaintAfterPrint(boolean repaint) {
+		this.repaintAfterPrint = repaint;
 	}
 }
