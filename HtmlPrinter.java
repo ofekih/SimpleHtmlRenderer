@@ -80,7 +80,7 @@ public class HtmlPrinter {
 	 */
 	private void println(String str, Font font, Color color) {
 		HtmlFragment htmlFragment = print(str, font, color);
-		htmlComponents.add(new HtmlTag("br", Color.BLACK, htmlFragment.getHtmlComponentHeight()));
+		breakComponent(htmlFragment);
 	}
 
 	/**
@@ -113,7 +113,11 @@ public class HtmlPrinter {
 	 * Adds an empty line to the array of lines
 	 */
 	private void println() {
-		println("");
+		breakIfNecessary();
+	}
+
+	private void breakComponent(HtmlComponent htmlComponent) {
+		htmlComponents.add(new HtmlTag("br", Color.BLACK, htmlComponent.getHtmlComponentHeight()));
 	}
 
 	/**
@@ -203,7 +207,7 @@ public class HtmlPrinter {
 
 		HtmlComponent previousComponent = htmlComponents.get(htmlComponents.size() - 1);
 		if (!(previousComponent instanceof HtmlTag) || !((HtmlTag)previousComponent).getTag().equals("br"))
-			htmlComponents.add(new HtmlTag("br", null, previousComponent.getHtmlComponentHeight()));
+			breakComponent(previousComponent);
 	}
 
 	public void printBreak() {
