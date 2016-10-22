@@ -1,8 +1,8 @@
 /**
- * Performs the actual rendering of {@link HtmlLine}s. Drawing directly to a
- * {@link TextWindow} is not advised; use the {@link HtmlPrinter} that manages
- * this {@link TextWindow} instead.
- * 
+ * Performs the actual rendering of {@link HtmlComponents}s. Drawing directly
+ *  to a {@link TextWindow} is not advised; use the {@link HtmlPrinter} that
+ *  manages this {@link TextWindow} instead.
+ *
  * @author Ofek Gila
  * @author Saagar Jha
  * @since October 20th, 2016
@@ -33,11 +33,9 @@ class TextWindow extends JPanel {
 	public int getHeight() {
 		int height = 0;
 		try {
-			for (HtmlComponent component : htmlComponents) {
-				if (component instanceof HtmlTag) {
+			for (HtmlComponent component : htmlComponents)
+				if (component instanceof HtmlTag)
 					height += component.getHtmlComponentHeight();
-				}
-			}
 		} catch (ConcurrentModificationException e) {}
 		return height + 2 * Y_MARGIN;
 	}
@@ -48,18 +46,33 @@ class TextWindow extends JPanel {
 	 */
 	public int getWidth() {
 		int width = 0;
+		int tempWidth = 0;
 		try {
-			for (HtmlComponent component : htmlComponents)
-				width = Math.max(width, component.getHtmlComponentWidth());
+			for (HtmlComponent component : htmlComponents) {
+				if (isBreak(component)) {
+					width = Math.max(width, tempWidth);
+					tempWidth = 0;
+				}
+				else tempWidth += component.getHtmlComponentWidth();
+			}
 		} catch (ConcurrentModificationException e) {}
 		return width + 2 * X_MARGIN;
 	}
 
 	/**
-	 * Prints lines from lines list
-	 * @param htmlComponents an {@link List} of {@link HtmlComponent}s
+	 * Tests if a component is a break
+	 * @param  component the {@link HtmlComponent} to test
+	 * @return           true if break, false otherwise
 	 */
-	public void printHtmlComponents(List<HtmlComponent> htmlComponents) {
+	private boolean isBreak(HtmlComponent component) {
+		return component instanceof HtmlTag && ((HtmlTag)component).getTag().equals("br");
+	}
+
+	/**
+	 * Draws all the htmlComponents onto the window.
+	 * @param htmlComponents the {@link HtmlComponent}s to draw
+	 */
+	public void drawHtmlComponents(List<HtmlComponent> htmlComponents) {
 		this.htmlComponents = htmlComponents;
 		repaint();
 	}
@@ -72,7 +85,7 @@ class TextWindow extends JPanel {
 	}
 
 	/**
-	 * Draws the lines one by one
+	 * Draws all the {@link HtmlComponent}s onto the window.
 	 * @param g the {@link Graphics} component
 	 */
 	private void drawHtmlComponents(Graphics g) {
@@ -94,16 +107,23 @@ class TextWindow extends JPanel {
 		} catch (ConcurrentModificationException e) {}
 	}
 
+	/**
+	 * Draws text onto the screen defined by an htmlFragment at a specific xLoc and yLoc.
+	 * @param g            the {@link Graphics} component
+	 * @param htmlFragment the {@link HtmlFragment} to draw
+	 * @param xLoc         the current x location to draw from
+	 * @param yLoc         the current y location to draw from
+	 */
 	public void drawFragment(Graphics g, HtmlFragment htmlFragment, int xLoc, int yLoc) {
 		g.setFont(htmlFragment.getFont());
 		g.drawString(htmlFragment.getText(), xLoc, yLoc + htmlFragment.getAscent());
 	}
 
 	/**
-	 * Draws a special (non-text) line
+	 * Draws a special (non-text) {@link HtmlComponent} at a specific xLoc.
 	 * @param  g    the {@link Graphics} component
-	 * @param  tag  the special character tag
-	 * @param  yLoc the current y location for printing
+	 * @param  tag  the {@link HtmlTag} to draw
+	 * @param  yLoc the current y location to draw from
 	 */
 	private void drawTag(Graphics g, HtmlTag htmlTag, int yLoc) {
 		switch (htmlTag.getTag()) {

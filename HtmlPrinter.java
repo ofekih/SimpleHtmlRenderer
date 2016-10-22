@@ -52,7 +52,7 @@ public class HtmlPrinter {
 	 * Draws the {@link HtmlComponent}s onto the {@link TextWindow}.
 	 */
 	public void drawHtmlComponents() {
-		textWindow.printHtmlComponents(htmlComponents);
+		textWindow.drawHtmlComponents(htmlComponents);
 		browser.cleanupAfterPrint();
 	}
 
