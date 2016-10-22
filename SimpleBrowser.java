@@ -27,7 +27,7 @@ public class SimpleBrowser extends JFrame {
 	private int windowWidth, windowHeight;
 	private TextWindow textWindow;
 	private JScrollPane scrollPane;
-	private HtmlPrinter htmlPrinter;
+	private HTMLPrinter htmlPrinter;
 
 	/**
 	 * Main constructor settings width and height.
@@ -49,7 +49,7 @@ public class SimpleBrowser extends JFrame {
 		textWindow.setPreferredSize(new Dimension(1000, 750));
 		setLayout(new BorderLayout());
 		addScrollPane();
-		htmlPrinter = new HtmlPrinter(this, textWindow);
+		htmlPrinter = new HTMLPrinter(this, textWindow);
 	}
 
 	/**
@@ -86,10 +86,10 @@ public class SimpleBrowser extends JFrame {
 	}
 
 	/**
-	 * Returns the {@link HtmlPrinter} object for the {@link TextWindow}.
-	 * @return the {@link HtmlPrinter} object
+	 * Returns the {@link HTMLPrinter} object for the {@link TextWindow}.
+	 * @return the {@link HTMLPrinter} object
 	 */
-	public HtmlPrinter getPrinter() {
+	public HTMLPrinter getPrinter() {
 		return htmlPrinter;
 	}
 
@@ -106,7 +106,7 @@ public class SimpleBrowser extends JFrame {
 
 	public static void main(String... pumpkins) {
 		SimpleBrowser simpleBrowser = new SimpleBrowser(1000, 750);
-		HtmlPrinter htmlPrinter = simpleBrowser.getPrinter();
+		HTMLPrinter htmlPrinter = simpleBrowser.getPrinter();
 
 		htmlPrinter.setFont(new Font("Serif", Font.PLAIN, 18)).print("Hello World");
 		htmlPrinter.setFont(new Font("SansSerif", Font.ITALIC, 50)).print("Other World");
@@ -117,7 +117,7 @@ public class SimpleBrowser extends JFrame {
 		htmlPrinter.setFont(new Font("Arial", Font.BOLD, 10));
 		htmlPrinter.print("Multiple\nangry little\nlines");
 		htmlPrinter.print(""); // this prints an empty line
-		htmlPrinter.setFont(HtmlPrinter.DEFAULT_FONT).print("I just printed an empty line");
+		htmlPrinter.setFont(HTMLPrinter.DEFAULT_FONT).print("I just printed an empty line");
 
 		htmlPrinter.printHR();
 
@@ -134,7 +134,7 @@ public class SimpleBrowser extends JFrame {
 		htmlPrinter.print("This should be blue now XD");
 		htmlPrinter.setColor(Color.RED).print("And now red");
 		htmlPrinter.printHR();
-		htmlPrinter.setFont(HtmlPrinter.DEFAULT_FONT);
+		htmlPrinter.setFont(HTMLPrinter.DEFAULT_FONT);
 		htmlPrinter.setColor(Color.GREEN).print("\t\tI'm glad this works!");
 	}
 }

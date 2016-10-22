@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.List;
 import java.util.ArrayList;
 
-public class HtmlPrinter {
+public class HTMLPrinter {
 
 	private SimpleBrowser browser;
 	private TextWindow textWindow;
@@ -16,11 +16,11 @@ public class HtmlPrinter {
 	public static final Color DEFAULT_COLOR = Color.BLACK;
 
 	/**
-	 * HtmlPrinter constructor, taking a browser and textWindow instance.
+	 * HTMLPrinter constructor, taking a browser and textWindow instance.
 	 * @param  browser    the {@link SimpleBrowser} instance
 	 * @param  textWindow the {@link textWindow} instance
 	 */
-	public HtmlPrinter(SimpleBrowser browser, TextWindow textWindow) {
+	public HTMLPrinter(SimpleBrowser browser, TextWindow textWindow) {
 		this.browser = browser;
 		this.textWindow = textWindow;
 
@@ -102,7 +102,7 @@ public class HtmlPrinter {
 	 * @param str the line to print
 	 * @return    an pointer to this printer
 	 */
-	public HtmlPrinter printH1(String str) {
+	public HTMLPrinter printH1(String str) {
 		println(str, getHeadingFont(32));
 		return this;
 	}
@@ -112,7 +112,7 @@ public class HtmlPrinter {
 	 * @param str the line to print
 	 * @return    an pointer to this printer
 	 */
-	public HtmlPrinter printH2(String str) {
+	public HTMLPrinter printH2(String str) {
 		println(str, getHeadingFont(24));
 		return this;
 	}
@@ -122,7 +122,7 @@ public class HtmlPrinter {
 	 * @param str the line to print
 	 * @return    an pointer to this printer
 	 */
-	public HtmlPrinter printH3(String str) {
+	public HTMLPrinter printH3(String str) {
 		println(str, getHeadingFont(19));
 		return this;
 	}
@@ -132,7 +132,7 @@ public class HtmlPrinter {
 	 * @param str the line to print
 	 * @return    an pointer to this printer
 	 */
-	public HtmlPrinter printH4(String str) {
+	public HTMLPrinter printH4(String str) {
 		println(str, getHeadingFont(15));
 		return this;
 	}
@@ -142,7 +142,7 @@ public class HtmlPrinter {
 	 * @param str the line to print
 	 * @return    an pointer to this printer
 	 */
-	public HtmlPrinter printH5(String str) {
+	public HTMLPrinter printH5(String str) {
 		println(str, getHeadingFont(13));
 		return this;
 	}
@@ -152,7 +152,7 @@ public class HtmlPrinter {
 	 * @param str the line to print
 	 * @return    an pointer to this printer
 	 */
-	public HtmlPrinter printH6(String str) {
+	public HTMLPrinter printH6(String str) {
 		println(str, getHeadingFont(11));
 		return this;
 	}
@@ -162,7 +162,7 @@ public class HtmlPrinter {
 	 * @param str the line to print
 	 * @return    an pointer to this printer
 	 */
-	public HtmlPrinter printPre(String str) {
+	public HTMLPrinter printPre(String str) {
 		println(str, new Font("Monospaced", DEFAULT_FONT.getStyle(), DEFAULT_FONT.getSize()));
 		return this;
 	}
@@ -182,7 +182,7 @@ public class HtmlPrinter {
 	 * @param font the {@link Font} to set
 	 * @return     an pointer to this printer
 	 */
-	public HtmlPrinter setFont(Font font) {
+	public HTMLPrinter setFont(Font font) {
 		currentFont = font;
 		return this;
 	}
@@ -192,7 +192,7 @@ public class HtmlPrinter {
 	 * @param color the {@link Color} to set
 	 * @return      an pointer to this printer
 	 */
-	public HtmlPrinter setColor(Color color) {
+	public HTMLPrinter setColor(Color color) {
 		currentColor = color;
 		return this;
 	}
