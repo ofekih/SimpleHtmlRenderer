@@ -28,7 +28,7 @@ public class HtmlPrinter {
 
 	private SimpleBrowser browser;
 	private TextWindow textWindow;
-	private List<HtmlLine> lines;
+	private List<HtmlComponent> htmlComponents;
 	private Font font;
 	private Color color;
 	private boolean preventDrawing;
@@ -44,7 +44,7 @@ public class HtmlPrinter {
 
 		font = DEFAULT_FONT;
 		color = DEFAULT_COLOR;
-		lines = new ArrayList<HtmlLine>();
+		htmlComponents = new ArrayList<HtmlComponent>();
 		preventDrawing = false;
 	}
 
@@ -52,7 +52,7 @@ public class HtmlPrinter {
 	 * Draws the lines on the {@link TextArea}
 	 */
 	public void drawHtmlLines() {
-		textWindow.printHtmlLines(lines);
+		textWindow.printHtmlComponents(htmlComponents);
 		browser.cleanupAfterPrint();
 	}
 
@@ -63,15 +63,7 @@ public class HtmlPrinter {
 	 * @param color {@link Color} to use
 	 */
 	public void print(String str, Font font, Color color) {
-		if (str.lastIndexOf('\n') == str.length() - 1)
-			str += " "; // for trailing \n
-		str = str.replace("\t", "    ");
-		String[] strings = str.split("\n");
-
-		for (int i = 0; i < strings.length; i++)
-			if (i == 0 && lines.size() > 0)
-				lines.get(lines.size() - 1).append(strings[i]);
-			else lines.add(new HtmlLine(strings[i], font, color, textWindow));
+		htmlComponents.add(new HtmlFragment(str, font, color, textWindow));
 
 		if (!preventDrawing)
 			drawHtmlLines();

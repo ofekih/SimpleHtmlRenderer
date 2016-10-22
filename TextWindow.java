@@ -24,7 +24,7 @@ class TextWindow extends JPanel {
 	private final int X_MARGIN = 50;
 	private final int Y_MARGIN = 50;
 
-	private List<HtmlLine> lines = new ArrayList<HtmlLine>();
+	private List<HtmlComponent> htmlComponents = new ArrayList<HtmlComponent>();
 
 	/**
 	 * Gets the total height of all the lines
@@ -33,8 +33,8 @@ class TextWindow extends JPanel {
 	public int getHeight() {
 		int height = 0;
 		try {
-			for (HtmlLine line : lines)
-				height += line.getHtmlLineHeight();
+			for (HtmlComponent component : htmlComponents)
+				height += component.getHtmlComponentHeight();
 		} catch (ConcurrentModificationException e) {}
 		return height + 2 * Y_MARGIN;
 	}
@@ -46,47 +46,50 @@ class TextWindow extends JPanel {
 	public int getWidth() {
 		int width = 0;
 		try {
-			for (HtmlLine line : lines)
-				width = Math.max(width, line.getHtmlLineWidth());
+			for (HtmlComponent component : htmlComponents)
+				width = Math.max(width, component.getHtmlComponentWidth());
 		} catch (ConcurrentModificationException e) {}
 		return width + 2 * X_MARGIN;
 	}
 
 	/**
 	 * Prints lines from lines list
-	 * @param lines an {@link List} of {@link HtmlLine}s
+	 * @param htmlComponents an {@link List} of {@link HtmlComponent}s
 	 */
-	public void printHtmlLines(List<HtmlLine> lines) {
-		this.lines = lines;
+	public void printHtmlComponents(List<HtmlComponent> htmlComponents) {
+		this.htmlComponents = htmlComponents;
 		repaint();
 	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		if (lines != null)
-			drawHtmlLines(g);
+		if (htmlComponents != null)
+			drawHtmlComponents(g);
 	}
 
 	/**
 	 * Draws the lines one by one
 	 * @param g the {@link Graphics} component
 	 */
-	private void drawHtmlLines(Graphics g) {
+	private void drawHtmlComponents(Graphics g) {
 		int yLoc = Y_MARGIN;
 
 		try {
-			for (HtmlLine line : lines) {
-				g.setColor(line.getColor());
-				if (line instanceof SpecialHtmlLine)
-					drawSpecial(g, ((SpecialHtmlLine)line).getTag(), yLoc);
-				else {
-					g.setFont(line.getFont());
-					g.drawString(line.getText(), X_MARGIN, yLoc + line.getAscent());
-				}
-				yLoc += line.getHtmlLineHeight();
+			for (HtmlComponent component : htmlComponents) {
+				g.setColor(component.getColor());
+				if (component instanceof HtmlTag)
+					drawTag(g, (HtmlTag)component, yLoc);
+				else if (component instanceof HtmlFragment)
+					drawFragment(g, (HtmlFragment)component, yLoc);
+				yLoc += component.getHtmlComponentHeight();
 			}
 		} catch (ConcurrentModificationException e) {}
+	}
+
+	public void drawFragment(Graphics g, HtmlFragment htmlFragment, int yLoc) {
+		g.setFont(htmlFragment.getFont());
+		g.drawString(htmlFragment.getText(), X_MARGIN, yLoc + htmlFragment.getAscent());
 	}
 
 	/**
@@ -95,8 +98,8 @@ class TextWindow extends JPanel {
 	 * @param  tag  the special character tag
 	 * @param  yLoc the current y location for printing
 	 */
-	private void drawSpecial(Graphics g, String tag, int yLoc) {
-		switch (tag) {
+	private void drawTag(Graphics g, HtmlTag htmlTag, int yLoc) {
+		switch (htmlTag.getTag()) {
 			case "hr":
 				drawHorizontalRule(g, yLoc);
 				break;

@@ -13,7 +13,7 @@ import java.awt.Color;
 import java.awt.FontMetrics;
 import javax.swing.JComponent;
 
-public class HtmlLine {
+public class HtmlFragment implements HtmlComponent {
 
 	private String text;
 	private Font font;
@@ -21,13 +21,13 @@ public class HtmlLine {
 	private FontMetrics fontMetrics;
 
 	/**
-	 * HtmlLine constructor with all the necessary values
+	 * HtmlFragment constructor with all the necessary values
 	 * @param  text      the text to display
 	 * @param  font      the {@link Font} to use
 	 * @param  color     the {@link Color} to use
 	 * @param  component any old {@link JComponent} to get font metrics from
 	 */
-	public HtmlLine(String text, Font font, Color color, JComponent component) {
+	public HtmlFragment(String text, Font font, Color color, JComponent component) {
 		this.text = text;
 		this.font = font;
 		this.color = color;
@@ -70,7 +70,7 @@ public class HtmlLine {
 	 * Gets the line height of this line
 	 * @return the height of this line
 	 */
-	public int getHtmlLineHeight() {
+	public int getHtmlComponentHeight() {
 		return fontMetrics.getHeight();
 	}
 
@@ -78,7 +78,7 @@ public class HtmlLine {
 	 * Gets the line width of this line
 	 * @return the width of this line
 	 */
-	public int getHtmlLineWidth() {
+	public int getHtmlComponentWidth() {
 		return fontMetrics.stringWidth(text);
 	}
 

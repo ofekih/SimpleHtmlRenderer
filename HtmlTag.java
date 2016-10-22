@@ -11,22 +11,29 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JComponent;
 
-public class SpecialHtmlLine extends HtmlLine {
+public class HtmlTag implements HtmlComponent {
 
+	private Color color;
 	private String tag;
 	private int lineHeight;
 
 	/**
 	 * SpecialHtmlLine constructor with all the necessary values
 	 * @param  tag       the tag corresponding to the symbol to display
-	 * @param  font      the {@link Font} to use
 	 * @param  color     the {@link Color} to use
-	 * @param  component any old {@link JComponent} to get font metrics from
 	 */
-	public SpecialHtmlLine(String tag, Font font, Color color, JComponent component, int lineHeight) {
-		super("", font, color, component);
+	public HtmlTag(String tag, Color color, int lineHeight) {
+		this.color = color;
 		this.tag = tag;
 		this.lineHeight = lineHeight;
+	}
+
+	/**
+	 * Gets the color of this line
+	 * @return the {@link Color}
+	 */
+	public Color getColor() {
+		return color;
 	}
 
 	/**
@@ -37,13 +44,11 @@ public class SpecialHtmlLine extends HtmlLine {
 		return tag;
 	}
 
-	@Override
-	public int getHtmlLineHeight() {
+	public int getHtmlComponentHeight() {
 		return lineHeight;
 	}
 
-	@Override
-	public int getHtmlLineWidth() {
+	public int getHtmlComponentWidth() {
 		return -1;
 	}
 }
