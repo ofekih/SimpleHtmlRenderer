@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -60,6 +62,7 @@ class TextWindow extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		if (lines != null)
 			drawLines(g);
 	}

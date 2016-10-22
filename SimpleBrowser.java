@@ -89,7 +89,7 @@ public class SimpleBrowser extends JFrame {
 	 * Returns the {@link HTMLPrinter} object for the {@link TextWindow}.
 	 * @return the {@link HTMLPrinter} object
 	 */
-	public HTMLPrinter getPrinter() {
+	public HTMLPrinter getHTMLPrinter() {
 		return htmlPrinter;
 	}
 
@@ -106,7 +106,7 @@ public class SimpleBrowser extends JFrame {
 
 	public static void main(String... pumpkins) {
 		SimpleBrowser simpleBrowser = new SimpleBrowser(1000, 750);
-		HTMLPrinter htmlPrinter = simpleBrowser.getPrinter();
+		HTMLPrinter htmlPrinter = simpleBrowser.getHTMLPrinter();
 
 		htmlPrinter.setFont(new Font("Serif", Font.PLAIN, 18)).printParagraph("Hello World");
 		htmlPrinter.setFont(new Font("SansSerif", Font.ITALIC, 50)).printParagraph("Other World");
