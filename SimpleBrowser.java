@@ -2,7 +2,7 @@
  * The main class for SimpleBrowser, a program that can help pretty-print
  * tokenized HTML. {@link SimpleBrowser} supports various colors, fonts, and
  * even some special tags such as horizontal rules. A
- * {@link javax.swing.JFrame}, it manages a single {@link TextWindow} and allows
+ * {@link JFrame}, it manages a single {@link TextWindow} and allows
  * printing to it through a {@link HtmlPrinter}.
  *
  * @author Ofek Gila

@@ -121,9 +121,9 @@ class TextWindow extends JPanel {
 
 	/**
 	 * Draws a special (non-text) {@link HtmlComponent} at a specific xLoc.
-	 * @param  g    the {@link Graphics} component
-	 * @param  tag  the {@link HtmlTag} to draw
-	 * @param  yLoc the current y location to draw from
+	 * @param  g        the {@link Graphics} component
+	 * @param  htmlTag  the {@link HtmlTag} to draw
+	 * @param  yLoc     the current y location to draw from
 	 */
 	private void drawTag(Graphics g, HtmlTag htmlTag, int yLoc) {
 		switch (htmlTag.getTag()) {

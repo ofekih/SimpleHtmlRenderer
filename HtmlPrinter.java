@@ -141,7 +141,6 @@ public class HtmlPrinter {
 	/**
 	 * Prints text formatted as H1.
 	 * @param str the String to print
-	 * @return    an pointer to this printer
 	 */
 	public void printHeading1(String str) {
 		print(str, getHeadingFont(HEADING1_FONT_SIZE));
@@ -262,8 +261,8 @@ public class HtmlPrinter {
 	 * @param  fontSize the font size of the heading
 	 * @return          the appropriate heading {@link Font}
 	 */
-	private Font getHeadingFont(int headingLevel) {
-		return new Font(font.getFontName(), font.getStyle() | Font.BOLD, headingLevel);
+	private Font getHeadingFont(int fontSize) {
+		return new Font(font.getFontName(), font.getStyle() | Font.BOLD, fontSize);
 	}
 
 	/**
