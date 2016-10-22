@@ -114,51 +114,47 @@ public class SimpleBrowser extends JFrame {
 		htmlPrinter.println();
 		htmlPrinter.printPreformattedText("Words     line   up       !");
 		htmlPrinter.println();
-		htmlPrinter.print("print ");
-		htmlPrinter.printItalic("print ");
-		htmlPrinter.printBold("print");
-		htmlPrinter.println();
-		htmlPrinter.printParagraph("print print print");
 
-		// htmlPrinter.printItalic("Leaning Tower of Pisa");
+		htmlPrinter.print("normal ");
+		htmlPrinter.printItalic("italic ");
+		htmlPrinter.printBold("bold");
+		htmlPrinter.printBreak();
 
-		// htmlPrinter.setFont(new Font("Serif", Font.PLAIN, 18));
-		// htmlPrinter.printParagraph("Hello World");
-		// htmlPrinter.setFont(new Font("SansSerif", Font.ITALIC, 50));
-		// htmlPrinter.printParagraph("Other World");
+		htmlPrinter.setFont(new Font("SansSerif", Font.ITALIC, 22));
+		htmlPrinter.printItalic("Leaning Tower of ");
+		htmlPrinter.printBold("Pisa");
 
-		// htmlPrinter.setFont(new Font("Arial", Font.BOLD, 10));
-		// htmlPrinter.printParagraph("Multiple\nangry little\nlines");
-		// htmlPrinter.printParagraph(""); // this prints an empty line
-		// htmlPrinter.setFont(HtmlPrinter.DEFAULT_FONT);
-		// htmlPrinter.printParagraph("I just printed an empty line");
+		htmlPrinter.setFont(new Font("Serif", Font.PLAIN, 18));
+		htmlPrinter.printParagraph("Hello World");
+		htmlPrinter.setFont(new Font("SansSerif", Font.ITALIC, 50));
+		htmlPrinter.printParagraph("Other World");
 
-		// htmlPrinter.printHorizontalRule();
+		htmlPrinter.printHorizontalRule();
 
-		// htmlPrinter.setFont(new Font("Serif", Font.PLAIN, 22));
-		// htmlPrinter.printParagraph("Some normal text is much needed over here");
+		htmlPrinter.setFont(new Font("Serif", Font.PLAIN, 22));
+		htmlPrinter.printParagraph("Some normal text is much needed over here");
 
-		// htmlPrinter.printBreak();
-		// htmlPrinter.printBreak();
-		// htmlPrinter.printParagraph("Time to take a break (or two)!");
+		htmlPrinter.printBreak();
+		htmlPrinter.printBreak();
+		htmlPrinter.printParagraph("Time to take a break (or two)!");
 
-		// htmlPrinter.setFont(new Font("Times New Roman", Font.BOLD, 250));
-		// htmlPrinter.printParagraph("HUGE TEXT :D");
+		htmlPrinter.setFont(new Font("Times New Roman", Font.BOLD, 250));
+		htmlPrinter.printParagraph("HUGE TEXT :D");
 
-		// htmlPrinter.printHeading1("H1 And now for something completely different\n");
-		// htmlPrinter.printHeading3("Colors!!!");
-		// htmlPrinter.setFont(new Font("Arial", Font.PLAIN, 20));
-		// htmlPrinter.printParagraph("");
+		htmlPrinter.printHeading1("H1 And now for something completely different");
+		htmlPrinter.printHeading3("Colors!!!");
+		htmlPrinter.setFont(new Font("Arial", Font.PLAIN, 20));
+		htmlPrinter.printParagraph("");
 
-		// htmlPrinter.setColor(Color.BLUE);
-		// htmlPrinter.setFont(new Font("Arial", Font.PLAIN, 22));
+		htmlPrinter.setColor(Color.BLUE);
+		htmlPrinter.setFont(new Font("Arial", Font.PLAIN, 22));
 
-		// htmlPrinter.printParagraph("This should be blue now XD");
-		// htmlPrinter.setColor(Color.RED);
-		// htmlPrinter.printParagraph("And now red");
-		// htmlPrinter.printHorizontalRule();
-		// htmlPrinter.setFont(HtmlPrinter.DEFAULT_FONT);
-		// htmlPrinter.setColor(Color.GREEN);
-		// htmlPrinter.printParagraph("\t\tI'm glad this works!");
+		htmlPrinter.printParagraph("This should be blue now XD");
+		htmlPrinter.setColor(Color.RED);
+		htmlPrinter.printParagraph(" And now red");
+		htmlPrinter.printHorizontalRule();
+		htmlPrinter.setFont(HtmlPrinter.DEFAULT_FONT);
+		htmlPrinter.setColor(Color.GREEN);
+		htmlPrinter.printParagraph("I'm glad this works!");
 	}
 }

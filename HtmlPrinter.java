@@ -63,6 +63,8 @@ public class HtmlPrinter {
 	 * @param color {@link Color} to use
 	 */
 	public HtmlFragment print(String str, Font font, Color color) {
+		breakIfDifferentSize(font);
+
 		HtmlFragment htmlFragment = new HtmlFragment(str, font, color, textWindow);
 		htmlComponents.add(htmlFragment);
 
@@ -207,6 +209,15 @@ public class HtmlPrinter {
 
 		HtmlComponent previousComponent = htmlComponents.get(htmlComponents.size() - 1);
 		if (!(previousComponent instanceof HtmlTag) || !((HtmlTag)previousComponent).getTag().equals("br"))
+			breakComponent(previousComponent);
+	}
+
+	public void breakIfDifferentSize(Font font) {
+		if (htmlComponents.size() == 0)
+			return;
+
+		HtmlComponent previousComponent = htmlComponents.get(htmlComponents.size() - 1);
+		if (previousComponent instanceof HtmlFragment && ((HtmlFragment)previousComponent).getFont().getSize() != font.getSize())
 			breakComponent(previousComponent);
 	}
 
