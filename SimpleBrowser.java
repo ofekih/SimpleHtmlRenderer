@@ -114,10 +114,11 @@ public class SimpleBrowser extends JFrame {
 		htmlPrinter.println();
 		htmlPrinter.printPreformattedText("Words     line   up       !");
 		htmlPrinter.println();
-		htmlPrinter.printParagraph("hi ");
-		htmlPrinter.printParagraph("hi ");
-		htmlPrinter.printParagraph("goodbye");
+		htmlPrinter.print("print ");
+		htmlPrinter.printItalic("print ");
+		htmlPrinter.printBold("print");
 		htmlPrinter.println();
+		htmlPrinter.printParagraph("print print print");
 
 		// htmlPrinter.printItalic("Leaning Tower of Pisa");
 

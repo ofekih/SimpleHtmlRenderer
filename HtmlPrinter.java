@@ -105,7 +105,7 @@ public class HtmlPrinter {
 	 * Adds str to array of {@link HtmlLine}s.
 	 * @param str the string to print
 	 */
-	private void print(String str) {
+	public void print(String str) {
 		print(str, font);
 	}
 
