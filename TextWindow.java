@@ -113,7 +113,7 @@ public class TextWindow extends JPanel {
 	 * @param xLoc         the current x location to draw from
 	 * @param yLoc         the current y location to draw from
 	 */
-	public void drawFragment(Graphics g, HtmlFragment htmlFragment, int xLoc, int yLoc) {
+	private void drawFragment(Graphics g, HtmlFragment htmlFragment, int xLoc, int yLoc) {
 		g.setFont(htmlFragment.getFont());
 		g.drawString(htmlFragment.getText(), xLoc, yLoc + htmlFragment.getAscent());
 	}
