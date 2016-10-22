@@ -5,7 +5,7 @@ import java.awt.Color;
  *
  * @author Ofek Gila
  * @author Saagar Jha
- * @since October 20th, 2016
+ * @since October 21st, 2016
  */
 public interface HtmlComponent {
 	/**

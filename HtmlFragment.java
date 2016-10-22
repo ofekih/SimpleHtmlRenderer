@@ -10,7 +10,7 @@ import javax.swing.JComponent;
  *
  * @author Ofek Gila
  * @author Saagar Jha
- * @since October 20th, 2016
+ * @since October 21st, 2016
  */
 public class HtmlFragment implements HtmlComponent {
 
@@ -36,7 +36,7 @@ public class HtmlFragment implements HtmlComponent {
 	/**
 	 * Appends text to this fragment.
 	 * @param text String of text to append
-	 * @deprecated there shouldn't be any reason to append to this fragment, just add a new {@link HtmlFragment} instead.
+	 * @deprecated There shouldn't be any reason to append to this fragment, just add a new {@link HtmlFragment} instead.
 	 */
 	@Deprecated
 	public void append(String text) {

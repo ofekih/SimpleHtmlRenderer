@@ -212,7 +212,7 @@ public class HtmlPrinter {
 	/**
 	 * Breaks if the previous component is not a break. This breaks using the same size as the previous component (not the default break size).
 	 */
-	public void breakIfNecessary() {
+	private void breakIfNecessary() {
 		if (htmlComponents.isEmpty())
 			return;
 
@@ -225,7 +225,7 @@ public class HtmlPrinter {
 	 * Breaks if the {@link Font} used is a different size than the previous font used.
 	 * @param font the {@link Font} to use
 	 */
-	public void breakIfDifferentSize(Font font) {
+	private void breakIfDifferentSize(Font font) {
 		if (htmlComponents.isEmpty())
 			return;
 
