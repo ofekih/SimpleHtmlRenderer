@@ -1,6 +1,5 @@
 /**
- * A {@link HtmlComponent} for special HTML elements that are not expressed well
- * in text, such as breaks.
+ * A {@link HtmlComponent} for HTML-style tags, such as the br and hr tags.
  *
  * @author Ofek Gila
  * @author Saagar Jha
@@ -19,8 +18,9 @@ public class HtmlTag implements HtmlComponent {
 
 	/**
 	 * SpecialHtmlLine constructor with all the necessary values
-	 * @param  tag       the tag corresponding to the symbol to display
-	 * @param  color     the {@link Color} to use
+	 * @param  tag        the tag corresponding to the symbol to display
+	 * @param  color      the {@link Color} to use
+	 * @param  lineHeight the height of this component
 	 */
 	public HtmlTag(String tag, Color color, int lineHeight) {
 		this.color = color;
@@ -29,26 +29,26 @@ public class HtmlTag implements HtmlComponent {
 	}
 
 	/**
-	 * Gets the color of this line
-	 * @return the {@link Color}
-	 */
-	public Color getColor() {
-		return color;
-	}
-
-	/**
-	 * Gets the tag for this special line
-	 * @return [description]
+	 * Returns this element's tag name
+	 * @return this element's tag name
 	 */
 	public String getTag() {
 		return tag;
 	}
 
+	@Override
+	public Color getColor() {
+		return color;
+	}
+
+	@Override
 	public int getHtmlComponentHeight() {
 		return lineHeight;
 	}
 
+	@Override
 	public int getHtmlComponentWidth() {
-		return -1;
+		// So far, the tags all have variable width, and therefore should not be taken into account when finding which element is the widest.
+		return 0;
 	}
 }

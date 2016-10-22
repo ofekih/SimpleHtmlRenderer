@@ -35,51 +35,29 @@ public class HtmlFragment implements HtmlComponent {
 	}
 
 	/**
-	 * Appends text to this line
+	 * Appends text to this fragment
 	 * @param text String of text to append
+	 * @deprecated there shouldn't be any reason to append to this fragment, just add a new {@link HtmlFragment} instead.
 	 */
+	@Deprecated
 	public void append(String text) {
 		this.text += text;
 	}
 
 	/**
-	 * Gets the text of this line
-	 * @return the text
+	 * Returns the text content of this fragment
+	 * @return the String text
 	 */
 	public String getText() {
 		return text;
 	}
 
 	/**
-	 * Gets the font of this line
+	 * Returns the font of this fragment
 	 * @return the {@link Font}
 	 */
 	public Font getFont() {
 		return font;
-	}
-
-	/**
-	 * Gets the color of this line
-	 * @return the {@link Color}
-	 */
-	public Color getColor() {
-		return color;
-	}
-
-	/**
-	 * Gets the line height of this line
-	 * @return the height of this line
-	 */
-	public int getHtmlComponentHeight() {
-		return fontMetrics.getHeight();
-	}
-
-	/**
-	 * Gets the line width of this line
-	 * @return the width of this line
-	 */
-	public int getHtmlComponentWidth() {
-		return fontMetrics.stringWidth(text);
 	}
 
 	/**
@@ -88,5 +66,20 @@ public class HtmlFragment implements HtmlComponent {
 	 */
 	public int getAscent() {
 		return fontMetrics.getAscent();
+	}
+
+	@Override
+	public Color getColor() {
+		return color;
+	}
+
+	@Override
+	public int getHtmlComponentHeight() {
+		return fontMetrics.getHeight();
+	}
+
+	@Override
+	public int getHtmlComponentWidth() {
+		return fontMetrics.stringWidth(text);
 	}
 }

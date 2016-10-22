@@ -1,7 +1,7 @@
 /**
  * Performs the actual rendering of {@link HtmlComponents}s. Drawing directly
- *  to a {@link TextWindow} is not advised; use the {@link HtmlPrinter} that
- *  manages this {@link TextWindow} instead.
+ * to a {@link TextWindow} is not advised; use the {@link HtmlPrinter} that
+ * manages this {@link TextWindow} instead.
  *
  * @author Ofek Gila
  * @author Saagar Jha
