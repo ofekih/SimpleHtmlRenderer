@@ -37,8 +37,20 @@ public class SpecialLine extends Line {
 	@Override
 	public int getLineHeight() {
 		switch (tag) {
-			case "hr": return 8;
-			default: return 0;
+			case "hr":
+				return 8;
+			default:
+				return 0;
+		}
+	}
+
+	@Override
+	public int getLineWidth() {
+		switch (tag) {
+			case "hr":
+				return -1;
+			default:
+				return super.getLineWidth();
 		}
 	}
 }
