@@ -62,11 +62,14 @@ public class HtmlPrinter {
 	 * @param font  {@link Font} to use
 	 * @param color {@link Color} to use
 	 */
-	public void print(String str, Font font, Color color) {
-		htmlComponents.add(new HtmlFragment(str, font, color, textWindow));
+	public HtmlFragment print(String str, Font font, Color color) {
+		HtmlFragment htmlFragment = new HtmlFragment(str, font, color, textWindow);
+		htmlComponents.add(htmlFragment);
 
 		if (!preventDrawing)
 			drawHtmlComponents();
+
+		return htmlFragment;
 	}
 
 	/**
@@ -76,8 +79,8 @@ public class HtmlPrinter {
 	 * @param color the {@link Color} to use
 	 */
 	private void println(String str, Font font, Color color) {
-		print(str, font, color);
-		htmlComponents.add(new HtmlTag("br", Color.BLACK, font.getSize()));
+		HtmlFragment htmlFragment = print(str, font, color);
+		htmlComponents.add(new HtmlTag("br", Color.BLACK, htmlFragment.getHtmlComponentHeight()));
 	}
 
 	/**
@@ -194,7 +197,17 @@ public class HtmlPrinter {
 		println(str, new Font(font.getFontName(), font.getStyle() | Font.BOLD, font.getSize()));
 	}
 
+	public void breakIfNecessary() {
+		if (htmlComponents.size() == 0)
+			return;
+
+		HtmlComponent previousComponent = htmlComponents.get(htmlComponents.size() - 1);
+		if (!(previousComponent instanceof HtmlTag) || !((HtmlTag)previousComponent).getTag().equals("br"))
+			htmlComponents.add(new HtmlTag("br", null, previousComponent.getHtmlComponentHeight()));
+	}
+
 	public void printBreak() {
+		breakIfNecessary();
 		htmlComponents.add(new HtmlTag("br", color, BREAK_SIZE));
 		if (!preventDrawing)
 			drawHtmlComponents();
@@ -205,6 +218,7 @@ public class HtmlPrinter {
 	 * Adds a horizontal rule to the array of lines
 	 */
 	public void printHorizontalRule() {
+		breakIfNecessary();
 		htmlComponents.add(new HtmlTag("hr", color, HORIZONTAL_RULE_SIZE));
 		if (!preventDrawing)
 			drawHtmlComponents();

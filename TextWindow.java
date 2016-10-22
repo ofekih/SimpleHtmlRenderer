@@ -78,11 +78,11 @@ class TextWindow extends JPanel {
 		try {
 			for (HtmlComponent component : htmlComponents) {
 				g.setColor(component.getColor());
-				if (component instanceof HtmlTag)
+				if (component instanceof HtmlTag) {
 					drawTag(g, (HtmlTag)component, yLoc);
-				else if (component instanceof HtmlFragment)
+					yLoc += component.getHtmlComponentHeight();
+				} else if (component instanceof HtmlFragment)
 					drawFragment(g, (HtmlFragment)component, yLoc);
-				yLoc += component.getHtmlComponentHeight();
 			}
 		} catch (ConcurrentModificationException e) {}
 	}
