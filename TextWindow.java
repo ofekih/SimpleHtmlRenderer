@@ -33,8 +33,11 @@ class TextWindow extends JPanel {
 	public int getHeight() {
 		int height = 0;
 		try {
-			for (HtmlComponent component : htmlComponents)
-				height += component.getHtmlComponentHeight();
+			for (HtmlComponent component : htmlComponents) {
+				if (component instanceof HtmlTag) {
+					height += component.getHtmlComponentHeight();
+				}
+			}
 		} catch (ConcurrentModificationException e) {}
 		return height + 2 * Y_MARGIN;
 	}
