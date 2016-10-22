@@ -11,7 +11,7 @@ import java.awt.Color;
 import java.awt.FontMetrics;
 import javax.swing.JComponent;
 
-public class Line {
+public class HTMLLine {
 
 	private String text;
 	private Font font;
@@ -19,13 +19,13 @@ public class Line {
 	private FontMetrics fontMetrics;
 
 	/**
-	 * Line constructor with all the necessary values
+	 * HTMLLine constructor with all the necessary values
 	 * @param  text      the text to display
 	 * @param  font      the {@link Font} to use
 	 * @param  color     the {@link Color} to use
 	 * @param  component any old {@link JComponent} to get font metrics from
 	 */
-	public Line(String text, Font font, Color color, JComponent component) {
+	public HTMLLine(String text, Font font, Color color, JComponent component) {
 		this.text = text;
 		this.font = font;
 		this.color = color;
@@ -68,7 +68,7 @@ public class Line {
 	 * Gets the line height of this line
 	 * @return the height of this line
 	 */
-	public int getLineHeight() {
+	public int getHTMLLineHeight() {
 		return fontMetrics.getHeight();
 	}
 
@@ -76,7 +76,7 @@ public class Line {
 	 * Gets the line width of this line
 	 * @return the width of this line
 	 */
-	public int getLineWidth() {
+	public int getHTMLLineWidth() {
 		return fontMetrics.stringWidth(text);
 	}
 

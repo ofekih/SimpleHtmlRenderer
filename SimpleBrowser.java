@@ -46,7 +46,7 @@ public class SimpleBrowser extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		createWindow();
 
-		textWindow.setPreferredSize(new Dimension(1000, 750));
+		textWindow.setPreferredSize(new Dimension(windowWidth, windowHeight));
 		setLayout(new BorderLayout());
 		addScrollPane();
 		htmlPrinter = new HTMLPrinter(this, textWindow);
@@ -80,8 +80,6 @@ public class SimpleBrowser extends JFrame {
 	 */
 	private void createWindow() {
 		textWindow = new TextWindow();
-		textWindow.setLocation(0, 0);
-		textWindow.setSize(new Dimension(windowWidth - 15, windowHeight));
 		add(textWindow);
 	}
 
@@ -105,7 +103,7 @@ public class SimpleBrowser extends JFrame {
 	}
 
 	public static void main(String... pumpkins) {
-		SimpleBrowser simpleBrowser = new SimpleBrowser(1000, 750);
+		SimpleBrowser simpleBrowser = new SimpleBrowser();
 		HTMLPrinter htmlPrinter = simpleBrowser.getHTMLPrinter();
 
 		htmlPrinter.printPreformattedText("This text is pre-formatted!");
@@ -129,9 +127,9 @@ public class SimpleBrowser extends JFrame {
 		htmlPrinter.setFont(new Font("Serif", Font.PLAIN, 22));
 		htmlPrinter.printParagraph("Some normal text is much needed over here");
 		htmlPrinter.setFont(new Font("Times New Roman", Font.BOLD, 250));
-		htmlPrinter.printParagraph("HUGE TEXT :D\n");
+		htmlPrinter.printParagraph("HUGE TEXT :D");
 
-		htmlPrinter.printHeading1("H1 And now for something completely different");
+		htmlPrinter.printHeading1("H1 And now for something completely different\n");
 		htmlPrinter.printHeading3("Colors!!!");
 		htmlPrinter.setFont(new Font("Arial", Font.PLAIN, 20));
 		htmlPrinter.printParagraph("");

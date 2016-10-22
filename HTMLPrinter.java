@@ -17,7 +17,7 @@ public class HTMLPrinter {
 
 	private SimpleBrowser browser;
 	private TextWindow textWindow;
-	private List<Line> lines;
+	private List<HTMLLine> lines;
 	private Font font;
 	private Color color;
 	private boolean preventDrawing;
@@ -33,20 +33,20 @@ public class HTMLPrinter {
 
 		font = DEFAULT_FONT;
 		color = DEFAULT_COLOR;
-		lines = new ArrayList<Line>();
+		lines = new ArrayList<HTMLLine>();
 		preventDrawing = false;
 	}
 
 	/**
 	 * Draws the lines on the {@link TextArea}
 	 */
-	public void drawLines() {
-		textWindow.printLines(lines);
+	public void drawHTMLLines() {
+		textWindow.printHTMLLines(lines);
 		browser.cleanupAfterPrint();
 	}
 
 	/**
-	 * Adds str to array of {@link Line}s with given font and color.
+	 * Adds str to array of {@link HTMLLine}s with given font and color.
 	 * @param str   the string to print
 	 * @param font  the {@link Font} to use
 	 * @param color the {@link Color} to use
@@ -58,14 +58,14 @@ public class HTMLPrinter {
 		String[] strings = str.split("\n");
 
 		for (String string : strings)
-			lines.add(new Line(string, font, color, textWindow));
+			lines.add(new HTMLLine(string, font, color, textWindow));
 
 		if (!preventDrawing)
-			drawLines();
+			drawHTMLLines();
 	}
 
 	/**
-	 * Adds str to array of {@link Line}s with given font.
+	 * Adds str to array of {@link HTMLLine}s with given font.
 	 * @param str  the string to print
 	 * @param font the {@link Font} to use
 	 */
@@ -74,7 +74,7 @@ public class HTMLPrinter {
 	}
 
 	/**
-	 * Adds str to array of {@link Line}s with given color.
+	 * Adds str to array of {@link HTMLLine}s with given color.
 	 * @param str   the string to print
 	 * @param color the {@link Color} to use
 	 */
@@ -83,7 +83,7 @@ public class HTMLPrinter {
 	}
 
 	/**
-	 * Adds str to array of {@link Line}s.
+	 * Adds str to array of {@link HTMLLine}s.
 	 * @param str the string to print
 	 */
 	private void println(String str) {
@@ -155,7 +155,7 @@ public class HTMLPrinter {
 	}
 
 	/**
-	 * Adds a pre-formatted {@link Line} (monospace)
+	 * Adds a pre-formatted {@link HTMLLine} (monospace)
 	 * @param str the text to add
 	 */
 	public void printPreformattedText(String str) {
@@ -163,7 +163,7 @@ public class HTMLPrinter {
 	}
 
 	/**
-	 * Adds an italic {@link Line}
+	 * Adds an italic {@link HTMLLine}
 	 * @param str the text to add
 	 */
 	public void printItalic(String str) {
@@ -171,7 +171,7 @@ public class HTMLPrinter {
 	}
 
 	/**
-	 * Adds a bolded {@link Line}
+	 * Adds a bolded {@link HTMLLine}
 	 * @param str the text to add
 	 */
 	public void printBold(String str) {
@@ -182,9 +182,9 @@ public class HTMLPrinter {
 	 * Adds a horizontal rule to the array of lines
 	 */
 	public void printHorizontalRule() {
-		lines.add(new SpecialLine("hr", font, color, textWindow));
+		lines.add(new SpecialHTMLLine("hr", font, color, textWindow));
 		if (!preventDrawing)
-			drawLines();
+			drawHTMLLines();
 	}
 
 	/**

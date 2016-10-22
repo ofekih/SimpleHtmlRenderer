@@ -10,18 +10,18 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JComponent;
 
-public class SpecialLine extends Line {
+public class SpecialHTMLLine extends HTMLLine {
 
 	private String tag;
 
 	/**
-	 * SpecialLine constructor with all the necessary values
+	 * SpecialHTMLLine constructor with all the necessary values
 	 * @param  tag       the tag corresponding to the symbol to display
 	 * @param  font      the {@link Font} to use
 	 * @param  color     the {@link Color} to use
 	 * @param  component any old {@link JComponent} to get font metrics from
 	 */
-	public SpecialLine(String tag, Font font, Color color, JComponent component) {
+	public SpecialHTMLLine(String tag, Font font, Color color, JComponent component) {
 		super("", font, color, component);
 		this.tag = tag;
 	}
@@ -35,7 +35,7 @@ public class SpecialLine extends Line {
 	}
 
 	@Override
-	public int getLineHeight() {
+	public int getHTMLLineHeight() {
 		switch (tag) {
 			case "hr":
 				return 8;
@@ -45,12 +45,12 @@ public class SpecialLine extends Line {
 	}
 
 	@Override
-	public int getLineWidth() {
+	public int getHTMLLineWidth() {
 		switch (tag) {
 			case "hr":
 				return -1;
 			default:
-				return super.getLineWidth();
+				return super.getHTMLLineWidth();
 		}
 	}
 }

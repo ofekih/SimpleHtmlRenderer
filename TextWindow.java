@@ -23,7 +23,7 @@ class TextWindow extends JPanel {
 	private final int X_MARGIN = 50;
 	private final int Y_MARGIN = 50;
 
-	private List<Line> lines = new ArrayList<Line>();
+	private List<HTMLLine> lines = new ArrayList<HTMLLine>();
 
 	/**
 	 * Gets the total height of all the lines
@@ -32,8 +32,8 @@ class TextWindow extends JPanel {
 	public int getHeight() {
 		int height = 0;
 		try {
-			for (Line line : lines)
-				height += line.getLineHeight();
+			for (HTMLLine line : lines)
+				height += line.getHTMLLineHeight();
 		} catch (ConcurrentModificationException e) {}
 		return height + 2 * Y_MARGIN;
 	}
@@ -45,17 +45,17 @@ class TextWindow extends JPanel {
 	public int getWidth() {
 		int width = 0;
 		try {
-			for (Line line : lines)
-				width = Math.max(width, line.getLineWidth());
+			for (HTMLLine line : lines)
+				width = Math.max(width, line.getHTMLLineWidth());
 		} catch (ConcurrentModificationException e) {}
 		return width + 2 * X_MARGIN;
 	}
 
 	/**
 	 * Prints lines from lines list
-	 * @param lines an {@link List} of {@link Line}s
+	 * @param lines an {@link List} of {@link HTMLLine}s
 	 */
-	public void printLines(List<Line> lines) {
+	public void printHTMLLines(List<HTMLLine> lines) {
 		this.lines = lines;
 		repaint();
 	}
@@ -64,26 +64,26 @@ class TextWindow extends JPanel {
 		super.paintComponent(g);
 		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		if (lines != null)
-			drawLines(g);
+			drawHTMLLines(g);
 	}
 
 	/**
 	 * Draws the lines one by one
 	 * @param g the {@link Graphics} component
 	 */
-	private void drawLines(Graphics g) {
+	private void drawHTMLLines(Graphics g) {
 		int yLoc = Y_MARGIN;
 
 		try {
-			for (Line line : lines) {
+			for (HTMLLine line : lines) {
 				g.setColor(line.getColor());
-				if (line instanceof SpecialLine)
-					drawSpecial(g, ((SpecialLine)line).getTag(), yLoc);
+				if (line instanceof SpecialHTMLLine)
+					drawSpecial(g, ((SpecialHTMLLine)line).getTag(), yLoc);
 				else {
 					g.setFont(line.getFont());
 					g.drawString(line.getText(), X_MARGIN, yLoc + line.getAscent());
 				}
-				yLoc += line.getLineHeight();
+				yLoc += line.getHTMLLineHeight();
 			}
 		} catch (ConcurrentModificationException e) {}
 	}
