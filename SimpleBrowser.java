@@ -3,7 +3,7 @@
  * tokenized HTML. {@link SimpleBrowser} supports various colors, fonts, and
  * even some special tags such as horizontal rules. A
  * {@link javax.swing.JFrame}, it manages a single {@link TextWindow} and allows
- * printing to it through a {@link HTMLPrinter}.
+ * printing to it through a {@link HtmlPrinter}.
  *
  * @author Ofek Gila
  * @author Saagar Jha
@@ -30,7 +30,7 @@ public class SimpleBrowser extends JFrame {
 	private int windowWidth, windowHeight;
 	private TextWindow textWindow;
 	private JScrollPane scrollPane;
-	private HTMLPrinter htmlPrinter;
+	private HtmlPrinter htmlPrinter;
 
 	/**
 	 * Main constructor settings width and height.
@@ -52,7 +52,7 @@ public class SimpleBrowser extends JFrame {
 		textWindow.setPreferredSize(new Dimension(windowWidth, windowHeight));
 		setLayout(new BorderLayout());
 		addScrollPane();
-		htmlPrinter = new HTMLPrinter(this, textWindow);
+		htmlPrinter = new HtmlPrinter(this, textWindow);
 	}
 
 	/**
@@ -87,10 +87,10 @@ public class SimpleBrowser extends JFrame {
 	}
 
 	/**
-	 * Returns the {@link HTMLPrinter} object for the {@link TextWindow}.
-	 * @return the {@link HTMLPrinter} object
+	 * Returns the {@link HtmlPrinter} object for the {@link TextWindow}.
+	 * @return the {@link HtmlPrinter} object
 	 */
-	public HTMLPrinter getHTMLPrinter() {
+	public HtmlPrinter getHtmlPrinter() {
 		return htmlPrinter;
 	}
 
@@ -107,7 +107,7 @@ public class SimpleBrowser extends JFrame {
 
 	public static void main(String... pumpkins) {
 		SimpleBrowser simpleBrowser = new SimpleBrowser();
-		HTMLPrinter htmlPrinter = simpleBrowser.getHTMLPrinter();
+		HtmlPrinter htmlPrinter = simpleBrowser.getHtmlPrinter();
 
 		// An example, for testing purposes
 		htmlPrinter.printPreformattedText("This text is pre-formatted!");
@@ -123,7 +123,7 @@ public class SimpleBrowser extends JFrame {
 		htmlPrinter.setFont(new Font("Arial", Font.BOLD, 10));
 		htmlPrinter.printParagraph("Multiple\nangry little\nlines");
 		htmlPrinter.printParagraph(""); // this prints an empty line
-		htmlPrinter.setFont(HTMLPrinter.DEFAULT_FONT);
+		htmlPrinter.setFont(HtmlPrinter.DEFAULT_FONT);
 		htmlPrinter.printParagraph("I just printed an empty line");
 
 		htmlPrinter.printHorizontalRule();
@@ -145,7 +145,7 @@ public class SimpleBrowser extends JFrame {
 		htmlPrinter.setColor(Color.RED);
 		htmlPrinter.printParagraph("And now red");
 		htmlPrinter.printHorizontalRule();
-		htmlPrinter.setFont(HTMLPrinter.DEFAULT_FONT);
+		htmlPrinter.setFont(HtmlPrinter.DEFAULT_FONT);
 		htmlPrinter.setColor(Color.GREEN);
 		htmlPrinter.printParagraph("\t\tI'm glad this works!");
 	}

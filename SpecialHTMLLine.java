@@ -1,5 +1,5 @@
 /**
- * A {@link HTMLLine} for special HTML components that are not expressed well
+ * A {@link HtmlLine} for special HTML components that are not expressed well
  * in text, such as horizontal breaks.
  *
  * @author Ofek Gila
@@ -11,18 +11,18 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JComponent;
 
-public class SpecialHTMLLine extends HTMLLine {
+public class SpecialHtmlLine extends HtmlLine {
 
 	private String tag;
 
 	/**
-	 * SpecialHTMLLine constructor with all the necessary values
+	 * SpecialHtmlLine constructor with all the necessary values
 	 * @param  tag       the tag corresponding to the symbol to display
 	 * @param  font      the {@link Font} to use
 	 * @param  color     the {@link Color} to use
 	 * @param  component any old {@link JComponent} to get font metrics from
 	 */
-	public SpecialHTMLLine(String tag, Font font, Color color, JComponent component) {
+	public SpecialHtmlLine(String tag, Font font, Color color, JComponent component) {
 		super("", font, color, component);
 		this.tag = tag;
 	}
@@ -36,7 +36,7 @@ public class SpecialHTMLLine extends HTMLLine {
 	}
 
 	@Override
-	public int getHTMLLineHeight() {
+	public int getHtmlLineHeight() {
 		switch (tag) {
 			case "hr":
 				return 8;
@@ -46,12 +46,12 @@ public class SpecialHTMLLine extends HTMLLine {
 	}
 
 	@Override
-	public int getHTMLLineWidth() {
+	public int getHtmlLineWidth() {
 		switch (tag) {
 			case "hr":
 				return -1;
 			default:
-				return super.getHTMLLineWidth();
+				return super.getHtmlLineWidth();
 		}
 	}
 }
