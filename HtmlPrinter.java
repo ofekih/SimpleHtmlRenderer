@@ -51,7 +51,7 @@ public class HtmlPrinter {
 	/**
 	 * Draws the lines on the {@link TextArea}
 	 */
-	public void drawHtmlLines() {
+	public void drawHtmlComponents() {
 		textWindow.printHtmlComponents(htmlComponents);
 		browser.cleanupAfterPrint();
 	}
@@ -66,7 +66,7 @@ public class HtmlPrinter {
 		htmlComponents.add(new HtmlFragment(str, font, color, textWindow));
 
 		if (!preventDrawing)
-			drawHtmlLines();
+			drawHtmlComponents();
 	}
 
 	/**
@@ -76,16 +76,8 @@ public class HtmlPrinter {
 	 * @param color the {@link Color} to use
 	 */
 	private void println(String str, Font font, Color color) {
-		if (str.lastIndexOf('\n') == str.length() - 1)
-			str += " "; // for trailing \n
-		str = str.replace("\t", "    ");
-		String[] strings = str.split("\n");
-
-		for (String string : strings)
-			lines.add(new HtmlLine(string, font, color, textWindow));
-
-		if (!preventDrawing)
-			drawHtmlLines();
+		print(str, font, color);
+		htmlComponents.add(new HtmlTag("br", Color.BLACK, font.getSize()));
 	}
 
 	/**
@@ -203,9 +195,9 @@ public class HtmlPrinter {
 	}
 
 	public void printBreak() {
-		lines.add(new SpecialHtmlLine("br", font, color, textWindow, BREAK_SIZE));
+		htmlComponents.add(new HtmlTag("br", color, BREAK_SIZE));
 		if (!preventDrawing)
-			drawHtmlLines();
+			drawHtmlComponents();
 	}
 
 
@@ -213,9 +205,9 @@ public class HtmlPrinter {
 	 * Adds a horizontal rule to the array of lines
 	 */
 	public void printHorizontalRule() {
-		lines.add(new SpecialHtmlLine("hr", font, color, textWindow, HORIZONTAL_RULE_SIZE));
+		htmlComponents.add(new HtmlTag("hr", color, HORIZONTAL_RULE_SIZE));
 		if (!preventDrawing)
-			drawHtmlLines();
+			drawHtmlComponents();
 	}
 
 	/**
