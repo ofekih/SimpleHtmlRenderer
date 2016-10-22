@@ -168,7 +168,9 @@ public class HTMLPrinter {
 	 */
 	public void printHorizontalRule() {
 		lines.add(new SpecialLine("hr", font, color, textWindow));
-		browser.cleanupAfterPrint();
+		if (repaintAfterPrint) {
+			repaint();
+		}
 	}
 
 	private Font getHeadingFont(int headingLevel) {
