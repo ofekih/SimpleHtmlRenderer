@@ -23,6 +23,7 @@ public class HtmlPrinter {
 	private static final int HEADING5_FONT_SIZE = 13;
 	private static final int HEADING6_FONT_SIZE = 11;
 
+	private static final int BREAK_SIZE = 25;
 	private static final int HORIZONTAL_RULE_SIZE = 8;
 
 	private SimpleBrowser browser;
@@ -209,17 +210,18 @@ public class HtmlPrinter {
 		println(str, new Font(font.getFontName(), font.getStyle() | Font.BOLD, font.getSize()));
 	}
 
+	public void printBreak() {
+		lines.add(new SpecialHtmlLine("br", font, color, textWindow, BREAK_SIZE));
+		if (!preventDrawing)
+			drawHtmlLines();
+	}
+
+
 	/**
 	 * Adds a horizontal rule to the array of lines
 	 */
 	public void printHorizontalRule() {
 		lines.add(new SpecialHtmlLine("hr", font, color, textWindow, HORIZONTAL_RULE_SIZE));
-		if (!preventDrawing)
-			drawHtmlLines();
-	}
-
-	public void printBreak() {
-		lines.add(new SpecialHtmlLine("br", font, color, textWindow, font.getSize()));
 		if (!preventDrawing)
 			drawHtmlLines();
 	}
