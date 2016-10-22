@@ -265,7 +265,7 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Sets the default font to be used when no other is specified.
+	 * Sets the font to be used.
 	 * @param font the {@link Font} to set
 	 */
 	public void setFont(Font font) {
@@ -273,7 +273,7 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Sets the default color to be used when no other is specified.
+	 * Sets the color to be used.
 	 * @param color the {@link Color} to set
 	 */
 	public void setColor(Color color) {
