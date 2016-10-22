@@ -130,6 +130,11 @@ public class SimpleBrowser extends JFrame {
 
 		htmlPrinter.setFont(new Font("Serif", Font.PLAIN, 22));
 		htmlPrinter.printParagraph("Some normal text is much needed over here");
+
+		htmlPrinter.printBreak();
+		htmlPrinter.printBreak();
+		htmlPrinter.printParagraph("Time to take a break (or two)!");
+
 		htmlPrinter.setFont(new Font("Times New Roman", Font.BOLD, 250));
 		htmlPrinter.printParagraph("HUGE TEXT :D");
 

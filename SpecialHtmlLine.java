@@ -13,6 +13,9 @@ import javax.swing.JComponent;
 
 public class SpecialHtmlLine extends HtmlLine {
 
+	private static final int BR_HEIGHT = 25;
+	private static final int HR_HEIGHT = 8;
+
 	private String tag;
 
 	/**
@@ -38,8 +41,10 @@ public class SpecialHtmlLine extends HtmlLine {
 	@Override
 	public int getHtmlLineHeight() {
 		switch (tag) {
+			case "br":
+				return BR_HEIGHT;
 			case "hr":
-				return 8;
+				return HR_HEIGHT;
 			default:
 				return 0;
 		}
