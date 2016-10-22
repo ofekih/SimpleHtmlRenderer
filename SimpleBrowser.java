@@ -109,6 +109,7 @@ public class SimpleBrowser extends JFrame {
 		SimpleBrowser simpleBrowser = new SimpleBrowser();
 		HTMLPrinter htmlPrinter = simpleBrowser.getHTMLPrinter();
 
+		// An example, for testing purposes
 		htmlPrinter.printPreformattedText("This text is pre-formatted!");
 		htmlPrinter.printPreformattedText("Words     line   up       !");
 
