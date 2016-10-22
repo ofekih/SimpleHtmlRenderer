@@ -204,7 +204,7 @@ public class HtmlPrinter {
 	}
 
 	public void breakIfNecessary() {
-		if (htmlComponents.size() == 0)
+		if (htmlComponents.isEmpty())
 			return;
 
 		HtmlComponent previousComponent = htmlComponents.get(htmlComponents.size() - 1);
@@ -213,7 +213,7 @@ public class HtmlPrinter {
 	}
 
 	public void breakIfDifferentSize(Font font) {
-		if (htmlComponents.size() == 0)
+		if (htmlComponents.isEmpty())
 			return;
 
 		HtmlComponent previousComponent = htmlComponents.get(htmlComponents.size() - 1);
