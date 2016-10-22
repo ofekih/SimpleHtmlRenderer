@@ -88,8 +88,8 @@ public class HtmlPrinter {
 	 * @param str  the string to print
 	 * @param font the {@link Font} to use
 	 */
-	private void println(String str, Font font) {
-		println(str, font, color);
+	private void print(String str, Font font) {
+		print(str, font, color);
 	}
 
 	/**
@@ -97,22 +97,22 @@ public class HtmlPrinter {
 	 * @param str   the string to print
 	 * @param color the {@link Color} to use
 	 */
-	private void println(String str, Color color) {
-		println(str, font, color);
+	private void print(String str, Color color) {
+		print(str, font, color);
 	}
 
 	/**
 	 * Adds str to array of {@link HtmlLine}s.
 	 * @param str the string to print
 	 */
-	private void println(String str) {
-		println(str, font);
+	private void print(String str) {
+		print(str, font);
 	}
 
 	/**
 	 * Adds an empty line to the array of lines
 	 */
-	private void println() {
+	public void println() {
 		breakIfNecessary();
 	}
 
@@ -125,7 +125,7 @@ public class HtmlPrinter {
 	 * @param str the String to print
 	 */
 	public void printParagraph(String str) {
-		println(str);
+		print(str);
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class HtmlPrinter {
 	 * @return    an pointer to this printer
 	 */
 	public void printHeading1(String str) {
-		println(str, getHeadingFont(HEADING1_FONT_SIZE));
+		print(str, getHeadingFont(HEADING1_FONT_SIZE));
 	}
 
 	/**
@@ -142,7 +142,7 @@ public class HtmlPrinter {
 	 * @param str the line to print
 	 */
 	public void printHeading2(String str) {
-		println(str, getHeadingFont(HEADING2_FONT_SIZE));
+		print(str, getHeadingFont(HEADING2_FONT_SIZE));
 	}
 
 	/**
@@ -150,7 +150,7 @@ public class HtmlPrinter {
 	 * @param str the line to print
 	 */
 	public void printHeading3(String str) {
-		println(str, getHeadingFont(HEADING3_FONT_SIZE));
+		print(str, getHeadingFont(HEADING3_FONT_SIZE));
 	}
 
 	/**
@@ -158,7 +158,7 @@ public class HtmlPrinter {
 	 * @param str the line to print
 	 */
 	public void printHeading4(String str) {
-		println(str, getHeadingFont(HEADING4_FONT_SIZE));
+		print(str, getHeadingFont(HEADING4_FONT_SIZE));
 	}
 
 	/**
@@ -166,7 +166,7 @@ public class HtmlPrinter {
 	 * @param str the line to print
 	 */
 	public void printHeading5(String str) {
-		println(str, getHeadingFont(HEADING5_FONT_SIZE));
+		print(str, getHeadingFont(HEADING5_FONT_SIZE));
 	}
 
 	/**
@@ -174,7 +174,7 @@ public class HtmlPrinter {
 	 * @param str the line to print
 	 */
 	public void printHeading6(String str) {
-		println(str, getHeadingFont(HEADING6_FONT_SIZE));
+		print(str, getHeadingFont(HEADING6_FONT_SIZE));
 	}
 
 	/**
@@ -182,7 +182,7 @@ public class HtmlPrinter {
 	 * @param str the text to add
 	 */
 	public void printPreformattedText(String str) {
-		println(str, new Font(Font.MONOSPACED, font.getStyle(), font.getSize()));
+		print(str, new Font(Font.MONOSPACED, font.getStyle(), font.getSize()));
 	}
 
 	/**
@@ -190,7 +190,7 @@ public class HtmlPrinter {
 	 * @param str the text to add
 	 */
 	public void printItalic(String str) {
-		println(str, new Font(font.getFontName(), font.getStyle() | Font.ITALIC, font.getSize()));
+		print(str, new Font(font.getFontName(), font.getStyle() | Font.ITALIC, font.getSize()));
 	}
 
 	/**
@@ -198,7 +198,7 @@ public class HtmlPrinter {
 	 * @param str the text to add
 	 */
 	public void printBold(String str) {
-		println(str, new Font(font.getFontName(), font.getStyle() | Font.BOLD, font.getSize()));
+		print(str, new Font(font.getFontName(), font.getStyle() | Font.BOLD, font.getSize()));
 	}
 
 	public void breakIfNecessary() {

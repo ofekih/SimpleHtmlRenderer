@@ -73,23 +73,27 @@ class TextWindow extends JPanel {
 	 * @param g the {@link Graphics} component
 	 */
 	private void drawHtmlComponents(Graphics g) {
+		int xLoc = X_MARGIN;
 		int yLoc = Y_MARGIN;
 
 		try {
 			for (HtmlComponent component : htmlComponents) {
 				g.setColor(component.getColor());
 				if (component instanceof HtmlTag) {
+					xLoc = Y_MARGIN;
 					drawTag(g, (HtmlTag)component, yLoc);
 					yLoc += component.getHtmlComponentHeight();
-				} else if (component instanceof HtmlFragment)
-					drawFragment(g, (HtmlFragment)component, yLoc);
+				} else if (component instanceof HtmlFragment) {
+					drawFragment(g, (HtmlFragment)component, xLoc, yLoc);
+					xLoc += component.getHtmlComponentWidth();
+				}
 			}
 		} catch (ConcurrentModificationException e) {}
 	}
 
-	public void drawFragment(Graphics g, HtmlFragment htmlFragment, int yLoc) {
+	public void drawFragment(Graphics g, HtmlFragment htmlFragment, int xLoc, int yLoc) {
 		g.setFont(htmlFragment.getFont());
-		g.drawString(htmlFragment.getText(), X_MARGIN, yLoc + htmlFragment.getAscent());
+		g.drawString(htmlFragment.getText(), xLoc, yLoc + htmlFragment.getAscent());
 	}
 
 	/**
