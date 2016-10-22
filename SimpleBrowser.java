@@ -1,3 +1,12 @@
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.Toolkit;
+import java.awt.Dimension;
+
 /**
  * The main class for SimpleBrowser, a program that can help pretty-print
  * tokenized HTML. {@link SimpleBrowser} supports various colors, fonts, and
@@ -9,16 +18,6 @@
  * @author Saagar Jha
  * @since October 20th, 2016
  */
-
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-
-import java.awt.Font;
-import java.awt.Color;
-import java.awt.BorderLayout;
-import java.awt.Toolkit;
-import java.awt.Dimension;
-
 public class SimpleBrowser extends JFrame {
 
 	private static final int DEFAULT_WINDOW_WIDTH = 1000;

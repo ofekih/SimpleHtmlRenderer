@@ -1,3 +1,8 @@
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.FontMetrics;
+import javax.swing.JComponent;
+
 /**
  * A single element of HTML to be rendered by a {@link TextWindow}, containing
  * text, font and color. In general, do not create these directly; a
@@ -7,12 +12,6 @@
  * @author Saagar Jha
  * @since October 20th, 2016
  */
-
-import java.awt.Font;
-import java.awt.Color;
-import java.awt.FontMetrics;
-import javax.swing.JComponent;
-
 public class HtmlFragment implements HtmlComponent {
 
 	private String text;
