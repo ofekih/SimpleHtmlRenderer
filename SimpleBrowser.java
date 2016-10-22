@@ -142,6 +142,9 @@ public class SimpleBrowser extends JFrame {
 		htmlPrinter.printParagraph("HUGE TEXT :D");
 
 		htmlPrinter.printHeading1("H1 And now for something completely different");
+		htmlPrinter.println(); // this println tag is redundant
+		// since heading 3 font is a different size than heading 1, it would
+		// automatically println before outputting.
 		htmlPrinter.printHeading3("Colors!!!");
 		htmlPrinter.setFont(new Font("Arial", Font.PLAIN, 20));
 		htmlPrinter.printParagraph("");
@@ -149,7 +152,10 @@ public class SimpleBrowser extends JFrame {
 		htmlPrinter.setColor(Color.BLUE);
 		htmlPrinter.setFont(new Font("Arial", Font.PLAIN, 22));
 
-		htmlPrinter.printParagraph("This should be blue now XD");
+		htmlPrinter.printParagraph("This should be ");
+		htmlPrinter.printBold("blue");
+		htmlPrinter.print(" now XD");
+
 		htmlPrinter.setColor(Color.RED);
 		htmlPrinter.printParagraph(" And now red");
 		htmlPrinter.printHorizontalRule();
