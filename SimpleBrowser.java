@@ -56,21 +56,21 @@ public class SimpleBrowser extends JFrame {
 	}
 
 	/**
-	 * Constructor without width and height (uses defaults)
+	 * Constructor without width and height (uses defaults).
 	 */
 	public SimpleBrowser() {
 		this(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT);
 	}
 
 	/**
-	 * Centers JFrame on screen
+	 * Centers frame on screen.
 	 */
 	private void center() {
 		setLocation((SCREEN_WIDTH - windowWidth) / 2, (SCREEN_HEIGHT - windowHeight) / 2);
 	}
 
 	/**
-	 * Repaints components after print call
+	 * Sets the {@link TextWindow} to new appropriate width and height given its htmlComponents, and refreshes the {@link JScrollPane}.
 	 */
 	public void cleanupAfterPrint() {
 		textWindow.setPreferredSize(new Dimension(textWindow.getWidth(), textWindow.getHeight()));
@@ -79,7 +79,7 @@ public class SimpleBrowser extends JFrame {
 	}
 
 	/**
-	 * Creates the {@link TextWindow} for this class to fill whole screen except scrollbars
+	 * Creates the {@link TextWindow} for this class to fill whole screen except scrollbars.
 	 */
 	private void createWindow() {
 		textWindow = new TextWindow();
@@ -95,7 +95,7 @@ public class SimpleBrowser extends JFrame {
 	}
 
 	/**
-	 * Adds a scroll pane and adds its increment
+	 * Adds a {@link JScrollPane} to this frame, and sets its default increment for scrolling.
 	 */
 	private void addScrollPane() {
 		scrollPane = new JScrollPane(textWindow);

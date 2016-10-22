@@ -27,7 +27,7 @@ class TextWindow extends JPanel {
 	private List<HtmlComponent> htmlComponents = new ArrayList<HtmlComponent>();
 
 	/**
-	 * Gets the total height of all the lines
+	 * Gets the total height of all the lines.
 	 * @return the total height of the lines
 	 */
 	public int getHeight() {
@@ -41,7 +41,7 @@ class TextWindow extends JPanel {
 	}
 
 	/**
-	 * Gets the width of the widest line
+	 * Gets the width of the widest line.
 	 * @return the width of the widest line
 	 */
 	public int getWidth() {
@@ -60,7 +60,7 @@ class TextWindow extends JPanel {
 	}
 
 	/**
-	 * Tests if a component is a break
+	 * Tests if a component is a break.
 	 * @param  component the {@link HtmlComponent} to test
 	 * @return           true if break, false otherwise
 	 */
@@ -136,7 +136,7 @@ class TextWindow extends JPanel {
 	}
 
 	/**
-	 * Draws a horizontal rule
+	 * Draws a horizontal rule.
 	 * @param  g    the {@link Graphics} component
 	 * @param  yLoc the current y location for printing
 	 */

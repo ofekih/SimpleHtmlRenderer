@@ -17,7 +17,7 @@ public class HtmlTag implements HtmlComponent {
 	private int lineHeight;
 
 	/**
-	 * SpecialHtmlLine constructor with all the necessary values
+	 * SpecialHtmlLine constructor with all the necessary values.
 	 * @param  tag        the tag corresponding to the symbol to display
 	 * @param  color      the {@link Color} to use
 	 * @param  lineHeight the height of this component
@@ -29,7 +29,7 @@ public class HtmlTag implements HtmlComponent {
 	}
 
 	/**
-	 * Returns this element's tag name
+	 * Returns this element's tag name.
 	 * @return this element's tag name
 	 */
 	public String getTag() {

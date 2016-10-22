@@ -130,7 +130,7 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Print method to print normal text, formatted with setColor and setFont
+	 * Print method to print normal text, formatted with setColor and setFont.
 	 * This method is the same as print(String str)
 	 * @param str the String to print
 	 */
@@ -139,7 +139,7 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints text formatted as H1
+	 * Prints text formatted as H1.
 	 * @param str the String to print
 	 * @return    an pointer to this printer
 	 */
@@ -148,7 +148,7 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints text formatted as H2
+	 * Prints text formatted as H2.
 	 * @param str the String to print
 	 */
 	public void printHeading2(String str) {
@@ -156,7 +156,7 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints text formatted as H3
+	 * Prints text formatted as H3.
 	 * @param str the String to print
 	 */
 	public void printHeading3(String str) {
@@ -164,7 +164,7 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints text formatted as H4
+	 * Prints text formatted as H4.
 	 * @param str the String to print
 	 */
 	public void printHeading4(String str) {
@@ -172,7 +172,7 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints text formatted as H5
+	 * Prints text formatted as H5.
 	 * @param str the String to print
 	 */
 	public void printHeading5(String str) {
@@ -180,7 +180,7 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints text formatted as H6
+	 * Prints text formatted as H6.
 	 * @param str the String to print
 	 */
 	public void printHeading6(String str) {
@@ -188,7 +188,7 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints text with a monospace font (monospaced)
+	 * Prints text with a monospace font (Monospaced).
 	 * @param str the String to print
 	 */
 	public void printPreformattedText(String str) {
@@ -196,7 +196,7 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints text in italics
+	 * Prints text in italics.
 	 * @param str the String to print
 	 */
 	public void printItalic(String str) {
@@ -204,7 +204,7 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints text in bold
+	 * Prints text in bold.
 	 * @param str the String to print
 	 */
 	public void printBold(String str) {
@@ -258,7 +258,7 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Generates a heading font with the appropriate fontSize
+	 * Generates a heading font with the appropriate fontSize.
 	 * @param  fontSize the font size of the heading
 	 * @return          the appropriate heading {@link Font}
 	 */
@@ -267,7 +267,7 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Sets the default font to be used when no other is specified
+	 * Sets the default font to be used when no other is specified.
 	 * @param font the {@link Font} to set
 	 */
 	public void setFont(Font font) {
@@ -275,7 +275,7 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Sets the default color to be used when no other is specified
+	 * Sets the default color to be used when no other is specified.
 	 * @param color the {@link Color} to set
 	 */
 	public void setColor(Color color) {

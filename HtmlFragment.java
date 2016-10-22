@@ -21,7 +21,7 @@ public class HtmlFragment implements HtmlComponent {
 	private FontMetrics fontMetrics;
 
 	/**
-	 * HtmlFragment constructor with all the necessary values
+	 * HtmlFragment constructor with all the necessary values.
 	 * @param  text      the text to display
 	 * @param  font      the {@link Font} to use
 	 * @param  color     the {@link Color} to use
@@ -35,7 +35,7 @@ public class HtmlFragment implements HtmlComponent {
 	}
 
 	/**
-	 * Appends text to this fragment
+	 * Appends text to this fragment.
 	 * @param text String of text to append
 	 * @deprecated there shouldn't be any reason to append to this fragment, just add a new {@link HtmlFragment} instead.
 	 */
@@ -45,7 +45,7 @@ public class HtmlFragment implements HtmlComponent {
 	}
 
 	/**
-	 * Returns the text content of this fragment
+	 * Returns the text content of this fragment.
 	 * @return the String text
 	 */
 	public String getText() {
@@ -53,7 +53,7 @@ public class HtmlFragment implements HtmlComponent {
 	}
 
 	/**
-	 * Returns the font of this fragment
+	 * Returns the font of this fragment.
 	 * @return the {@link Font}
 	 */
 	public Font getFont() {
@@ -61,7 +61,7 @@ public class HtmlFragment implements HtmlComponent {
 	}
 
 	/**
-	 * Gets how high below the text is offset
+	 * Gets how high below the text is offset.
 	 * @return the ascent
 	 */
 	public int getAscent() {
