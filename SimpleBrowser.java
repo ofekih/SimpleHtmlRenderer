@@ -133,6 +133,7 @@ public class SimpleBrowser extends JFrame {
 
 		htmlPrinter.printHeading1("H1 And now for something completely different");
 		htmlPrinter.printHeading3("Colors!!!");
+		htmlPrinter.setFont(new Font("Arial", Font.PLAIN, 20));
 		htmlPrinter.printParagraph("");
 
 		htmlPrinter.setColor(Color.BLUE);

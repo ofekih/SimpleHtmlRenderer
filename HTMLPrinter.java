@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class HTMLPrinter {
-	public static final Font DEFAULT_FONT = new Font("SansSerif", Font.PLAIN, 25);
+	public static final Font DEFAULT_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 25);
 	public static final Color DEFAULT_COLOR = Color.BLACK;
 
 	private static final int HEADING1_FONT_SIZE = 32;
@@ -152,15 +152,27 @@ public class HTMLPrinter {
 	}
 
 	/**
-	 * Prints a pre-formatted line (monospace)
-	 * @param str the line to print
+	 * Adds a pre-formatted {@link Line} (monospace)
+	 * @param str the text to add
 	 */
 	public void printPreformattedText(String str) {
-		println(str, getPreformattedTextFont());
+		println(str, new Font(Font.MONOSPACED, font.getStyle(), font.getSize()));
 	}
 
+	/**
+	 * Adds an italic {@link Line}
+	 * @param str the text to add
+	 */
 	public void printItalic(String str) {
-		println(str, getItalicFont());
+		println(str, new Font(font.getFontName(), font.getStyle() | Font.ITALIC, font.getSize()));
+	}
+
+	/**
+	 * Adds a bolded {@link Line}
+	 * @param str the text to add
+	 */
+	public void printBold(String str) {
+		println(str, new Font(font.getFontName(), font.getStyle() | Font.BOLD, font.getSize()));
 	}
 
 	/**
@@ -173,16 +185,13 @@ public class HTMLPrinter {
 		}
 	}
 
+	/**
+	 * Generates a heading font with the appropriate fontSize
+	 * @param  fontSize the font size of the heading
+	 * @return          the appropriate heading {@link Font}
+	 */
 	private Font getHeadingFont(int headingLevel) {
 		return new Font(font.getFontName(), font.getStyle() | Font.BOLD, headingLevel);
-	}
-
-	private Font getPreformattedTextFont() {
-		return new Font("Monospaced", font.getStyle(), font.getSize());
-	}
-
-	private Font getItalicFont() {
-		return new Font(font.getFontName(), font.getStyle() | Font.ITALIC, font.getSize());
 	}
 
 	/**
