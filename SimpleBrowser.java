@@ -108,13 +108,15 @@ public class SimpleBrowser extends JFrame {
 		SimpleBrowser simpleBrowser = new SimpleBrowser(1000, 750);
 		HTMLPrinter htmlPrinter = simpleBrowser.getHTMLPrinter();
 
+		htmlPrinter.printPreformattedText("This text is pre-formatted!");
+		htmlPrinter.printPreformattedText("Words     line   up       !");
+
+		htmlPrinter.printItalic("Leaning Tower of Pisa");
+
 		htmlPrinter.setFont(new Font("Serif", Font.PLAIN, 18));
 		htmlPrinter.printParagraph("Hello World");
 		htmlPrinter.setFont(new Font("SansSerif", Font.ITALIC, 50));
 		htmlPrinter.printParagraph("Other World");
-
-		htmlPrinter.printPreformattedText("This text is pre-formatted!");
-		htmlPrinter.printPreformattedText("Words     line   up       !");
 
 		htmlPrinter.setFont(new Font("Arial", Font.BOLD, 10));
 		htmlPrinter.printParagraph("Multiple\nangry little\nlines");

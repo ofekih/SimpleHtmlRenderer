@@ -96,14 +96,6 @@ public class HTMLPrinter {
 	}
 
 	/**
-	 * Adds a horizontal rule to the array of lines
-	 */
-	public void printHorizontalRule() {
-		lines.add(new SpecialLine("hr", font, color, textWindow));
-		browser.cleanupAfterPrint();
-	}
-
-	/**
 	 * Prints a line formatted as H1
 	 * @param str the line to print
 	 * @return    an pointer to this printer
@@ -157,11 +149,31 @@ public class HTMLPrinter {
 	 * @param str the line to print
 	 */
 	public void printPreformattedText(String str) {
-		println(str, new Font("Monospaced", DEFAULT_FONT.getStyle(), DEFAULT_FONT.getSize()));
+		println(str, getPreformattedTextFont());
+	}
+
+	public void printItalic(String str) {
+		println(str, getItalicFont());
+	}
+
+	/**
+	 * Adds a horizontal rule to the array of lines
+	 */
+	public void printHorizontalRule() {
+		lines.add(new SpecialLine("hr", font, color, textWindow));
+		browser.cleanupAfterPrint();
 	}
 
 	private Font getHeadingFont(int headingLevel) {
-		return new Font(font.getFontName(), Font.BOLD, headingLevel);
+		return new Font(font.getFontName(), font.getStyle() | Font.BOLD, headingLevel);
+	}
+
+	private Font getPreformattedTextFont() {
+		return new Font("Monospaced", font.getStyle(), font.getSize());
+	}
+
+	private Font getItalicFont() {
+		return new Font(font.getFontName(), font.getStyle() | Font.ITALIC, font.getSize());
 	}
 
 	/**
