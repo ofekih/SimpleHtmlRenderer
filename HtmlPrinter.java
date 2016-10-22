@@ -61,7 +61,7 @@ public class HtmlPrinter {
 	 * @param font  {@link Font} to use
 	 * @param color {@link Color} to use
 	 */
-	public HtmlFragment print(String str, Font font, Color color) {
+	private HtmlFragment print(String str, Font font, Color color) {
 		breakIfDifferentSize(font);
 
 		HtmlFragment htmlFragment = new HtmlFragment(str, font, color, textWindow);
