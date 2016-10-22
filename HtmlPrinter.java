@@ -56,6 +56,27 @@ public class HtmlPrinter {
 	}
 
 	/**
+	 * Prints without new line, adding to old line.
+	 * @param str   String to add
+	 * @param font  {@link Font} to use
+	 * @param color {@link Color} to use
+	 */
+	public void print(String str, Font font, Color color) {
+		if (str.lastIndexOf('\n') == str.length() - 1)
+			str += " "; // for trailing \n
+		str = str.replace("\t", "    ");
+		String[] strings = str.split("\n");
+
+		for (int i = 0; i < strings.length; i++)
+			if (i == 0 && lines.size() > 0)
+				lines.get(lines.size() - 1).append(strings[i]);
+			else lines.add(new HtmlLine(strings[i], font, color, textWindow));
+
+		if (!preventDrawing)
+			drawHtmlLines();
+	}
+
+	/**
 	 * Adds str to array of {@link HtmlLine}s with given font and color.
 	 * @param str   the string to print
 	 * @param font  the {@link Font} to use
