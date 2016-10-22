@@ -1,5 +1,7 @@
 /**
- * A single line object containing the text, font, and color of the line
+ * A single line of HTML to be rendered by a {@link TextWindow}, containing
+ * text, font and color. In general, do not create these directly; a
+ * {@link HTMLPrinter} will create and render them.
  *
  * @author Ofek Gila
  * @author Saagar Jha

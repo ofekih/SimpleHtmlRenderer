@@ -1,6 +1,9 @@
 /**
- * SimpleBrowser
- * A simple {@link JFrame} that can print text in different colors, fonts, and can even print some special characters (like horizontal rules).
+ * The main class for SimpleBrowser, a program that can help pretty-print
+ * tokenized HTML. {@link SimpleBrowser} supports various colors, fonts, and
+ * even some special tags such as horizontal rules. A
+ * {@link javax.swing.JFrame}, it manages a single {@link TextWindow} and allows
+ * printing to it through a {@link HTMLPrinter}.
  *
  * @author Ofek Gila
  * @author Saagar Jha

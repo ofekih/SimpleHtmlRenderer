@@ -1,5 +1,6 @@
 /**
- * A special line object with it's special tag symbol. Can be used for horizontal bars.
+ * A {@link HTMLLine} for special HTML components that are not expressed well
+ * in text, such as horizontal breaks.
  *
  * @author Ofek Gila
  * @author Saagar Jha

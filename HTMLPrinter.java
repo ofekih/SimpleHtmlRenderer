@@ -1,3 +1,11 @@
+/**
+ * A client that manages printing to a {@link TextWindow}.
+ * 
+ * @author Ofek Gila
+ * @author Saagar Jha
+ * @since October 21st, 2016
+ */
+
 import java.awt.Font;
 import java.awt.Color;
 

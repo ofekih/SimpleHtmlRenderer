@@ -1,7 +1,8 @@
 /**
- * TextWindow
- * Creates the JPanel that actually displays the text and characters
- *
+ * Performs the actual rendering of {@link HTMLLine}s. Drawing directly to a
+ * {@link TextWindow} is not advised; use the {@link HTMLPrinter} that manages
+ * this {@link TextWindow} instead.
+ * 
  * @author Ofek Gila
  * @author Saagar Jha
  * @since October 20th, 2016
