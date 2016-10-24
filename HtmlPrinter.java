@@ -48,10 +48,18 @@ public class HtmlPrinter {
 	}
 
 	/**
+	 * Returns a pointer to this printer's htmlComponents
+	 * @return a pointer to this printer's {@link List} of htmlComponents
+	 */
+	public List<HtmlComponent> getHtmlComponents() {
+		return htmlComponents;
+	}
+
+	/**
 	 * Draws the {@link HtmlComponent}s onto the {@link HtmlCanvas}.
 	 */
 	public void drawHtmlComponents() {
-		htmlCanvas.drawHtmlComponents(htmlComponents);
+		htmlCanvas.repaint();
 		browser.cleanupAfterPrint();
 	}
 

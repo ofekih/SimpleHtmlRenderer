@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 
 /**
@@ -23,10 +22,13 @@ public class HtmlCanvas extends JPanel {
 
 	private List<HtmlComponent> htmlComponents;
 
-	public HtmlCanvas() {
-		htmlComponents = new ArrayList<HtmlComponent>();
+	/**
+	 * Sets the htmlComponents for this object
+	 * @param htmlComponents a {@link List} of {@link HtmlComponent}s
+	 */
+	public void setHtmlComponents(List<HtmlComponent> htmlComponents) {
+		this.htmlComponents = htmlComponents;
 	}
-
 
 	/**
 	 * Gets the total height of all the lines.
@@ -78,15 +80,6 @@ public class HtmlCanvas extends JPanel {
 	 */
 	private boolean isBreak(HtmlComponent component) {
 		return component instanceof HtmlTag && ((HtmlTag)component).getTag().equals("br");
-	}
-
-	/**
-	 * Draws all the htmlComponents onto the window.
-	 * @param htmlComponents the {@link HtmlComponent}s to draw
-	 */
-	public void drawHtmlComponents(List<HtmlComponent> htmlComponents) {
-		this.htmlComponents = htmlComponents;
-		repaint();
 	}
 
 	public void paintComponent(Graphics g) {

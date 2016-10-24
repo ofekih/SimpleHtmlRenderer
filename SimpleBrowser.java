@@ -48,8 +48,9 @@ public class SimpleBrowser extends JFrame {
 
 		setLayout(new BorderLayout());
 		createWindow();
-		addScrollPane();
 		htmlPrinter = new HtmlPrinter(this, htmlCanvas);
+		htmlCanvas.setHtmlComponents(htmlPrinter.getHtmlComponents());
+		addScrollPane();
 
 		setVisible(true);
 	}
