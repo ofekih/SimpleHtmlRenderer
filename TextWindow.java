@@ -2,8 +2,6 @@ import javax.swing.JPanel;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -23,13 +21,18 @@ public class TextWindow extends JPanel {
 	private final int X_MARGIN = 50;
 	private final int Y_MARGIN = 50;
 
-	private List<HtmlComponent> htmlComponents = new ArrayList<HtmlComponent>();
+	private List<HtmlComponent> htmlComponents;
+
+	public TextWindow() {
+		htmlComponents = new ArrayList<HtmlComponent>();
+	}
+
 
 	/**
 	 * Gets the total height of all the lines.
 	 * @return the total height of the lines
 	 */
-	public int getHeight() {
+	public int getComponentHeights() {
 		int height = 0;
 		try {
 			for (HtmlComponent component : htmlComponents)
@@ -43,7 +46,7 @@ public class TextWindow extends JPanel {
 	 * Gets the width of the widest line.
 	 * @return the width of the widest line
 	 */
-	public int getWidth() {
+	public int getComponentWidths() {
 		int width = 0;
 		int tempWidth = 0;
 		try {
@@ -56,6 +59,16 @@ public class TextWindow extends JPanel {
 			}
 		} catch (ConcurrentModificationException e) {}
 		return width + 2 * X_MARGIN;
+	}
+
+	@Override
+	public int getWidth() {
+		return Math.max(super.getWidth(), getComponentWidths());
+	}
+
+	@Override
+	public int getHeight() {
+		return Math.max(super.getHeight(), getComponentHeights());
 	}
 
 	/**
@@ -78,7 +91,6 @@ public class TextWindow extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		if (htmlComponents != null)
 			drawHtmlComponents(g);
 	}
@@ -140,6 +152,6 @@ public class TextWindow extends JPanel {
 	 * @param  yLoc the current y location for printing
 	 */
 	private void drawHorizontalRule(Graphics g, int yLoc) {
-		g.fillRect(X_MARGIN / 2, yLoc + 3, getWidth() - X_MARGIN, 2);
+		g.fillRect(X_MARGIN / 2, yLoc + 3, getComponentWidths() - X_MARGIN, 2);
 	}
 }

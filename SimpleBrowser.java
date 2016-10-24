@@ -43,15 +43,15 @@ public class SimpleBrowser extends JFrame {
 
 		setSize(windowWidth, windowHeight);
 		center();
-		setVisible(true);
 		setResizable(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		createWindow();
 
-		textWindow.setPreferredSize(new Dimension(windowWidth, windowHeight));
 		setLayout(new BorderLayout());
+		createWindow();
 		addScrollPane();
 		htmlPrinter = new HtmlPrinter(this, textWindow);
+
+		setVisible(true);
 	}
 
 	/**
@@ -82,7 +82,8 @@ public class SimpleBrowser extends JFrame {
 	 */
 	private void createWindow() {
 		textWindow = new TextWindow();
-		add(textWindow);
+		textWindow.setPreferredSize(new Dimension(windowWidth, windowHeight));
+		add(textWindow, BorderLayout.NORTH);
 	}
 
 	/**
@@ -100,7 +101,7 @@ public class SimpleBrowser extends JFrame {
 		scrollPane = new JScrollPane(textWindow);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		scrollPane.getHorizontalScrollBar().setUnitIncrement(16);
-		add(scrollPane, BorderLayout.CENTER);
+		add(scrollPane);
 		scrollPane.requestFocus();
 	}
 
