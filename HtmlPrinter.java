@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * A client that manages printing to a {@link TextWindow}.
+ * A client that manages printing to a {@link HtmlCanvas}.
  *
  * @author Ofek Gila
  * @author Saagar Jha
@@ -26,20 +26,20 @@ public class HtmlPrinter {
 	private static final int HORIZONTAL_RULE_SIZE = 8;
 
 	private SimpleBrowser browser;
-	private TextWindow textWindow;
+	private HtmlCanvas htmlCanvas;
 	private List<HtmlComponent> htmlComponents;
 	private Font font;
 	private Color color;
 	private boolean preventDrawing;
 
 	/**
-	 * HtmlPrinter constructor, taking a browser and textWindow instance.
+	 * HtmlPrinter constructor, taking a browser and htmlCanvas instance.
 	 * @param  browser    the {@link SimpleBrowser} instance
-	 * @param  textWindow the {@link TextWindow} instance
+	 * @param  htmlCanvas the {@link HtmlCanvas} instance
 	 */
-	public HtmlPrinter(SimpleBrowser browser, TextWindow textWindow) {
+	public HtmlPrinter(SimpleBrowser browser, HtmlCanvas htmlCanvas) {
 		this.browser = browser;
-		this.textWindow = textWindow;
+		this.htmlCanvas = htmlCanvas;
 
 		font = DEFAULT_FONT;
 		color = DEFAULT_COLOR;
@@ -48,10 +48,10 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Draws the {@link HtmlComponent}s onto the {@link TextWindow}.
+	 * Draws the {@link HtmlComponent}s onto the {@link HtmlCanvas}.
 	 */
 	public void drawHtmlComponents() {
-		textWindow.drawHtmlComponents(htmlComponents);
+		htmlCanvas.drawHtmlComponents(htmlComponents);
 		browser.cleanupAfterPrint();
 	}
 
@@ -64,7 +64,7 @@ public class HtmlPrinter {
 	private HtmlFragment print(String str, Font font, Color color) {
 		breakIfDifferentSize(font);
 
-		HtmlFragment htmlFragment = new HtmlFragment(str, font, color, textWindow);
+		HtmlFragment htmlFragment = new HtmlFragment(str, font, color, htmlCanvas);
 		htmlComponents.add(htmlFragment);
 
 		if (!preventDrawing)
@@ -281,7 +281,7 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Sets whether the {@link TextWindow} should repaint after printing.
+	 * Sets whether the {@link HtmlCanvas} should repaint after printing.
 	 * Setting this to false improves performance, but a call to
 	 * drawHtmlComponents is necessary after printing is done.
 	 * @param preventDrawing false if to allow drawing, true to prevent

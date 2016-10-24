@@ -4,7 +4,7 @@ import java.awt.FontMetrics;
 import javax.swing.JComponent;
 
 /**
- * A single element of HTML to be rendered by a {@link TextWindow}, containing
+ * A single element of HTML to be rendered by a {@link HtmlCanvas}, containing
  * text, font and color. In general, do not create these directly; a
  * {@link HtmlPrinter} will create and render them.
  *

@@ -11,7 +11,7 @@ import java.awt.Dimension;
  * The main class for SimpleBrowser, a program that can help pretty-print
  * tokenized HTML. {@link SimpleBrowser} supports various colors, fonts, and
  * even some special tags such as horizontal rules. A
- * {@link JFrame}, it manages a single {@link TextWindow} and allows
+ * {@link JFrame}, it manages a single {@link HtmlCanvas} and allows
  * printing to it through a {@link HtmlPrinter}.
  *
  * @author Ofek Gila
@@ -27,7 +27,7 @@ public class SimpleBrowser extends JFrame {
 	private final int SCREEN_HEIGHT = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
 	private int windowWidth, windowHeight;
-	private TextWindow textWindow;
+	private HtmlCanvas htmlCanvas;
 	private JScrollPane scrollPane;
 	private HtmlPrinter htmlPrinter;
 
@@ -49,7 +49,7 @@ public class SimpleBrowser extends JFrame {
 		setLayout(new BorderLayout());
 		createWindow();
 		addScrollPane();
-		htmlPrinter = new HtmlPrinter(this, textWindow);
+		htmlPrinter = new HtmlPrinter(this, htmlCanvas);
 
 		setVisible(true);
 	}
@@ -69,25 +69,25 @@ public class SimpleBrowser extends JFrame {
 	}
 
 	/**
-	 * Sets the {@link TextWindow} to new appropriate width and height given its htmlComponents, and refreshes the {@link JScrollPane}.
+	 * Sets the {@link HtmlCanvas} to new appropriate width and height given its htmlComponents, and refreshes the {@link JScrollPane}.
 	 */
 	public void cleanupAfterPrint() {
-		textWindow.setPreferredSize(new Dimension(textWindow.getWidth(), textWindow.getHeight()));
+		htmlCanvas.setPreferredSize(new Dimension(htmlCanvas.getWidth(), htmlCanvas.getHeight()));
 		revalidate();
 		scrollPane.revalidate();
 	}
 
 	/**
-	 * Creates the {@link TextWindow} for this class to fill whole screen except scrollbars.
+	 * Creates the {@link HtmlCanvas} for this class to fill whole screen except scrollbars.
 	 */
 	private void createWindow() {
-		textWindow = new TextWindow();
-		textWindow.setPreferredSize(new Dimension(windowWidth, windowHeight));
-		add(textWindow, BorderLayout.NORTH);
+		htmlCanvas = new HtmlCanvas();
+		htmlCanvas.setPreferredSize(new Dimension(windowWidth, windowHeight));
+		add(htmlCanvas, BorderLayout.NORTH);
 	}
 
 	/**
-	 * Returns the {@link HtmlPrinter} object for the {@link TextWindow}.
+	 * Returns the {@link HtmlPrinter} object for the {@link HtmlCanvas}.
 	 * @return the {@link HtmlPrinter} object
 	 */
 	public HtmlPrinter getHtmlPrinter() {
@@ -98,7 +98,7 @@ public class SimpleBrowser extends JFrame {
 	 * Adds a {@link JScrollPane} to this frame, and sets its default increment for scrolling.
 	 */
 	private void addScrollPane() {
-		scrollPane = new JScrollPane(textWindow);
+		scrollPane = new JScrollPane(htmlCanvas);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		scrollPane.getHorizontalScrollBar().setUnitIncrement(16);
 		add(scrollPane);

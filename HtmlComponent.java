@@ -1,7 +1,7 @@
 import java.awt.Color;
 
 /**
- * Interface to be used by all components to be drawn using the {@link TextWindow}. Defines their color, width, and height.
+ * Interface to be used by all components to be drawn using the {@link HtmlCanvas}. Defines their color, width, and height.
  *
  * @author Ofek Gila
  * @author Saagar Jha

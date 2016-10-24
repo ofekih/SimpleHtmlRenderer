@@ -9,21 +9,21 @@ import java.util.ConcurrentModificationException;
 
 /**
  * Performs the actual rendering of {@link HtmlComponent}s. Drawing directly
- * to a {@link TextWindow} is not advised; use the {@link HtmlPrinter} that
- * manages this {@link TextWindow} instead.
+ * to a {@link HtmlCanvas} is not advised; use the {@link HtmlPrinter} that
+ * manages this {@link HtmlCanvas} instead.
  *
  * @author Ofek Gila
  * @author Saagar Jha
  * @since October 20th, 2016
  */
-public class TextWindow extends JPanel {
+public class HtmlCanvas extends JPanel {
 
 	private final int X_MARGIN = 50;
 	private final int Y_MARGIN = 50;
 
 	private List<HtmlComponent> htmlComponents;
 
-	public TextWindow() {
+	public HtmlCanvas() {
 		htmlComponents = new ArrayList<HtmlComponent>();
 	}
 
