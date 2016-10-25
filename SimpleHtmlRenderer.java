@@ -45,14 +45,13 @@ public class SimpleHtmlRenderer extends JFrame {
 		center();
 		setResizable(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
 
 		setLayout(new BorderLayout());
 		createWindow();
 		htmlPrinter = new HtmlPrinter(this, htmlCanvas);
 		htmlCanvas.setHtmlComponents(htmlPrinter.getHtmlComponents());
 		addScrollPane();
-
-		setVisible(true);
 	}
 
 	/**
@@ -84,7 +83,7 @@ public class SimpleHtmlRenderer extends JFrame {
 	private void createWindow() {
 		htmlCanvas = new HtmlCanvas();
 		htmlCanvas.setPreferredSize(new Dimension(windowWidth, windowHeight));
-		add(htmlCanvas, BorderLayout.NORTH);
+		add(htmlCanvas, BorderLayout.CENTER);
 	}
 
 	/**
@@ -107,8 +106,8 @@ public class SimpleHtmlRenderer extends JFrame {
 	}
 
 	public static void main(String... pumpkins) {
-		SimpleHtmlRenderer simpleBrowser = new SimpleHtmlRenderer();
-		HtmlPrinter htmlPrinter = simpleBrowser.getHtmlPrinter();
+		SimpleHtmlRenderer simpleHtmlPrinter = new SimpleHtmlRenderer();
+		HtmlPrinter htmlPrinter = simpleHtmlPrinter.getHtmlPrinter();
 
 		// An example, for testing purposes
 		htmlPrinter.printPreformattedText("This text is pre-formatted!");
