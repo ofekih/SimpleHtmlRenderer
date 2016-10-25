@@ -8,8 +8,8 @@ import java.awt.Toolkit;
 import java.awt.Dimension;
 
 /**
- * The main class for SimpleBrowser, a program that can help pretty-print
- * tokenized HTML. {@link SimpleBrowser} supports various colors, fonts, and
+ * The main class for SimpleHtmlRenderer, a program that can help pretty-print
+ * tokenized HTML. {@link SimpleHtmlRenderer} supports various colors, fonts, and
  * even some special tags such as horizontal rules. A
  * {@link JFrame}, it manages a single {@link HtmlCanvas} and allows
  * printing to it through a {@link HtmlPrinter}.
@@ -18,7 +18,7 @@ import java.awt.Dimension;
  * @author Saagar Jha
  * @since October 20th, 2016
  */
-public class SimpleBrowser extends JFrame {
+public class SimpleHtmlRenderer extends JFrame {
 
 	private static final int DEFAULT_WINDOW_WIDTH = 1000;
 	private static final int DEFAULT_WINDOW_HEIGHT = 750;
@@ -36,7 +36,7 @@ public class SimpleBrowser extends JFrame {
 	 * @param  windowWidth  width of the frame
 	 * @param  windowHeight height of the frame
 	 */
-	public SimpleBrowser(int windowWidth, int windowHeight) {
+	public SimpleHtmlRenderer(int windowWidth, int windowHeight) {
 		super("Simple Browser");
 		this.windowWidth = windowWidth;
 		this.windowHeight = windowHeight;
@@ -58,7 +58,7 @@ public class SimpleBrowser extends JFrame {
 	/**
 	 * Constructor without width and height (uses defaults).
 	 */
-	public SimpleBrowser() {
+	public SimpleHtmlRenderer() {
 		this(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT);
 	}
 
@@ -107,7 +107,7 @@ public class SimpleBrowser extends JFrame {
 	}
 
 	public static void main(String... pumpkins) {
-		SimpleBrowser simpleBrowser = new SimpleBrowser();
+		SimpleHtmlRenderer simpleBrowser = new SimpleHtmlRenderer();
 		HtmlPrinter htmlPrinter = simpleBrowser.getHtmlPrinter();
 
 		// An example, for testing purposes

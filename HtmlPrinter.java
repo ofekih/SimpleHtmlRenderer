@@ -25,7 +25,7 @@ public class HtmlPrinter {
 	private static final int BREAK_SIZE = 25;
 	private static final int HORIZONTAL_RULE_SIZE = 8;
 
-	private SimpleBrowser browser;
+	private SimpleHtmlRenderer browser;
 	private HtmlCanvas htmlCanvas;
 	private List<HtmlComponent> htmlComponents;
 	private Font font;
@@ -34,10 +34,10 @@ public class HtmlPrinter {
 
 	/**
 	 * HtmlPrinter constructor, taking a browser and htmlCanvas instance.
-	 * @param  browser    the {@link SimpleBrowser} instance
+	 * @param  browser    the {@link SimpleHtmlRenderer} instance
 	 * @param  htmlCanvas the {@link HtmlCanvas} instance
 	 */
-	public HtmlPrinter(SimpleBrowser browser, HtmlCanvas htmlCanvas) {
+	public HtmlPrinter(SimpleHtmlRenderer browser, HtmlCanvas htmlCanvas) {
 		this.browser = browser;
 		this.htmlCanvas = htmlCanvas;
 
