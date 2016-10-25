@@ -36,7 +36,7 @@ public class HtmlCanvas extends JPanel {
 	 * Gets the total height of all the lines.
 	 * @return the total height of the lines
 	 */
-	public int getComponentHeights() {
+	public int getCanvasHeight() {
 		int height = 0;
 		try {
 			for (HtmlComponent component : htmlComponents)
@@ -50,7 +50,7 @@ public class HtmlCanvas extends JPanel {
 	 * Gets the width of the widest line.
 	 * @return the width of the widest line
 	 */
-	public int getComponentWidths() {
+	public int getCanvasWidth() {
 		int width = 0;
 		int tempWidth = 0;
 		try {
@@ -67,12 +67,12 @@ public class HtmlCanvas extends JPanel {
 
 	@Override
 	public int getWidth() {
-		return Math.max(super.getWidth(), getComponentWidths());
+		return Math.max(super.getWidth(), getCanvasWidth());
 	}
 
 	@Override
 	public int getHeight() {
-		return Math.max(super.getHeight(), getComponentHeights());
+		return Math.max(super.getHeight(), getCanvasHeight());
 	}
 
 	/**
@@ -149,6 +149,6 @@ public class HtmlCanvas extends JPanel {
 	 * @param  yLoc the current y location for printing
 	 */
 	private void drawHorizontalRule(Graphics g, int yLoc) {
-		g.fillRect(X_MARGIN / 2, yLoc + 3, getComponentWidths() - X_MARGIN, 2);
+		g.fillRect(X_MARGIN / 2, yLoc + 3, getCanvasWidth() - X_MARGIN, 2);
 	}
 }
