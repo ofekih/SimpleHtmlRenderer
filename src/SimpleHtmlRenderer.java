@@ -174,21 +174,21 @@ public class SimpleHtmlRenderer extends JFrame {
 		htmlPrinter.printBold("Pisa");
 
 		htmlPrinter.setFont(new Font("Serif", Font.PLAIN, 18));
-		htmlPrinter.printParagraph("Hello World");
+		htmlPrinter.print("Hello World");
 		htmlPrinter.setFont(new Font("SansSerif", Font.ITALIC, 50));
-		htmlPrinter.printParagraph("Other World");
+		htmlPrinter.print("Other World");
 
 		htmlPrinter.printHorizontalRule();
 
 		htmlPrinter.setFont(new Font("Serif", Font.PLAIN, 22));
-		htmlPrinter.printParagraph("Some normal text is much needed over here");
+		htmlPrinter.print("Some normal text is much needed over here");
 
 		htmlPrinter.printBreak();
 		htmlPrinter.printBreak();
-		htmlPrinter.printParagraph("Time to take a break (or two)!");
+		htmlPrinter.print("Time to take a break (or two)!");
 
 		htmlPrinter.setFont(new Font("Times New Roman", Font.BOLD, 250));
-		htmlPrinter.printParagraph("HUGE TEXT :D");
+		htmlPrinter.print("HUGE TEXT :D");
 
 		htmlPrinter.printHeading1("H1 And now for something completely different");
 		htmlPrinter.println(); // this println call is redundant
@@ -201,17 +201,17 @@ public class SimpleHtmlRenderer extends JFrame {
 		htmlPrinter.setColor(Color.BLUE);
 		htmlPrinter.setFont(new Font("Arial", Font.PLAIN, 22));
 
-		htmlPrinter.printParagraph("This should be ");
+		htmlPrinter.print("This should be ");
 		htmlPrinter.printBold("blue");
 		htmlPrinter.print(" now XD");
 
 		htmlPrinter.setColor(Color.RED);
-		htmlPrinter.printParagraph(" And now red");
+		htmlPrinter.print(" And now red");
 
 		htmlPrinter.printHorizontalRule();
 
 		htmlPrinter.setFont(HtmlPrinter.DEFAULT_FONT);
 		htmlPrinter.setColor(Color.GREEN);
-		htmlPrinter.printParagraph("I'm glad this works!");
+		htmlPrinter.print("I'm glad this works!");
 	}
 }

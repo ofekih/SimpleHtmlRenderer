@@ -172,8 +172,12 @@ public class HtmlPrinter {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Prints a string with current formatting ({@code Color} and {@code Font}).
 	 * This method is identical to printParagraph
+=======
+	 * Prints a string with current formatting ({@link Color} and {@link Font}).
+>>>>>>> Remove printParagraph
 	 * @param str the String to print
 	 */
 	public void print(String str) {
@@ -206,15 +210,6 @@ public class HtmlPrinter {
 	 */
 	private void breakComponent(HtmlComponent htmlComponent) {
 		htmlComponents.add(new HtmlTag("br", Color.BLACK, htmlComponent.getHtmlComponentHeight()));
-	}
-
-	/**
-	 * Print method to print normal text, formatted with setColor and setFont.
-	 * This method is the same as print(String str)
-	 * @param str the String to print
-	 */
-	public void printParagraph(String str) {
-		print(str);
 	}
 
 	/**
