@@ -61,12 +61,12 @@ public class HtmlPrinter {
 	/**
 	 * The height, in pixels, of a Break.
 	 */
-	private static final int BREAK_SIZE = 25;
+	private static final int BREAK_HEIGHT = 25;
 
 	/**
 	 * The height, in pixels, of a Horizontal Rule.
 	 */
-	private static final int HORIZONTAL_RULE_SIZE = 8;
+	private static final int HORIZONTAL_RULE_HEIGHT = 8;
 
 	/**
 	 * The width of a single space using the default font.
@@ -220,7 +220,7 @@ public class HtmlPrinter {
 	 * @param htmlComponent the {@code HtmlComponent} whose height to use
 	 */
 	private void breakComponent(HtmlComponent htmlComponent) {
-		htmlComponents.add(new HtmlTag("br", Color.BLACK,
+		htmlComponents.add(new HtmlTag("br", Color.BLACK, 0,
 			htmlComponent.getHtmlComponentHeight()));
 	}
 
@@ -337,7 +337,7 @@ public class HtmlPrinter {
 	 */
 	public void printBreak() {
 		breakIfNecessary();
-		htmlComponents.add(new HtmlTag("br", color, BREAK_SIZE));
+		htmlComponents.add(new HtmlTag("br", color, 0, BREAK_HEIGHT));
 		if (!preventDrawing)
 			drawHtmlComponents();
 	}
@@ -350,7 +350,7 @@ public class HtmlPrinter {
 	 */
 	public void printHorizontalRule() {
 		breakIfNecessary();
-		htmlComponents.add(new HtmlTag("hr", color, HORIZONTAL_RULE_SIZE));
+		htmlComponents.add(new HtmlTag("hr", color, 0, HORIZONTAL_RULE_HEIGHT));
 		if (!preventDrawing)
 			drawHtmlComponents();
 	}

@@ -20,19 +20,16 @@ public class HtmlTag extends HtmlComponent {
 	private String tag;
 
 	/**
-	 * SpecialHtmlLine constructor with all the necessary values.
+	 * The constructor with the tag, color, width and height of the component.
 	 *
 	 * @param  tag        The tag that this {@code HtmlTag} will represent
 	 * @param  color      The {@code Color} to use when rendering
+	 * @param  lineWidth  the width of this {@code HtmlComponent}
 	 * @param  lineHeight the height of this {@code HtmlComponent}
 	 */
 	public HtmlTag(String tag, Color color, int lineWidth, int lineHeight) {
 		super(color, lineWidth, lineHeight);
 		this.tag = tag;
-	}
-
-	public HtmlTag(String tag, Color color, int lineHeight) {
-		this(tag, color, 0, lineHeight);
 	}
 
 	/**

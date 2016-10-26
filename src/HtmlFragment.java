@@ -26,6 +26,9 @@ public class HtmlFragment extends HtmlComponent {
 	 */
 	private final Font font;
 
+	/**
+	 * The distance typical from the baseline to the top of characters.
+	 */
 	private final int ascent;
 
 	/**
