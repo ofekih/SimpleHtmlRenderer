@@ -6,13 +6,15 @@ import java.util.ArrayList;
 
 /**
  * A client that manages printing to a {@link HtmlCanvas}. Usually
- * {@link HtmlPrinter} is managed by {@link SimpleHtmlRenderer}; as such,
+ * {@code HtmlPrinter} is managed by {@link SimpleHtmlRenderer}; as such,
  * constructing one is rare. Use {@link SimpleHtmlRenderer#getHtmlPrinter} to
  * access it when necessary.
  *
  * @author Ofek Gila
  * @author Saagar Jha
  * @since October 21st, 2016
+ * @see SimpleHtmlRenderer
+ * @see HtmlCanvas
  */
 public class HtmlPrinter {
 	/**

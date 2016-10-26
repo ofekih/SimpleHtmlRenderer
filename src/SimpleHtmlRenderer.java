@@ -9,7 +9,7 @@ import java.awt.Toolkit;
 
 /**
  * The main class for SimpleHtmlRenderer, a program that can help pretty-print
- * tokenized HTML. {@link SimpleHtmlRenderer} supports various colors, fonts
+ * tokenized HTML. {@code SimpleHtmlRenderer} supports various colors, fonts
  * and even some special tags such as horizontal rules. A {@link JFrame}, it
  * manages a single {@link HtmlCanvas} and allows printing to it through a
  * {@link HtmlPrinter}.
@@ -17,6 +17,8 @@ import java.awt.Toolkit;
  * @author Ofek Gila
  * @author Saagar Jha
  * @since October 20th, 2016
+ * @see HtmlPrinter
+ * @see HtmlCanvas
  */
 public class SimpleHtmlRenderer extends JFrame {
 

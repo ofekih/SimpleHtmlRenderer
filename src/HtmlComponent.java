@@ -2,12 +2,16 @@ import java.awt.Color;
 
 /**
  * An interface that can be drawn by a {@link HtmlCanvas}. Every
- * {@link HtmlComponent} must have a {@link Color}, width, and height in order
+ * {@code HtmlComponent} must have a {@link Color}, width, and height in order
  * to be drawn.
  *
  * @author Ofek Gila
  * @author Saagar Jha
  * @since October 21st, 2016
+ * @see HtmlFragment
+ * @see HtmlTag
+ * @see HtmlPrinter
+ * @see HtmlCanvas
  */
 public interface HtmlComponent {
 

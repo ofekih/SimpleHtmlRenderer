@@ -9,6 +9,8 @@ import javax.swing.JComponent;
  * @author Ofek Gila
  * @author Saagar Jha
  * @since October 21st, 2016
+ * @see HtmlComponent
+ * @see HtmlCanvas
  */
 public class HtmlTag implements HtmlComponent {
 

@@ -10,12 +10,14 @@ import java.util.ConcurrentModificationException;
 
 /**
  * Performs the actual rendering of {@link HtmlComponent}s. Drawing directly
- * to a {@link HtmlCanvas} is not advised; use the {@link HtmlPrinter} that
- * manages this {@link HtmlCanvas} instead.
+ * to a {@code HtmlCanvas} is not advised; use the {@link HtmlPrinter} that
+ * manages this {@code HtmlCanvas} instead.
  *
  * @author Ofek Gila
  * @author Saagar Jha
  * @since October 20th, 2016
+ * @see HtmlPrinter
+ * @see HtmlComponent
  */
 public class HtmlCanvas extends JPanel {
 
