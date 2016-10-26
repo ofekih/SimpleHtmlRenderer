@@ -1,4 +1,3 @@
-rm javadoc/*
-javadoc -author -d javadoc *.java
-rm javadoc_private/*
-javadoc -author -private -d javadoc_private *.java
+rm -rf docs/
+javadoc -author -d docs/public src/*.java
+javadoc -author -private -d docs/private src/*.java
