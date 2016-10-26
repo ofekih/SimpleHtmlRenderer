@@ -14,7 +14,7 @@ import javax.swing.JComponent;
  * @see HtmlComponent
  * @see HtmlCanvas
  */
-public class HtmlFragment implements HtmlComponent {
+public class HtmlFragment extends HtmlComponent {
 
 	/**
 	 * The text that this {@code HtmlFragment} will render.
@@ -25,11 +25,6 @@ public class HtmlFragment implements HtmlComponent {
 	 * The {@link Font} to render with.
 	 */
 	private Font font;
-
-	/**
-	 * The {@link Color} to render with.
-	 */
-	private Color color;
 
 	/**
 	 * The {@link FontMetrics} for this {@code HtmlFragment}, used for
@@ -48,10 +43,10 @@ public class HtmlFragment implements HtmlComponent {
 	 */
 	public HtmlFragment(String text, Font font, Color color,
 		JComponent component) {
+		super(color, component.getFontMetrics(font).stringWidth(text),
+			component.getFontMetrics(font).getHeight());
 		this.text = text;
 		this.font = font;
-		this.color = color;
-		fontMetrics = component.getFontMetrics(font);
 	}
 
 	/**
@@ -74,17 +69,6 @@ public class HtmlFragment implements HtmlComponent {
 	}
 
 	/**
-	 * Returns the {@code Color} that this {@code HtmlFragment} uses to render
-	 * its text.
-	 *
-	 * @return The {@code Color}
-	 */
-	@Override
-	public Color getColor() {
-		return color;
-	}
-
-	/**
 	 * Returns the ascent (the distance typical from the baseline to the top of
 	 * characters) of this {@code HtmlFragment}, in pixels based on its
 	 * {@code Font}.
@@ -92,27 +76,5 @@ public class HtmlFragment implements HtmlComponent {
 	 */
 	public int getAscent() {
 		return fontMetrics.getAscent();
-	}
-
-	/**
-	 * Returns the height of this {@code HtmlFragment}, in pixels based on its
-	 * {@code Font}.
-	 *
-	 * @return The height
-	 */
-	@Override
-	public int getHtmlComponentHeight() {
-		return fontMetrics.getHeight();
-	}
-
-	/**
-	 * Returns the width of this {@code HtmlFragment}, in pixels based on its
-	 * {@code Font}.
-	 *
-	 * @return The width
-	 */
-	@Override
-	public int getHtmlComponentWidth() {
-		return fontMetrics.stringWidth(text);
 	}
 }

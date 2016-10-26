@@ -42,7 +42,7 @@ public class HtmlCanvas extends JPanel {
 		int height = 0;
 		try {
 			for (HtmlComponent component : htmlComponents)
-				if (component instanceof HtmlTag)
+				if (component instanceof HtmlTag && component.isVisible())
 					height += component.getHtmlComponentHeight();
 		} catch (ConcurrentModificationException e) {}
 		return height + 2 * Y_MARGIN;
@@ -56,13 +56,13 @@ public class HtmlCanvas extends JPanel {
 		int width = 0;
 		int tempWidth = 0;
 		try {
-			for (HtmlComponent component : htmlComponents) {
-				if (isBreak(component)) {
-					width = Math.max(width, tempWidth);
-					tempWidth = 0;
-				}
-				else tempWidth += component.getHtmlComponentWidth();
-			}
+			for (HtmlComponent component : htmlComponents)
+				if (component.isVisible())
+					if (isBreak(component)) {
+						width = Math.max(width, tempWidth);
+						tempWidth = 0;
+					}
+					else tempWidth += component.getHtmlComponentWidth();
 		} catch (ConcurrentModificationException e) {}
 		return width + 2 * X_MARGIN;
 	}
@@ -107,6 +107,9 @@ public class HtmlCanvas extends JPanel {
 
 		try {
 			for (HtmlComponent component : htmlComponents) {
+				if (!component.isVisible())
+					continue;
+
 				g.setColor(component.getColor());
 				if (component instanceof HtmlTag) {
 					xLoc = Y_MARGIN;
