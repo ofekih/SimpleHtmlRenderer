@@ -25,7 +25,7 @@ public class HtmlCanvas extends JPanel {
 	private List<HtmlComponent> htmlComponents;
 
 	/**
-	 * Sets the htmlComponents for this object
+	 * Sets the htmlComponents for this object.
 	 * @param htmlComponents a {@link List} of {@link HtmlComponent}s
 	 */
 	public void setHtmlComponents(List<HtmlComponent> htmlComponents) {
@@ -81,14 +81,16 @@ public class HtmlCanvas extends JPanel {
 	 * @return           true if break, false otherwise
 	 */
 	private boolean isBreak(HtmlComponent component) {
-		return component instanceof HtmlTag && ((HtmlTag)component).getTag().equals("br");
+		return component instanceof HtmlTag &&
+			((HtmlTag)component).getTag().equals("br");
 	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		setBackground(Color.WHITE);
 		// Turn on font aliasing (smoothing)
-		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+			RenderingHints.VALUE_ANTIALIAS_ON);
 		if (htmlComponents != null)
 			drawHtmlComponents(g);
 	}
@@ -117,15 +119,18 @@ public class HtmlCanvas extends JPanel {
 	}
 
 	/**
-	 * Draws text onto the screen defined by an htmlFragment at a specific xLoc and yLoc.
+	 * Draws text onto the screen defined by an htmlFragment at a specific xLoc
+	 * and yLoc.
 	 * @param g            the {@link Graphics} component
 	 * @param htmlFragment the {@link HtmlFragment} to draw
 	 * @param xLoc         the current x location to draw from
 	 * @param yLoc         the current y location to draw from
 	 */
-	private void drawFragment(Graphics g, HtmlFragment htmlFragment, int xLoc, int yLoc) {
+	private void drawFragment(Graphics g, HtmlFragment htmlFragment, int xLoc,
+		int yLoc) {
 		g.setFont(htmlFragment.getFont());
-		g.drawString(htmlFragment.getText(), xLoc, yLoc + htmlFragment.getAscent());
+		g.drawString(htmlFragment.getText(), xLoc, yLoc +
+			htmlFragment.getAscent());
 	}
 
 	/**

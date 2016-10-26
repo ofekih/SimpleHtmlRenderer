@@ -10,7 +10,7 @@ import java.awt.Color;
  * @since October 21st, 2016
  */
 public interface HtmlComponent {
-	
+
 	/**
 	 * Returns the {@code Color} that this {@code HtmlComponent} uses to render
 	 * its text.
@@ -28,7 +28,7 @@ public interface HtmlComponent {
 
 	/**
 	 * Returns the height of this {@code HtmlComponent}, in pixels.
-	 * 
+	 *
 	 * @return The height
 	 */
 	public int getHtmlComponentHeight();

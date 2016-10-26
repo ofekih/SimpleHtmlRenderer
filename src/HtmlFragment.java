@@ -41,15 +41,17 @@ public class HtmlFragment implements HtmlComponent {
 	 * @param  text      The text to display
 	 * @param  font      The {@code Font} to use
 	 * @param  color     The {@code Color} to use
-	 * @param  component The {@link JComponent} this text will will rendered on, to generate {@code FontMetrics}
+	 * @param  component The {@link JComponent} this text will will rendered on,
+	 *  to generate {@code FontMetrics}
 	 */
-	public HtmlFragment(String text, Font font, Color color, JComponent component) {
+	public HtmlFragment(String text, Font font, Color color,
+		JComponent component) {
 		this.text = text;
 		this.font = font;
 		this.color = color;
 		fontMetrics = component.getFontMetrics(font);
 	}
-	
+
 	/**
 	 * Returns the text of this {@code HtmlFragment}.
 	 *
@@ -93,7 +95,7 @@ public class HtmlFragment implements HtmlComponent {
 	/**
 	 * Returns the height of this {@code HtmlFragment}, in pixels based on its
 	 * {@code Font}.
-	 * 
+	 *
 	 * @return The height
 	 */
 	@Override
@@ -104,7 +106,7 @@ public class HtmlFragment implements HtmlComponent {
 	/**
 	 * Returns the width of this {@code HtmlFragment}, in pixels based on its
 	 * {@code Font}.
-	 * 
+	 *
 	 * @return The width
 	 */
 	@Override

@@ -35,12 +35,14 @@ public class SimpleHtmlRenderer extends JFrame {
 	/**
 	 * The width of the screen, in pixels.
 	 */
-	private final int SCREEN_WIDTH = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+	private final int SCREEN_WIDTH =
+		(int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 
 	/**
 	 * The height of the screen, in pixels.
 	 */
-	private final int SCREEN_HEIGHT = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+	private final int SCREEN_HEIGHT =
+		(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
 	/**
 	 * This {@code SimpleHtmlRenderer}'s {@code HtmlCanvas}.
@@ -73,7 +75,7 @@ public class SimpleHtmlRenderer extends JFrame {
 	}
 
 	/**
-	 * Constucts a {@code SimpleHtmlRenderer} and creates a window with the
+	 * Constructs a {@code SimpleHtmlRenderer} and creates a window with the
 	 * given width and height.
 	 *
 	 * @param width  The width of the window to create
@@ -123,7 +125,8 @@ public class SimpleHtmlRenderer extends JFrame {
 	 * Centers this {@code SimpleHtmlRenderer} on the screen.
 	 */
 	private void centerOnScreen() {
-		setLocation((SCREEN_WIDTH - getWidth()) / 2, (SCREEN_HEIGHT - getHeight()) / 2);
+		setLocation((SCREEN_WIDTH - getWidth()) / 2,
+			(SCREEN_HEIGHT - getHeight()) / 2);
 	}
 
 	/**
@@ -142,7 +145,8 @@ public class SimpleHtmlRenderer extends JFrame {
 	 * will take care of it automatically.
 	 */
 	public void cleanupAfterPrint() {
-		htmlCanvas.setPreferredSize(new Dimension(htmlCanvas.getWidth(), htmlCanvas.getHeight()));
+		htmlCanvas.setPreferredSize(new Dimension(htmlCanvas.getWidth(),
+			htmlCanvas.getHeight()));
 		revalidate(); // Notify the content pane of the size change
 		scrollPane.revalidate(); // Notify the scroll pane of the size change
 	}

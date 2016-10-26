@@ -18,7 +18,8 @@ public class HtmlPrinter {
 	/**
 	 * The default {@code Font} used for rendering Paragraph text.
 	 */
-	public static final Font DEFAULT_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 25);
+	public static final Font DEFAULT_FONT = new Font(Font.SANS_SERIF,
+		Font.PLAIN, 25);
 
 	/**
 	 * The default {@code Color} used for rendering Paragraph text.
@@ -91,9 +92,9 @@ public class HtmlPrinter {
 	private Color color;
 
 	/**
-	 * Whether this {@code HtmlPrinter} should prevent automatic drawing after every
-	 * print statement, for performance reasons. The default value of this is
-	 * false.
+	 * Whether this {@code HtmlPrinter} should prevent automatic drawing after
+	 * every print statement, for performance reasons. The default value of this
+	 * is false.
 	 */
 	private boolean preventDrawing;
 
@@ -144,7 +145,8 @@ public class HtmlPrinter {
 	private HtmlFragment print(String str, Font font, Color color) {
 		breakIfDifferentSize(font);
 
-		HtmlFragment htmlFragment = new HtmlFragment(str, font, color, htmlCanvas);
+		HtmlFragment htmlFragment = new HtmlFragment(str, font, color,
+			htmlCanvas);
 		htmlComponents.add(htmlFragment);
 
 		if (!preventDrawing)
@@ -172,12 +174,8 @@ public class HtmlPrinter {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Prints a string with current formatting ({@code Color} and {@code Font}).
 	 * This method is identical to printParagraph
-=======
-	 * Prints a string with current formatting ({@link Color} and {@link Font}).
->>>>>>> Remove printParagraph
 	 * @param str the String to print
 	 */
 	public void print(String str) {
@@ -185,7 +183,8 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints a string with a specific {@code Font} and {@code Color}, breaking after.
+	 * Prints a string with a specific {@code Font} and {@code Color}, breaking
+	 * after.
 	 * @param str   the String to print
 	 * @param font  the {@code Font} to use
 	 * @param color the {@code Color} to use
@@ -196,7 +195,8 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Breaks with a height equal to to the height of the last component / fragment. Used to move onto the next line.
+	 * Breaks with a height equal to to the height of the last component /
+	 * fragment. Used to move onto the next line.
 	 */
 	public void println() {
 		if (htmlComponents.isEmpty())
@@ -205,11 +205,13 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Inserts a break with a line height equal to the height of the last component.
+	 * Inserts a break with a line height equal to the height of the last
+	 * component.
 	 * @param htmlComponent the {@code HtmlComponent} whose height to use
 	 */
 	private void breakComponent(HtmlComponent htmlComponent) {
-		htmlComponents.add(new HtmlTag("br", Color.BLACK, htmlComponent.getHtmlComponentHeight()));
+		htmlComponents.add(new HtmlTag("br", Color.BLACK,
+			htmlComponent.getHtmlComponentHeight()));
 	}
 
 	/**
@@ -273,7 +275,8 @@ public class HtmlPrinter {
 	 * @param str the String to print
 	 */
 	public void printItalic(String str) {
-		print(str, new Font(font.getFontName(), font.getStyle() | Font.ITALIC, font.getSize()));
+		print(str, new Font(font.getFontName(), font.getStyle() | Font.ITALIC,
+			font.getSize()));
 	}
 
 	/**
@@ -281,36 +284,46 @@ public class HtmlPrinter {
 	 * @param str the String to print
 	 */
 	public void printBold(String str) {
-		print(str, new Font(font.getFontName(), font.getStyle() | Font.BOLD, font.getSize()));
+		print(str, new Font(font.getFontName(), font.getStyle() | Font.BOLD,
+			font.getSize()));
 	}
 
 	/**
-	 * Breaks if the previous component is not a break. This breaks using the same size as the previous component (not the default break size).
+	 * Breaks if the previous component is not a break. This breaks using the
+	 * same size as the previous component (not the default break size).
 	 */
 	private void breakIfNecessary() {
 		if (htmlComponents.isEmpty())
 			return;
 
-		HtmlComponent previousComponent = htmlComponents.get(htmlComponents.size() - 1);
-		if (!(previousComponent instanceof HtmlTag) || !((HtmlTag)previousComponent).getTag().equals("br"))
+		HtmlComponent previousComponent =
+			htmlComponents.get(htmlComponents.size() - 1);
+		if (!(previousComponent instanceof HtmlTag) ||
+			!((HtmlTag)previousComponent).getTag().equals("br"))
 			breakComponent(previousComponent);
 	}
 
 	/**
-	 * Breaks if the {@code Font} used is a different size than the previous font used.
+	 * Breaks if the {@code Font} used is a different size than the previous
+	 * font used.
 	 * @param font the {@code Font} to use
 	 */
 	private void breakIfDifferentSize(Font font) {
 		if (htmlComponents.isEmpty())
 			return;
 
-		HtmlComponent previousComponent = htmlComponents.get(htmlComponents.size() - 1);
-		if (previousComponent instanceof HtmlFragment && ((HtmlFragment)previousComponent).getFont().getSize() != font.getSize())
+		HtmlComponent previousComponent =
+			htmlComponents.get(htmlComponents.size() - 1);
+		if (previousComponent instanceof HtmlFragment &&
+			((HtmlFragment)previousComponent).getFont().getSize() !=
+			font.getSize())
 			breakComponent(previousComponent);
 	}
 
 	/**
-	 * Prints a break, using the default break size. If already in the middle of a line, breaks out of that line first, and then prints a break. Made to mimic the html br tag.
+	 * Prints a break, using the default break size. If already in the middle of
+	 * a line, breaks out of that line first, and then prints a break. Made to
+	 * mimic the html br tag.
 	 */
 	public void printBreak() {
 		breakIfNecessary();
@@ -321,7 +334,9 @@ public class HtmlPrinter {
 
 
 	/**
-	 * Prints a horizontal rule. If already in the middle of a line, breaks out of that line first, and then prints the rule. Made to mimic the html hr tag.
+	 * Prints a horizontal rule. If already in the middle of a line, breaks out
+	 * of that line first, and then prints the rule. Made to mimic the html hr
+	 * tag.
 	 */
 	public void printHorizontalRule() {
 		breakIfNecessary();
@@ -336,7 +351,8 @@ public class HtmlPrinter {
 	 * @return          the appropriate heading {@code Font}
 	 */
 	private Font getHeadingFont(int fontSize) {
-		return new Font(font.getFontName(), font.getStyle() | Font.BOLD, fontSize);
+		return new Font(font.getFontName(), font.getStyle() | Font.BOLD,
+			fontSize);
 	}
 
 	/**
@@ -359,8 +375,8 @@ public class HtmlPrinter {
 
 	/**
 	 * Sets prevention of automatic redrawing of the {@code HtmlComponent}s
-	 * managed by this {@code HtmlPrinter} onto the {@code HtmlCanvas}. Preventing
-	 * automatic redrawing improves performace, but
+	 * managed by this {@code HtmlPrinter} onto the {@code HtmlCanvas}.
+	 * Preventing automatic redrawing improves performance, but
 	 * {@link HtmlPrinter#drawHtmlComponents} must be called after printing is
 	 * done to display changes.
 	 *
@@ -372,9 +388,9 @@ public class HtmlPrinter {
 
 	/**
 	 * Prevents automatic redrawing of the {@code HtmlComponent}s managed by
-	 * this {@code HtmlPrinter} onto the {@code HtmlCanvas}. Improves performace, but
-	 * {@link HtmlPrinter#drawHtmlComponents} must be called after printing is
-	 * done to display changes.
+	 * this {@code HtmlPrinter} onto the {@code HtmlCanvas}. Improves
+	 * performance, but {@link HtmlPrinter#drawHtmlComponents} must be called
+	 * after printing is done to display changes.
 	 */
 	public void preventDrawing() {
 		this.preventDrawing = true;
