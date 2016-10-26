@@ -26,9 +26,13 @@ public class HtmlTag extends HtmlComponent {
 	 * @param  color      The {@code Color} to use when rendering
 	 * @param  lineHeight the height of this {@code HtmlComponent}
 	 */
-	public HtmlTag(String tag, Color color, int lineHeight) {
-		super(color, 0, lineHeight);
+	public HtmlTag(String tag, Color color, int lineWidth, int lineHeight) {
+		super(color, lineWidth, lineHeight);
 		this.tag = tag;
+	}
+
+	public HtmlTag(String tag, Color color, int lineHeight) {
+		this(tag, color, 0, lineHeight);
 	}
 
 	/**

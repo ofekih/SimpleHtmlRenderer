@@ -19,18 +19,14 @@ public class HtmlFragment extends HtmlComponent {
 	/**
 	 * The text that this {@code HtmlFragment} will render.
 	 */
-	private String text;
+	private final String text;
 
 	/**
 	 * The {@link Font} to render with.
 	 */
-	private Font font;
+	private final Font font;
 
-	/**
-	 * The {@link FontMetrics} for this {@code HtmlFragment}, used for
-	 * determining the size the text will occupy on the screen.
-	 */
-	private FontMetrics fontMetrics;
+	private final int ascent;
 
 	/**
 	 * Constructs a {@code HtmlFragment} with the provided values.
@@ -47,6 +43,7 @@ public class HtmlFragment extends HtmlComponent {
 			component.getFontMetrics(font).getHeight());
 		this.text = text;
 		this.font = font;
+		ascent = component.getFontMetrics(font).getAscent();
 	}
 
 	/**
@@ -75,6 +72,6 @@ public class HtmlFragment extends HtmlComponent {
 	 * @return The ascent
 	 */
 	public int getAscent() {
-		return fontMetrics.getAscent();
+		return ascent;
 	}
 }

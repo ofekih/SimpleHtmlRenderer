@@ -40,6 +40,8 @@ public class HtmlCanvas extends JPanel {
 	 */
 	public int getCanvasHeight() {
 		int height = 0;
+		if (htmlComponents == null)
+			return 0;
 		try {
 			for (HtmlComponent component : htmlComponents)
 				if (component instanceof HtmlTag && component.isVisible())
@@ -55,6 +57,8 @@ public class HtmlCanvas extends JPanel {
 	public int getCanvasWidth() {
 		int width = 0;
 		int tempWidth = 0;
+		if (htmlComponents == null)
+			return 0;
 		try {
 			for (HtmlComponent component : htmlComponents)
 				if (component.isVisible())
@@ -145,7 +149,6 @@ public class HtmlCanvas extends JPanel {
 	 * @param  yLoc     the current y location to draw from
 	 */
 	private void drawTag(Graphics g, HtmlTag htmlTag, int yLoc) {
-		System.out.println(htmlTag.getTag());
 		switch (htmlTag.getTag()) {
 			case "hr":
 				drawHorizontalRule(g, yLoc);
@@ -173,7 +176,6 @@ public class HtmlCanvas extends JPanel {
 	 * @param  xLoc the x location to use for printing
 	 */
 	private void drawVerticalRule(Graphics g, int xLoc) {
-		g.fillRect(X_MARGIN + xLoc, 0, 1, getCanvasHeight());
-		System.out.println("HEYA " + xLoc);
+		g.fillRect(X_MARGIN + xLoc, 0, 2, getCanvasHeight());
 	}
 }
