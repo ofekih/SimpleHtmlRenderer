@@ -1,18 +1,18 @@
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
-import java.awt.Font;
 import java.awt.Color;
 import java.awt.BorderLayout;
-import java.awt.Toolkit;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Toolkit;
 
 /**
  * The main class for SimpleHtmlRenderer, a program that can help pretty-print
- * tokenized HTML. {@link SimpleHtmlRenderer} supports various colors, fonts, and
- * even some special tags such as horizontal rules. A
- * {@link JFrame}, it manages a single {@link HtmlCanvas} and allows
- * printing to it through a {@link HtmlPrinter}.
+ * tokenized HTML. {@link SimpleHtmlRenderer} supports various colors, fonts
+ * and even some special tags such as horizontal rules. A {@link JFrame}, it
+ * manages a single {@link HtmlCanvas} and allows printing to it through a
+ * {@link HtmlPrinter}.
  *
  * @author Ofek Gila
  * @author Saagar Jha
@@ -20,92 +20,141 @@ import java.awt.Dimension;
  */
 public class SimpleHtmlRenderer extends JFrame {
 
-	private static final int DEFAULT_WINDOW_WIDTH = 1000;
-	private static final int DEFAULT_WINDOW_HEIGHT = 750;
+	/**
+	 * The default value for the width of the a {@code SimpleHtmlRenderer}
+	 * window, in pixels.
+	 */
+	public static final int DEFAULT_WINDOW_WIDTH = 1000;
 
+	/**
+	 * The default value for the height of the a {@code SimpleHtmlRenderer}
+	 * window, in pixels.
+	 */
+	public static final int DEFAULT_WINDOW_HEIGHT = 750;
+
+	/**
+	 * The width of the screen, in pixels.
+	 */
 	private final int SCREEN_WIDTH = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+
+	/**
+	 * The height of the screen, in pixels.
+	 */
 	private final int SCREEN_HEIGHT = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
-	private int windowWidth, windowHeight;
+	/**
+	 * This {@code SimpleHtmlRenderer}'s {@code HtmlCanvas}.
+	 */
 	private HtmlCanvas htmlCanvas;
+
+	/**
+	 * The {@code JScrollPane} that bounds this {@code SimpleHtmlRenderer}'s
+	 * {@code HtmlCanvas}.
+	 */
 	private JScrollPane scrollPane;
+
+	/**
+	 * The {@code HtmlPrinter} that manages printing for this
+	 * {@code SimpleHtmlRenderer}'s {@code HtmlCanvas}.
+	 *
+	 * @see SimpleHtmlRenderer#getHtmlPrinter
+	 */
 	private HtmlPrinter htmlPrinter;
 
 	/**
-	 * Main constructor settings width and height.
-	 * @param  windowWidth  width of the frame
-	 * @param  windowHeight height of the frame
-	 */
-	public SimpleHtmlRenderer(int windowWidth, int windowHeight) {
-		super("Simple Browser");
-		this.windowWidth = windowWidth;
-		this.windowHeight = windowHeight;
-
-		setSize(windowWidth, windowHeight);
-		center();
-		setResizable(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setVisible(true);
-
-		setLayout(new BorderLayout());
-		createWindow();
-		htmlPrinter = new HtmlPrinter(this, htmlCanvas);
-		htmlCanvas.setHtmlComponents(htmlPrinter.getHtmlComponents());
-		addScrollPane();
-	}
-
-	/**
-	 * Constructor without width and height (uses defaults).
+	 * Constructs a {@code SimpleHtmlRenderer} and creates a window with the
+	 * default width and height.
+	 *
+	 * @see SimpleHtmlRenderer#DEFAULT_WINDOW_WIDTH
+	 * @see SimpleHtmlRenderer#DEFAULT_WINDOW_HEIGHT
 	 */
 	public SimpleHtmlRenderer() {
 		this(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT);
 	}
 
 	/**
-	 * Centers frame on screen.
+	 * Constucts a {@code SimpleHtmlRenderer} and creates a window with the
+	 * given width and height.
+	 *
+	 * @param width  The width of the window to create
+	 * @param height The height of the window to create
 	 */
-	private void center() {
-		setLocation((SCREEN_WIDTH - windowWidth) / 2, (SCREEN_HEIGHT - windowHeight) / 2);
+	public SimpleHtmlRenderer(int width, int height) {
+		super("Simple HTML Renderer");
+
+		setSize(width, height);
+		centerOnScreen();
+		setResizable(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
+
+		setLayout(new BorderLayout());
+		createCanvas();
+		htmlPrinter = new HtmlPrinter(this, htmlCanvas);
+		htmlCanvas.setHtmlComponents(htmlPrinter.getHtmlComponents());
+		addScrollPane();
 	}
 
 	/**
-	 * Sets the {@link HtmlCanvas} to new appropriate width and height given its htmlComponents, and refreshes the {@link JScrollPane}.
+	 * Creates the {@code HtmlCanvas} for this class and adds it to the content
+	 * pane, making sure it fills the window.
 	 */
-	public void cleanupAfterPrint() {
-		htmlCanvas.setPreferredSize(new Dimension(htmlCanvas.getWidth(), htmlCanvas.getHeight()));
-		revalidate();
-		scrollPane.revalidate();
-	}
-
-	/**
-	 * Creates the {@link HtmlCanvas} for this class to fill whole screen except scrollbars.
-	 */
-	private void createWindow() {
+	private void createCanvas() {
 		htmlCanvas = new HtmlCanvas();
-		htmlCanvas.setPreferredSize(new Dimension(windowWidth, windowHeight));
+		htmlCanvas.setPreferredSize(new Dimension(getWidth(), getHeight()));
 		add(htmlCanvas, BorderLayout.CENTER);
 	}
 
 	/**
-	 * Returns the {@link HtmlPrinter} object for the {@link HtmlCanvas}.
-	 * @return the {@link HtmlPrinter} object
-	 */
-	public HtmlPrinter getHtmlPrinter() {
-		return htmlPrinter;
-	}
-
-	/**
-	 * Adds a {@link JScrollPane} to this frame, and sets its default increment for scrolling.
+	 * Adds a {@code JScrollPane} containing this {@code SimpleHtmlPrinter}'s
+	 * {@code HtmlCanvas} to the content pane and sets its default scrolling
+	 * increment.
 	 */
 	private void addScrollPane() {
 		scrollPane = new JScrollPane(htmlCanvas);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		scrollPane.getHorizontalScrollBar().setUnitIncrement(16);
 		add(scrollPane);
-		scrollPane.requestFocus();
+		scrollPane.requestFocus(); // So that we can scroll using the keyboard
+		                           // arrow keys
 	}
 
-	public static void main(String... pumpkins) {
+	/**
+	 * Centers this {@code SimpleHtmlRenderer} on the screen.
+	 */
+	private void centerOnScreen() {
+		setLocation((SCREEN_WIDTH - getWidth()) / 2, (SCREEN_HEIGHT - getHeight()) / 2);
+	}
+
+	/**
+	 * Returns the {@code HtmlPrinter} that manages drawing for this
+	 * {@code SimpleHtmlRenderer}'s {@code HtmlCanvas}.
+	 *
+	 * @return The {@code HtmlPrinter}
+	 */
+	public HtmlPrinter getHtmlPrinter() {
+		return htmlPrinter;
+	}
+
+	/**
+	 * Informs the {@code JScrollPane} that the {@code HtmlCanvas}'s size has
+	 * changed. You should not need to call this method; {@code HtmlPrinter}
+	 * will take care of it automatically.
+	 */
+	public void cleanupAfterPrint() {
+		htmlCanvas.setPreferredSize(new Dimension(htmlCanvas.getWidth(), htmlCanvas.getHeight()));
+		revalidate(); // Notify the content pane of the size change
+		scrollPane.revalidate(); // Notify the scroll pane of the size change
+	}
+
+	/**
+	 * The main method for {@code SimpleHtmlRenderer}. This method is not
+	 * intended to be called in production code; its exists solely as an example
+	 * to showcase Simple HTML Renderer's capabilities.
+	 *
+	 * @param args Command line arguments, currently unused
+	 */
+	public static void main(String[] args) {
 		SimpleHtmlRenderer simpleHtmlPrinter = new SimpleHtmlRenderer();
 		HtmlPrinter htmlPrinter = simpleHtmlPrinter.getHtmlPrinter();
 

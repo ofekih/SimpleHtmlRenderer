@@ -5,8 +5,8 @@ import javax.swing.JComponent;
 
 /**
  * A single element of HTML to be rendered by a {@link HtmlCanvas}, containing
- * text, font and color. In general, do not create these directly; a
- * {@link HtmlPrinter} will create and render them.
+ * {@link String}, {@link Font} and a {@link Color}. In general, do not create
+ * these directly; a {@link HtmlPrinter} will create and render them.
  *
  * @author Ofek Gila
  * @author Saagar Jha
@@ -14,17 +14,34 @@ import javax.swing.JComponent;
  */
 public class HtmlFragment implements HtmlComponent {
 
+	/**
+	 * The text that this {@code HtmlFragment} will render.
+	 */
 	private String text;
+
+	/**
+	 * The {@link Font} to render with.
+	 */
 	private Font font;
+
+	/**
+	 * The {@link Color} to render with.
+	 */
 	private Color color;
+
+	/**
+	 * The {@link FontMetrics} for this {@code HtmlFragment}, used for
+	 * determining the size the text will occupy on the screen.
+	 */
 	private FontMetrics fontMetrics;
 
 	/**
-	 * HtmlFragment constructor with all the necessary values.
-	 * @param  text      the text to display
-	 * @param  font      the {@link Font} to use
-	 * @param  color     the {@link Color} to use
-	 * @param  component any old {@link JComponent} to get font metrics from
+	 * Constructs a {@code HtmlFragment} with the provided values.
+	 *
+	 * @param  text      The text to display
+	 * @param  font      The {@code Font} to use
+	 * @param  color     The {@code Color} to use
+	 * @param  component The {@link JComponent} this text will will rendered on, to generate {@code FontMetrics}
 	 */
 	public HtmlFragment(String text, Font font, Color color, JComponent component) {
 		this.text = text;
@@ -32,51 +49,64 @@ public class HtmlFragment implements HtmlComponent {
 		this.color = color;
 		fontMetrics = component.getFontMetrics(font);
 	}
-
+	
 	/**
-	 * Appends text to this fragment.
-	 * @param text String of text to append
-	 * @deprecated There shouldn't be any reason to append to this fragment, just add a new {@link HtmlFragment} instead.
-	 */
-	@Deprecated
-	public void append(String text) {
-		this.text += text;
-	}
-
-	/**
-	 * Returns the text content of this fragment.
-	 * @return the String text
+	 * Returns the text of this {@code HtmlFragment}.
+	 *
+	 * @return The text
 	 */
 	public String getText() {
 		return text;
 	}
 
 	/**
-	 * Returns the font of this fragment.
-	 * @return the {@link Font}
+	 * Returns the {@code Font} that this {@code HtmlFragment} uses to render
+	 * its text.
+	 *
+	 * @return The {@code Font}
 	 */
 	public Font getFont() {
 		return font;
 	}
 
 	/**
-	 * Gets how high below the text is offset.
-	 * @return the ascent
+	 * Returns the {@code Color} that this {@code HtmlFragment} uses to render
+	 * its text.
+	 *
+	 * @return The {@code Color}
 	 */
-	public int getAscent() {
-		return fontMetrics.getAscent();
-	}
-
 	@Override
 	public Color getColor() {
 		return color;
 	}
 
+	/**
+	 * Returns the ascent (the distance typical from the baseline to the top of
+	 * characters) of this {@code HtmlFragment}, in pixels based on its
+	 * {@code Font}.
+	 * @return The ascent
+	 */
+	public int getAscent() {
+		return fontMetrics.getAscent();
+	}
+
+	/**
+	 * Returns the height of this {@code HtmlFragment}, in pixels based on its
+	 * {@code Font}.
+	 * 
+	 * @return The height
+	 */
 	@Override
 	public int getHtmlComponentHeight() {
 		return fontMetrics.getHeight();
 	}
 
+	/**
+	 * Returns the width of this {@code HtmlFragment}, in pixels based on its
+	 * {@code Font}.
+	 * 
+	 * @return The width
+	 */
 	@Override
 	public int getHtmlComponentWidth() {
 		return fontMetrics.stringWidth(text);

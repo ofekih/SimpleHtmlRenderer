@@ -87,6 +87,7 @@ public class HtmlCanvas extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		setBackground(Color.WHITE);
+		// Turn on font aliasing (smoothing)
 		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		if (htmlComponents != null)
 			drawHtmlComponents(g);
