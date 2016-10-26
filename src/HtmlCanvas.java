@@ -145,9 +145,13 @@ public class HtmlCanvas extends JPanel {
 	 * @param  yLoc     the current y location to draw from
 	 */
 	private void drawTag(Graphics g, HtmlTag htmlTag, int yLoc) {
+		System.out.println(htmlTag.getTag());
 		switch (htmlTag.getTag()) {
 			case "hr":
 				drawHorizontalRule(g, yLoc);
+				break;
+			case "vr":
+				drawVerticalRule(g, htmlTag.getHtmlComponentWidth());
 				break;
 			case "br":
 				break;
@@ -161,5 +165,15 @@ public class HtmlCanvas extends JPanel {
 	 */
 	private void drawHorizontalRule(Graphics g, int yLoc) {
 		g.fillRect(X_MARGIN / 2, yLoc + 3, getCanvasWidth() - X_MARGIN, 2);
+	}
+
+	/**
+	 * Draws a vertical rule.
+	 * @param  g    the {@link Graphics} component
+	 * @param  xLoc the x location to use for printing
+	 */
+	private void drawVerticalRule(Graphics g, int xLoc) {
+		g.fillRect(X_MARGIN + xLoc, 0, 1, getCanvasHeight());
+		System.out.println("HEYA " + xLoc);
 	}
 }

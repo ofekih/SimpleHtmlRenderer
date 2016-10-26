@@ -69,6 +69,11 @@ public class HtmlPrinter {
 	private static final int HORIZONTAL_RULE_SIZE = 8;
 
 	/**
+	 * The width of a single space using the default font.
+	 */
+	private final int SPACE_WIDTH;
+
+	/**
 	 * The {@code SimpleHtmlRenderer} that contains this {@code HtmlPrinter}.
 	 */
 	private SimpleHtmlRenderer browser;
@@ -115,6 +120,9 @@ public class HtmlPrinter {
 		color = DEFAULT_COLOR;
 		htmlComponents = new ArrayList<HtmlComponent>();
 		preventDrawing = false;
+
+		SPACE_WIDTH = htmlCanvas.getFontMetrics(DEFAULT_FONT)
+			.stringWidth(" ");
 	}
 
 	/**
@@ -343,6 +351,13 @@ public class HtmlPrinter {
 	public void printHorizontalRule() {
 		breakIfNecessary();
 		htmlComponents.add(new HtmlTag("hr", color, HORIZONTAL_RULE_SIZE));
+		if (!preventDrawing)
+			drawHtmlComponents();
+	}
+
+	public void drawVerticalRule(int numColumns) {
+		breakIfNecessary();
+		htmlComponents.add(new HtmlTag("vr", color, numColumns * SPACE_WIDTH));
 		if (!preventDrawing)
 			drawHtmlComponents();
 	}

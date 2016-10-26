@@ -219,5 +219,7 @@ public class SimpleHtmlRenderer extends JFrame {
 		htmlPrinter.setFont(HtmlPrinter.DEFAULT_FONT);
 		htmlPrinter.setColor(Color.GREEN);
 		htmlPrinter.print("I'm glad this works!");
+
+		htmlPrinter.drawVerticalRule(80);
 	}
 }
