@@ -100,7 +100,7 @@ public class HtmlPrinter {
 	/**
 	 * Constructs a {@code HtmlPrinter} with a containing
 	 * {@code SimpleHtmlRenderer} and a {@code SimpleHtmlRenderer} to draw on.
-	 * 
+	 *
 	 * @param  browser    The {@code SimpleHtmlRenderer} container
 	 * @param  htmlCanvas The {@code HtmlCanvas} for drawing
 	 */
@@ -350,7 +350,7 @@ public class HtmlPrinter {
 
 	/**
 	 * Sets the {@code Color} to be used for rendering Paragraph text.
-	 * 
+	 *
 	 * @param color The {@code Color} to set
 	 */
 	public void setColor(Color color) {
