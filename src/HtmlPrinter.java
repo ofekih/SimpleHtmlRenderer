@@ -148,7 +148,7 @@ public class HtmlPrinter {
 
 	/**
 	 * Prints a {@code String} with the current {@code Color} and {@code Font}.
-	 * 
+	 *
 	 * @param string The {@code String} to print
 	 */
 	public void print(String string) {
@@ -169,12 +169,25 @@ public class HtmlPrinter {
 	/**
 	 * Prints {@code String} with specific {@code Color} and the current
 	 * {@code Font}.
-	 * 
+	 *
 	 * @param string The {@code String} to print
 	 * @param color  The {@code Color} to use
 	 */
 	private void print(String string, Color color) {
 		print(string, font, color);
+	}
+
+	/**
+	 * Prints a {@code String} with a specific {@code Font} and {@code Color},
+	 * breaking after.
+	 *
+	 * @param string The String to print
+	 * @param font   The {@code Font} to use
+	 * @param color  The {@code Color} to use
+	 */
+	private void println(String string, Font font, Color color) {
+		print(string, font, color);
+		breakComponent(getLastComponent());
 	}
 
 	/**
@@ -187,9 +200,8 @@ public class HtmlPrinter {
 	private void print(String string, Font font, Color color) {
 		breakIfDifferentSize(font);
 
-		HtmlFragment htmlFragment = new HtmlFragment(string, font, color,
-			htmlCanvas);
-		htmlComponents.add(htmlFragment);
+		htmlComponents.add(new HtmlFragment(string, font, color,
+			htmlCanvas));
 
 		if (!preventDrawing)
 			drawHtmlComponents();
@@ -206,22 +218,9 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints a {@code String} with a specific {@code Font} and {@code Color},
-	 * breaking after.
-	 * 
-	 * @param string The String to print
-	 * @param font   The {@code Font} to use
-	 * @param color  The {@code Color} to use
-	 */
-	private void println(String string, Font font, Color color) {
-		print(string, font, color);
-		breakComponent(htmlComponents.get(htmlComponents.size() - 1));
-	}
-
-	/**
 	 * Moves {@code HtmlPrinter}'s cursor down by the height of the specified
 	 * {@code HtmlComponent} and returns it to the left-hand margin.
-	 * 
+	 *
 	 * @param htmlComponent The {@code HtmlComponent} used to calculate height
 	 */
 	private void breakComponent(HtmlComponent htmlComponent) {
@@ -232,7 +231,7 @@ public class HtmlPrinter {
 	/**
 	 * Prints a {@code String} formatted as Header 1, with the current {@code Font}
 	 * and {@code Color}.
-	 * 
+	 *
 	 * @param string The String to print
 	 */
 	public void printHeading1(String string) {
@@ -242,7 +241,7 @@ public class HtmlPrinter {
 	/**
 	 * Prints a {@code String} formatted as Header 2, with the current {@code Font}
 	 * and {@code Color}.
-	 * 
+	 *
 	 * @param string The String to print
 	 */
 	public void printHeading2(String string) {
@@ -252,7 +251,7 @@ public class HtmlPrinter {
 	/**
 	 * Prints a {@code String} formatted as Header 3, with the current {@code Font}
 	 * and {@code Color}.
-	 * 
+	 *
 	 * @param string The String to print
 	 */
 	public void printHeading3(String string) {
@@ -262,7 +261,7 @@ public class HtmlPrinter {
 	/**
 	 * Prints a {@code String} formatted as Header 4, with the current {@code Font}
 	 * and {@code Color}.
-	 * 
+	 *
 	 * @param string The String to print
 	 */
 	public void printHeading4(String string) {
@@ -272,7 +271,7 @@ public class HtmlPrinter {
 	/**
 	 * Prints a {@code String} formatted as Header 5, with the current {@code Font}
 	 * and {@code Color}.
-	 * 
+	 *
 	 * @param string The String to print
 	 */
 	public void printHeading5(String string) {
@@ -282,7 +281,7 @@ public class HtmlPrinter {
 	/**
 	 * Prints a {@code String} formatted as Header 6, with the current {@code Font}
 	 * and {@code Color}.
-	 * 
+	 *
 	 * @param string The String to print
 	 */
 	public void printHeading6(String string) {
@@ -303,7 +302,7 @@ public class HtmlPrinter {
 	/**
 	 * Prints a {@code String} formatted as Italic, with a bold {@code Font}
 	 * and the current {@code Color}.
-	 * 
+	 *
 	 * @param string The String to print
 	 */
 	public void printBold(String string) {
@@ -314,7 +313,7 @@ public class HtmlPrinter {
 	/**
 	 * Prints a {@code String} formatted as Italic, with a italic {@code Font}
 	 * and the current {@code Color}.
-	 * 
+	 *
 	 * @param string The String to print
 	 */
 	public void printItalic(String string) {
@@ -329,8 +328,7 @@ public class HtmlPrinter {
 		if (htmlComponents.isEmpty())
 			return;
 
-		HtmlComponent previousComponent =
-			htmlComponents.get(htmlComponents.size() - 1);
+		HtmlComponent previousComponent = getLastComponent();
 		if (!(previousComponent instanceof HtmlTag) ||
 			!((HtmlTag)previousComponent).getTag().equals("br"))
 			breakComponent(previousComponent);
@@ -346,12 +344,19 @@ public class HtmlPrinter {
 		if (htmlComponents.isEmpty())
 			return;
 
-		HtmlComponent previousComponent =
-			htmlComponents.get(htmlComponents.size() - 1);
+		HtmlComponent previousComponent = getLastComponent();
 		if (previousComponent instanceof HtmlFragment &&
 			((HtmlFragment)previousComponent).getFont().getSize() !=
 			font.getSize())
 			breakComponent(previousComponent);
+	}
+
+	/**
+	 * Returns the last {@link HtmlComponent} on the queue.
+	 * @return the last {@link HtmlComponent} on the queue.
+	 */
+	private HtmlComponent getLastComponent() {
+		return htmlComponents.get(htmlComponents.size() - 1);
 	}
 
 	/**
@@ -379,7 +384,7 @@ public class HtmlPrinter {
 
 	/**
 	 * Draws a vertical line after the specified number of characters.
-	 * 
+	 *
 	 * @param lineMarkColumns The column number to print the mark at
 	 */
 	public void drawLineMark(int lineMarkColumns) {
