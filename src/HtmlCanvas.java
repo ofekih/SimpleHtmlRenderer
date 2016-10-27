@@ -167,7 +167,7 @@ public class HtmlCanvas extends JPanel {
 	 * @param  yLoc the current y location for printing
 	 */
 	private void drawHorizontalRule(Graphics g, int yLoc) {
-		g.fillRect(X_MARGIN / 2, yLoc + 3, getCanvasWidth() - X_MARGIN, 2);
+		g.fillRect(X_MARGIN / 2, yLoc + 3, getWidth() - X_MARGIN, 2);
 	}
 
 	/**
@@ -176,6 +176,6 @@ public class HtmlCanvas extends JPanel {
 	 * @param  xLoc the x location to use for printing
 	 */
 	private void drawVerticalRule(Graphics g, int xLoc) {
-		g.fillRect(X_MARGIN + xLoc, 0, 2, getCanvasHeight());
+		g.fillRect(X_MARGIN + xLoc, 0, 2, getHeight());
 	}
 }

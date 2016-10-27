@@ -121,8 +121,8 @@ public class HtmlPrinter {
 		htmlComponents = new ArrayList<HtmlComponent>();
 		preventDrawing = false;
 
-		SPACE_WIDTH = htmlCanvas.getFontMetrics(DEFAULT_FONT)
-			.stringWidth(" ");
+		SPACE_WIDTH = htmlCanvas.getFontMetrics(new Font(Font.MONOSPACED,
+			Font.PLAIN, DEFAULT_FONT.getSize())).stringWidth(" ");
 	}
 
 	/**
@@ -355,9 +355,15 @@ public class HtmlPrinter {
 			drawHtmlComponents();
 	}
 
-	public void drawVerticalRule(int numColumns) {
+	/**
+	 * Prints a vertical rule. If already in the middle of a line, break out of
+	 * that line first, and then prints the rule.
+	 * @param numColumns The column number to print the rule at
+	 */
+	public void printVerticalRule(int numColumns) {
 		breakIfNecessary();
-		htmlComponents.add(new HtmlTag("vr", color, numColumns * SPACE_WIDTH, 0));
+		htmlComponents.add(new HtmlTag("vr", color, numColumns *
+			SPACE_WIDTH, 0));
 		if (!preventDrawing)
 			drawHtmlComponents();
 	}

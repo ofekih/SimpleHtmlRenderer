@@ -26,13 +26,13 @@ public class SimpleHtmlRenderer extends JFrame {
 	 * The default value for the width of the a {@code SimpleHtmlRenderer}
 	 * window, in pixels.
 	 */
-	public static final int DEFAULT_WINDOW_WIDTH = 1000;
+	public static final int DEFAULT_WINDOW_WIDTH = 1500;
 
 	/**
 	 * The default value for the height of the a {@code SimpleHtmlRenderer}
 	 * window, in pixels.
 	 */
-	public static final int DEFAULT_WINDOW_HEIGHT = 750;
+	public static final int DEFAULT_WINDOW_HEIGHT = 1000;
 
 	/**
 	 * The width of the screen, in pixels.
@@ -220,6 +220,6 @@ public class SimpleHtmlRenderer extends JFrame {
 		htmlPrinter.setColor(Color.GREEN);
 		htmlPrinter.print("I'm glad this works!");
 
-		htmlPrinter.drawVerticalRule(80);
+		htmlPrinter.printVerticalRule(80);
 	}
 }
