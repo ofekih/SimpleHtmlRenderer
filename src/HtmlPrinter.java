@@ -208,24 +208,30 @@ public class HtmlPrinter {
 	}
 
 	/**
+	 * Breaks if the {@code Font} used is a different size than the previous
+	 * font used.
+	 *
+	 * @param font The {@code Font} to use for breaking
+	 */
+	private void breakIfDifferentSize(Font font) {
+		if (htmlComponents.isEmpty())
+			return;
+
+		HtmlComponent previousComponent = getLastComponent();
+		if (previousComponent instanceof HtmlFragment &&
+			((HtmlFragment)previousComponent).getFont().getSize() !=
+			font.getSize())
+			breakComponent(previousComponent);
+	}
+
+	/**
 	 * Moves {@code HtmlPrinter}'s cursor down one line and returns it to the
 	 * left-hand margin.
 	 */
 	public void println() {
 		if (htmlComponents.isEmpty())
 			printBreak();
-		else breakComponent(htmlComponents.get(htmlComponents.size() - 1));
-	}
-
-	/**
-	 * Moves {@code HtmlPrinter}'s cursor down by the height of the specified
-	 * {@code HtmlComponent} and returns it to the left-hand margin.
-	 *
-	 * @param htmlComponent The {@code HtmlComponent} used to calculate height
-	 */
-	private void breakComponent(HtmlComponent htmlComponent) {
-		htmlComponents.add(new HtmlTag("br", Color.BLACK, 0,
-			htmlComponent.getHtmlComponentHeight()));
+		else breakComponent(getLastComponent());
 	}
 
 	/**
@@ -289,6 +295,16 @@ public class HtmlPrinter {
 	}
 
 	/**
+	 * Generates a heading {@code Font} for the {@code Font} size given.
+	 *
+	 * @param  size The {@code Font} size of the heading
+	 * @return The {@code Font}
+	 */
+	private Font getHeadingFont(int size) {
+		return new Font(font.getFontName(), font.getStyle() | Font.BOLD, size);
+	}
+
+	/**
 	 * Prints a {@code String} formatted as Preformatted Text, with a monospaced
 	 * {@code Font} and the current {@code Color}.
 	 *
@@ -322,6 +338,28 @@ public class HtmlPrinter {
 	}
 
 	/**
+	 * Prints a Break, using the default break size. If already in the middle of
+	 * a line, breaks out of that line first, and then prints a break.
+	 */
+	public void printBreak() {
+		breakIfNecessary();
+		htmlComponents.add(new HtmlTag("br", color, 0, BREAK_HEIGHT));
+		if (!preventDrawing)
+			drawHtmlComponents();
+	}
+
+	/**
+	 * Prints a Horizontal Rule. If already in the middle of a line, breaks out
+	 * of that line first, and then prints the rule.
+	 */
+	public void printHorizontalRule() {
+		breakIfNecessary();
+		htmlComponents.add(new HtmlTag("hr", color, 0, HORIZONTAL_RULE_HEIGHT));
+		if (!preventDrawing)
+			drawHtmlComponents();
+	}
+
+	/**
 	 * Prints a break, but only if the last component is not a {@code HtmlTag}.
 	 */
 	private void breakIfNecessary() {
@@ -335,20 +373,14 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Breaks if the {@code Font} used is a different size than the previous
-	 * font used.
+	 * Moves {@code HtmlPrinter}'s cursor down by the height of the specified
+	 * {@code HtmlComponent} and returns it to the left-hand margin.
 	 *
-	 * @param font The {@code Font} to use for breaking
+	 * @param htmlComponent The {@code HtmlComponent} used to calculate height
 	 */
-	private void breakIfDifferentSize(Font font) {
-		if (htmlComponents.isEmpty())
-			return;
-
-		HtmlComponent previousComponent = getLastComponent();
-		if (previousComponent instanceof HtmlFragment &&
-			((HtmlFragment)previousComponent).getFont().getSize() !=
-			font.getSize())
-			breakComponent(previousComponent);
+	private void breakComponent(HtmlComponent htmlComponent) {
+		htmlComponents.add(new HtmlTag("br", Color.BLACK, 0,
+			htmlComponent.getHtmlComponentHeight()));
 	}
 
 	/**
@@ -357,29 +389,6 @@ public class HtmlPrinter {
 	 */
 	private HtmlComponent getLastComponent() {
 		return htmlComponents.get(htmlComponents.size() - 1);
-	}
-
-	/**
-	 * Prints a Break, using the default break size. If already in the middle of
-	 * a line, breaks out of that line first, and then prints a break.
-	 */
-	public void printBreak() {
-		breakIfNecessary();
-		htmlComponents.add(new HtmlTag("br", color, 0, BREAK_HEIGHT));
-		if (!preventDrawing)
-			drawHtmlComponents();
-	}
-
-
-	/**
-	 * Prints a Horizontal Rule. If already in the middle of a line, breaks out
-	 * of that line first, and then prints the rule.
-	 */
-	public void printHorizontalRule() {
-		breakIfNecessary();
-		htmlComponents.add(new HtmlTag("hr", color, 0, HORIZONTAL_RULE_HEIGHT));
-		if (!preventDrawing)
-			drawHtmlComponents();
 	}
 
 	/**
@@ -400,17 +409,6 @@ public class HtmlPrinter {
 		htmlCanvas.hideLineMark();
 		if (!preventDrawing)
 			drawHtmlComponents();
-	}
-
-	/**
-	 * Generates a heading {@code Font} for the {@code Font} size given.
-	 *
-	 * @param  size The {@code Font} size of the heading
-	 * @return The {@code Font}
-	 */
-	private Font getHeadingFont(int size) {
-		return new Font(font.getFontName(), font.getStyle() | Font.BOLD,
-			size);
 	}
 
 	/**
