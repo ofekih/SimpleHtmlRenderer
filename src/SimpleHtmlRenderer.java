@@ -26,13 +26,13 @@ public class SimpleHtmlRenderer extends JFrame {
 	 * The default value for the width of the a {@code SimpleHtmlRenderer}
 	 * window, in pixels.
 	 */
-	public static final int DEFAULT_WINDOW_WIDTH = 1500;
+	public static final int DEFAULT_WINDOW_WIDTH = 900;
 
 	/**
 	 * The default value for the height of the a {@code SimpleHtmlRenderer}
 	 * window, in pixels.
 	 */
-	public static final int DEFAULT_WINDOW_HEIGHT = 1000;
+	public static final int DEFAULT_WINDOW_HEIGHT = 500;
 
 	/**
 	 * The width of the screen, in pixels.

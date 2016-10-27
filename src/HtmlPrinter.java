@@ -21,7 +21,7 @@ public class HtmlPrinter {
 	 * The default {@code Font} used for rendering Paragraph text.
 	 */
 	public static final Font DEFAULT_FONT = new Font(Font.SANS_SERIF,
-		Font.PLAIN, 25);
+		Font.PLAIN, 16);
 
 	/**
 	 * The default {@code Color} used for rendering Paragraph text.
