@@ -69,7 +69,7 @@ public class HtmlPrinter {
 	private static final int HORIZONTAL_RULE_HEIGHT = 8;
 
 	/**
-	 * The width of a single character using a monospaced font.
+	 * The width, in pixels, of a single Monospaced character.
 	 */
 	private final int MONOSPACED_CHAR_WIDTH;
 
@@ -147,67 +147,57 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints a string with a specific {@code Font} and {@code Color}.
-	 *
-	 * @param str   String to add
-	 * @param font  {@code Font} to use
-	 * @param color {@code Color} to use
+	 * Prints a {@code String} with the current {@code Color} and {@code Font}.
+	 * 
+	 * @param string The {@code String} to print
 	 */
-	private HtmlFragment print(String str, Font font, Color color) {
+	public void print(String string) {
+		print(string, font);
+	}
+
+	/**
+	 * Prints a {@code String} with a specific {@code Font} and the current
+	 * {@code Color}.
+	 *
+	 * @param string The {@code String} to print
+	 * @param font   The {@code Font} to use
+	 */
+	private void print(String string, Font font) {
+		print(string, font, color);
+	}
+
+	/**
+	 * Prints {@code String} with specific {@code Color} and the current
+	 * {@code Font}.
+	 * 
+	 * @param string The {@code String} to print
+	 * @param color  The {@code Color} to use
+	 */
+	private void print(String string, Color color) {
+		print(string, font, color);
+	}
+
+	/**
+	 * Prints a {@code String} with a specific {@code Font} and {@code Color}.
+	 *
+	 * @param string The {@code String} to print
+	 * @param font   The {@code Font} to use
+	 * @param color  The {@code Color} to use
+	 */
+	private void print(String string, Font font, Color color) {
 		breakIfDifferentSize(font);
 
-		HtmlFragment htmlFragment = new HtmlFragment(str, font, color,
+		HtmlFragment htmlFragment = new HtmlFragment(string, font, color,
 			htmlCanvas);
 		htmlComponents.add(htmlFragment);
 
 		if (!preventDrawing)
 			drawHtmlComponents();
-
-		return htmlFragment;
 	}
 
 	/**
-	 * Prints a string with a specific {@code Font}.
-	 * @param str  the String to print
-	 * @param font the {@code Font} to use
-	 */
-	private void print(String str, Font font) {
-		print(str, font, color);
-	}
-
-	/**
-	 * Prints a string with specific {@code Color}.
-	 * @param str   the String to print
-	 * @param color the {@code Color} to use
-	 */
-	private void print(String str, Color color) {
-		print(str, font, color);
-	}
-
-	/**
-	 * Prints a string with current formatting ({@code Color} and {@code Font}).
-	 * This method is identical to printParagraph
-	 * @param str the String to print
-	 */
-	public void print(String str) {
-		print(str, font);
-	}
-
-	/**
-	 * Prints a string with a specific {@code Font} and {@code Color}, breaking
-	 * after.
-	 * @param str   the String to print
-	 * @param font  the {@code Font} to use
-	 * @param color the {@code Color} to use
-	 */
-	private void println(String str, Font font, Color color) {
-		HtmlFragment htmlFragment = print(str, font, color);
-		breakComponent(htmlFragment);
-	}
-
-	/**
-	 * Breaks with a height equal to to the height of the last component /
-	 * fragment. Used to move onto the next line.
+	 * Moves {@code HtmlPrinter}'s cursor down one line and returns it to the
+	 * left-hand margin.
 	 */
 	public void println() {
 		if (htmlComponents.isEmpty())
@@ -216,9 +206,23 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Inserts a break with a line height equal to the height of the last
-	 * component.
-	 * @param htmlComponent the {@code HtmlComponent} whose height to use
+	 * Prints a {@code String} with a specific {@code Font} and {@code Color},
+	 * breaking after.
+	 * 
+	 * @param string The String to print
+	 * @param font   The {@code Font} to use
+	 * @param color  The {@code Color} to use
+	 */
+	private void println(String string, Font font, Color color) {
+		print(string, font, color);
+		breakComponent(htmlComponents.get(htmlComponents.size() - 1));
+	}
+
+	/**
+	 * Moves {@code HtmlPrinter}'s cursor down by the height of the specified
+	 * {@code HtmlComponent} and returns it to the left-hand margin.
+	 * 
+	 * @param htmlComponent The {@code HtmlComponent} used to calculate height
 	 */
 	private void breakComponent(HtmlComponent htmlComponent) {
 		htmlComponents.add(new HtmlTag("br", Color.BLACK, 0,
@@ -226,82 +230,100 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints text formatted as H1.
-	 * @param str the String to print
+	 * Prints a {@code String} formatted as Header 1, with the current {@code Font}
+	 * and {@code Color}.
+	 * 
+	 * @param string The String to print
 	 */
-	public void printHeading1(String str) {
-		print(str, getHeadingFont(HEADING1_FONT_SIZE));
+	public void printHeading1(String string) {
+		print(string, getHeadingFont(HEADING1_FONT_SIZE));
 	}
 
 	/**
-	 * Prints text formatted as H2.
-	 * @param str the String to print
+	 * Prints a {@code String} formatted as Header 2, with the current {@code Font}
+	 * and {@code Color}.
+	 * 
+	 * @param string The String to print
 	 */
-	public void printHeading2(String str) {
-		print(str, getHeadingFont(HEADING2_FONT_SIZE));
+	public void printHeading2(String string) {
+		print(string, getHeadingFont(HEADING2_FONT_SIZE));
 	}
 
 	/**
-	 * Prints text formatted as H3.
-	 * @param str the String to print
+	 * Prints a {@code String} formatted as Header 3, with the current {@code Font}
+	 * and {@code Color}.
+	 * 
+	 * @param string The String to print
 	 */
-	public void printHeading3(String str) {
-		print(str, getHeadingFont(HEADING3_FONT_SIZE));
+	public void printHeading3(String string) {
+		print(string, getHeadingFont(HEADING3_FONT_SIZE));
 	}
 
 	/**
-	 * Prints text formatted as H4.
-	 * @param str the String to print
+	 * Prints a {@code String} formatted as Header 4, with the current {@code Font}
+	 * and {@code Color}.
+	 * 
+	 * @param string The String to print
 	 */
-	public void printHeading4(String str) {
-		print(str, getHeadingFont(HEADING4_FONT_SIZE));
+	public void printHeading4(String string) {
+		print(string, getHeadingFont(HEADING4_FONT_SIZE));
 	}
 
 	/**
-	 * Prints text formatted as H5.
-	 * @param str the String to print
+	 * Prints a {@code String} formatted as Header 5, with the current {@code Font}
+	 * and {@code Color}.
+	 * 
+	 * @param string The String to print
 	 */
-	public void printHeading5(String str) {
-		print(str, getHeadingFont(HEADING5_FONT_SIZE));
+	public void printHeading5(String string) {
+		print(string, getHeadingFont(HEADING5_FONT_SIZE));
 	}
 
 	/**
-	 * Prints text formatted as H6.
-	 * @param str the String to print
+	 * Prints a {@code String} formatted as Header 6, with the current {@code Font}
+	 * and {@code Color}.
+	 * 
+	 * @param string The String to print
 	 */
-	public void printHeading6(String str) {
-		print(str, getHeadingFont(HEADING6_FONT_SIZE));
+	public void printHeading6(String string) {
+		print(string, getHeadingFont(HEADING6_FONT_SIZE));
 	}
 
 	/**
-	 * Prints text with a monospace font (Monospaced).
-	 * @param str the String to print
+	 * Prints a {@code String} formatted as Preformatted Text, with a monospaced
+	 * {@code Font} and the current {@code Color}.
+	 *
+	 * @param string The String to print
 	 */
-	public void printPreformattedText(String str) {
-		print(str, new Font(Font.MONOSPACED, font.getStyle(), font.getSize()));
-	}
-
-	/**
-	 * Prints text in italics.
-	 * @param str the String to print
-	 */
-	public void printItalic(String str) {
-		print(str, new Font(font.getFontName(), font.getStyle() | Font.ITALIC,
+	public void printPreformattedText(String string) {
+		print(string, new Font(Font.MONOSPACED, font.getStyle(),
 			font.getSize()));
 	}
 
 	/**
-	 * Prints text in bold.
-	 * @param str the String to print
+	 * Prints a {@code String} formatted as Italic, with a bold {@code Font}
+	 * and the current {@code Color}.
+	 * 
+	 * @param string The String to print
 	 */
-	public void printBold(String str) {
-		print(str, new Font(font.getFontName(), font.getStyle() | Font.BOLD,
+	public void printBold(String string) {
+		print(string, new Font(font.getFontName(), font.getStyle() | Font.BOLD,
 			font.getSize()));
 	}
 
 	/**
-	 * Breaks if the previous component is not a break. This breaks using the
-	 * same size as the previous component (not the default break size).
+	 * Prints a {@code String} formatted as Italic, with a italic {@code Font}
+	 * and the current {@code Color}.
+	 * 
+	 * @param string The String to print
+	 */
+	public void printItalic(String string) {
+		print(string, new Font(font.getFontName(), font.getStyle() |
+				Font.ITALIC, font.getSize()));
+	}
+
+	/**
+	 * Prints a break, but only if the last component is not a {@code HtmlTag}.
 	 */
 	private void breakIfNecessary() {
 		if (htmlComponents.isEmpty())
@@ -317,7 +339,8 @@ public class HtmlPrinter {
 	/**
 	 * Breaks if the {@code Font} used is a different size than the previous
 	 * font used.
-	 * @param font the {@code Font} to use
+	 *
+	 * @param font The {@code Font} to use for breaking
 	 */
 	private void breakIfDifferentSize(Font font) {
 		if (htmlComponents.isEmpty())
@@ -332,9 +355,8 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints a break, using the default break size. If already in the middle of
-	 * a line, breaks out of that line first, and then prints a break. Made to
-	 * mimic the html br tag.
+	 * Prints a Break, using the default break size. If already in the middle of
+	 * a line, breaks out of that line first, and then prints a break.
 	 */
 	public void printBreak() {
 		breakIfNecessary();
@@ -345,9 +367,8 @@ public class HtmlPrinter {
 
 
 	/**
-	 * Prints a horizontal rule. If already in the middle of a line, breaks out
-	 * of that line first, and then prints the rule. Made to mimic the html hr
-	 * tag.
+	 * Prints a Horizontal Rule. If already in the middle of a line, breaks out
+	 * of that line first, and then prints the rule.
 	 */
 	public void printHorizontalRule() {
 		breakIfNecessary();
@@ -357,7 +378,8 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints a line mark lineMarkColumns wide.
+	 * Draws a vertical line after the specified number of characters.
+	 * 
 	 * @param lineMarkColumns The column number to print the mark at
 	 */
 	public void drawLineMark(int lineMarkColumns) {
@@ -376,13 +398,14 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Generates a heading font with the appropriate fontSize.
-	 * @param  fontSize the font size of the heading
-	 * @return          the appropriate heading {@code Font}
+	 * Generates a heading {@code Font} for the {@code Font} size given.
+	 *
+	 * @param  size The {@code Font} size of the heading
+	 * @return The {@code Font}
 	 */
-	private Font getHeadingFont(int fontSize) {
+	private Font getHeadingFont(int size) {
 		return new Font(font.getFontName(), font.getStyle() | Font.BOLD,
-			fontSize);
+			size);
 	}
 
 	/**
