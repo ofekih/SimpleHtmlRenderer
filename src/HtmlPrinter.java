@@ -69,9 +69,9 @@ public class HtmlPrinter {
 	private static final int HORIZONTAL_RULE_HEIGHT = 8;
 
 	/**
-	 * The width of a single space using the default font.
+	 * The width of a single character using a monospaced font.
 	 */
-	private final int SPACE_WIDTH;
+	private final int MONOSPACED_CHAR_WIDTH;
 
 	/**
 	 * The {@code SimpleHtmlRenderer} that contains this {@code HtmlPrinter}.
@@ -121,8 +121,9 @@ public class HtmlPrinter {
 		htmlComponents = new ArrayList<HtmlComponent>();
 		preventDrawing = false;
 
-		SPACE_WIDTH = htmlCanvas.getFontMetrics(new Font(Font.MONOSPACED,
-			Font.PLAIN, DEFAULT_FONT.getSize())).stringWidth(" ");
+		MONOSPACED_CHAR_WIDTH = htmlCanvas.getFontMetrics(new Font(
+			Font.MONOSPACED, Font.PLAIN, DEFAULT_FONT.getSize()))
+			.stringWidth(" ");
 	}
 
 	/**
@@ -356,14 +357,20 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints a vertical rule. If already in the middle of a line, break out of
-	 * that line first, and then prints the rule.
-	 * @param numColumns The column number to print the rule at
+	 * Prints a line mark lineMarkColumns wide.
+	 * @param lineMarkColumns The column number to print the mark at
 	 */
-	public void printVerticalRule(int numColumns) {
-		breakIfNecessary();
-		htmlComponents.add(new HtmlTag("vr", color, numColumns *
-			SPACE_WIDTH, 0));
+	public void drawLineMark(int lineMarkColumns) {
+		htmlCanvas.setLineMark(lineMarkColumns * MONOSPACED_CHAR_WIDTH);
+		if (!preventDrawing)
+			drawHtmlComponents();
+	}
+
+	/**
+	 * Hides the {@link HtmlCanvas}'s line mark.
+	 */
+	public void hideLineMark() {
+		htmlCanvas.hideLineMark();
 		if (!preventDrawing)
 			drawHtmlComponents();
 	}

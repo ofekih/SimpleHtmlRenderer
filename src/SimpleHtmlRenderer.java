@@ -220,6 +220,6 @@ public class SimpleHtmlRenderer extends JFrame {
 		htmlPrinter.setColor(Color.GREEN);
 		htmlPrinter.print("I'm glad this works!");
 
-		htmlPrinter.printVerticalRule(80);
+		htmlPrinter.drawLineMark(80);
 	}
 }

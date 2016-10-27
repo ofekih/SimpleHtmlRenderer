@@ -24,6 +24,9 @@ public class HtmlCanvas extends JPanel {
 	private final int X_MARGIN = 50;
 	private final int Y_MARGIN = 50;
 
+	private boolean drawLineMark;
+	private int lineMarkX;
+
 	private List<HtmlComponent> htmlComponents;
 
 	/**
@@ -32,6 +35,24 @@ public class HtmlCanvas extends JPanel {
 	 */
 	public void setHtmlComponents(List<HtmlComponent> htmlComponents) {
 		this.htmlComponents = htmlComponents;
+		drawLineMark = false;
+		lineMarkX = 0;
+	}
+
+	/**
+	 * Sets this {@code HtmlCanvas}'s line mark.
+	 * @param lineMarkX the x coord to print the mark at
+	 */
+	public void setLineMark(int lineMarkX) {
+		this.lineMarkX = lineMarkX;
+		drawLineMark = true;
+	}
+
+	/**
+	 * Hide this {@code HtmlCanvas}'s line mark.
+	 */
+	public void hideLineMark() {
+		drawLineMark = false;
 	}
 
 	/**
@@ -99,6 +120,8 @@ public class HtmlCanvas extends JPanel {
 			RenderingHints.VALUE_ANTIALIAS_ON);
 		if (htmlComponents != null)
 			drawHtmlComponents(g);
+		if (drawLineMark)
+			drawLineMark(g, lineMarkX);
 	}
 
 	/**
@@ -153,9 +176,6 @@ public class HtmlCanvas extends JPanel {
 			case "hr":
 				drawHorizontalRule(g, yLoc);
 				break;
-			case "vr":
-				drawVerticalRule(g, htmlTag.getHtmlComponentWidth());
-				break;
 			case "br":
 				break;
 		}
@@ -171,11 +191,12 @@ public class HtmlCanvas extends JPanel {
 	}
 
 	/**
-	 * Draws a vertical rule.
+	 * Draws a vertical line mark.
 	 * @param  g    the {@link Graphics} component
 	 * @param  xLoc the x location to use for printing
 	 */
-	private void drawVerticalRule(Graphics g, int xLoc) {
+	private void drawLineMark(Graphics g, int xLoc) {
+		g.setColor(Color.black);
 		g.fillRect(X_MARGIN + xLoc, 0, 2, getHeight());
 	}
 }
