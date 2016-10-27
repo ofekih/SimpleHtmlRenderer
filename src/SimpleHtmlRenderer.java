@@ -221,5 +221,12 @@ public class SimpleHtmlRenderer extends JFrame {
 		htmlPrinter.print("I'm glad this works!");
 
 		htmlPrinter.drawLineMark(80);
+
+		htmlPrinter.printBreak();
+		htmlPrinter.setFont(HtmlPrinter.DEFAULT_FONT);
+		htmlPrinter.setColor(Color.BLACK);
+		htmlPrinter.printPreformattedText("111111111122222222223333333333" +
+			"44444444445555555555666666666677777777778888888888");
+		htmlPrinter.print("Line break at 80 :D");
 	}
 }

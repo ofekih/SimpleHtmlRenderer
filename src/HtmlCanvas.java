@@ -193,6 +193,6 @@ public class HtmlCanvas extends JPanel {
 	 */
 	private void drawLineMark(Graphics g, int xLoc) {
 		g.setColor(Color.black);
-		g.fillRect(X_MARGIN + xLoc, 0, 2, getHeight());
+		g.fillRect(X_MARGIN + xLoc, 0, 1, getHeight());
 	}
 }
