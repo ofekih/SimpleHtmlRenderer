@@ -111,6 +111,7 @@ public class HtmlCanvas extends JPanel {
 			((HtmlTag)component).getTag().equals("br");
 	}
 
+	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		setBackground(Color.WHITE);
