@@ -1,4 +1,4 @@
-# Simple HTML Renderer
+# Simple HTML Renderer [![Build Status](https://travis-ci.org/ofekih/SimpleHtmlRenderer.svg?branch=gh-pages)](https://travis-ci.org/ofekih/SimpleHtmlRenderer)
 
 A toy renderer that pretty prints tokenized HTML, written for Mr. Greenstein's AP Computer Science A class at Monta Vista High School.
 

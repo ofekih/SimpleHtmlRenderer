@@ -1,3 +1,14 @@
 language: java
 
-script: javac -cp src src/*.java
+jdk:
+  - oraclejdk8
+
+branches:
+  only:
+  - gh-pages
+
+script:
+  # Check line length
+  - awk 'length($0) > 80' src/*.java | wc -l
+  # Compile
+  - javac -cp src src/*.java

@@ -235,8 +235,8 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints a {@code String} formatted as Header 1, with the current {@code Font}
-	 * and {@code Color}.
+	 * Prints a {@code String} formatted as Header 1, with the current
+	 * {@code Font} and {@code Color}.
 	 *
 	 * @param string The String to print
 	 */
@@ -245,8 +245,8 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints a {@code String} formatted as Header 2, with the current {@code Font}
-	 * and {@code Color}.
+	 * Prints a {@code String} formatted as Header 2, with the current
+	 * {@code Font} and {@code Color}.
 	 *
 	 * @param string The String to print
 	 */
@@ -255,8 +255,8 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints a {@code String} formatted as Header 3, with the current {@code Font}
-	 * and {@code Color}.
+	 * Prints a {@code String} formatted as Header 3, with the current
+	 * {@code Font} and {@code Color}.
 	 *
 	 * @param string The String to print
 	 */
@@ -265,8 +265,8 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints a {@code String} formatted as Header 4, with the current {@code Font}
-	 * and {@code Color}.
+	 * Prints a {@code String} formatted as Header 4, with the current
+	 * {@code Font} and {@code Color}.
 	 *
 	 * @param string The String to print
 	 */
@@ -275,8 +275,8 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints a {@code String} formatted as Header 5, with the current {@code Font}
-	 * and {@code Color}.
+	 * Prints a {@code String} formatted as Header 5, with the current
+	 * {@code Font} and {@code Color}.
 	 *
 	 * @param string The String to print
 	 */
@@ -285,8 +285,8 @@ public class HtmlPrinter {
 	}
 
 	/**
-	 * Prints a {@code String} formatted as Header 6, with the current {@code Font}
-	 * and {@code Color}.
+	 * Prints a {@code String} formatted as Header 6, with the current
+	 * {@code Font} and {@code Color}.
 	 *
 	 * @param string The String to print
 	 */
